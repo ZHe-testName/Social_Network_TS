@@ -9,13 +9,7 @@ type LinkType = {
 function CustomNavLink(props: LinkType) {
     const {href, description} = props;
 
-    console.log(props);
-
-    return (
-        <li>
-           <NavLink to={href}>{description}</NavLink>
-        </li>
-    );
+    return (<NavLink to={href}>{description}</NavLink>);
 };
 
 export default CustomNavLink;

@@ -15,6 +15,12 @@ type LinkType = {
   description: string,
 };
 
+type IdentLinkType = {
+  href: string,
+  description: string,
+  id: string,
+};
+
 const navLinks = [
   {href: '/dialogs', description: 'Messages'},
   {href: '/news', description: 'News'},

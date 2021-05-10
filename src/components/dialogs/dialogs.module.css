@@ -1,0 +1,19 @@
+.dialogs_wrap{
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "h h"
+                        "n c";
+}
+
+    .dialogs_header{
+        grid-area: h;
+    }
+
+    .dialogs_nav{
+        grid-area: n;
+    }
+
+    .dialogs_conversation{
+        grid-area: c;
+    }

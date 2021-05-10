@@ -1,4 +1,4 @@
-import classes from './settings.module.css';
+import './settings.module.css';
 
 function Settings() {
     return (

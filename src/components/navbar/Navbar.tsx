@@ -1,7 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import './navbar.module.css';
 
-import CustomNavLink from './custom-nav-link';
+import CustomNavLink from '../custom-nav-link';
 
 type LinkType = {
   href: string,
@@ -13,9 +12,10 @@ type NavType = {
 };
 
 function Navbar(props: NavType) {
-    const links = props.links.map((linkSettings: LinkType) => <CustomNavLink {...linkSettings} />);
+    const links = props.links.map((linkSettings: LinkType) => {
+      return <li key={linkSettings.href} ><CustomNavLink {...linkSettings} /></li>
+    });
 
-    console.log(links);
     return(
       <nav className='nav'>
         <ul>
