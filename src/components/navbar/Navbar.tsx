@@ -1,28 +1,25 @@
+import { NavLink } from 'react-router-dom';
 import './navbar.module.css';
 
-function Navbar() {
+import CustomNavLink from './custom-nav-link';
+
+type LinkType = {
+  href: string,
+  description: string,
+};
+
+type NavType = {
+  links: Array<LinkType>,
+};
+
+function Navbar(props: NavType) {
+    const links = props.links.map((linkSettings: LinkType) => <CustomNavLink {...linkSettings} />);
+
+    console.log(links);
     return(
-        <nav className='nav'>
+      <nav className='nav'>
         <ul>
-          <li>
-           <a href="/profile">Profile</a>
-          </li>
-
-          <li>
-            <a href="/dialogs">Messages</a>
-          </li>
-
-          <li>
-           <a href="/news">News</a>
-          </li>
-
-          <li>
-            <a href="/music">Music</a>
-          </li>
-
-          <li>
-           <a href="/settimgs">Settings</a>
-          </li>
+          {links}
         </ul>
       </nav>
     );

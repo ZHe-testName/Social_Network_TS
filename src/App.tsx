@@ -10,12 +10,25 @@ import Profile from './components/profile';
 import Settings from './components/settings';
 import News from './components/news';
 
+type LinkType = {
+  href: string,
+  description: string,
+};
+
+const navLinks = [
+  {href: '/dialogs', description: 'Messages'},
+  {href: '/news', description: 'News'},
+  {href: '/settimgs', description: 'Settings'},
+  {href: '/profile', description: 'Profile'},
+  {href: '/music', description: 'Music'},
+];
+
 function App() {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header/>
-        <Navbar/>
+        <Navbar links={navLinks}/>
 
         <div className="main-content">
           <Route path="/dialogs" component={Dialogs}/>
