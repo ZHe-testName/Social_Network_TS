@@ -18,12 +18,11 @@ function App() {
         <Navbar/>
 
         <div className="main-content">
-          {/* <Route component={Dialogs}/>
-          <Route component={News}/>
-          <Route component={Settings}/> */}
-          <Route component={Profile}/>
-          <h1>app</h1>
-          {/* <Route component={Music}/> */}
+          <Route path="/dialogs" component={Dialogs}/>
+          <Route path="/news" component={News}/>
+          <Route path="/settimgs" component={Settings}/>
+          <Route path="/profile" component={Profile}/>
+          <Route path="/music" component={Music}/>
         </div>
       </div>
     </BrowserRouter>
