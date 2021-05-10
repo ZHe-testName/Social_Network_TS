@@ -1,0 +1,13 @@
+header{
+    padding: 5px;
+    background-color: var(--blue);
+    grid-area: h;
+    /* clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 100%, 81% 75%, 50% 67%, 21% 79%, 0 100%, 0% 35%, 20% 10%); */
+  }
+  
+  header>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 10px;
+    margin-left: 30px;
+  }

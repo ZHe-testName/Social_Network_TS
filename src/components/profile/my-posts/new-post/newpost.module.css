@@ -1,0 +1,71 @@
+@keyframes hover_arrow {
+    60%{
+        transform: translateX(-20px);
+    }
+
+    100%{
+        transform: rotateZ(-90deg) translateX(-15px);
+    }
+}
+
+.new_post{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+    .new_post > textarea{
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        border-radius: 5px;
+        padding: 5px;
+        align-self: stretch;
+        border: 1px solid rgb(112, 112, 112);
+        background-color: rgba(228, 228, 228, 0.87);
+        resize: none;
+        outline: none;
+    }
+
+    .new_post > button{
+        position: relative;
+        width: 135px;
+        height: 30px;
+        border-radius: 5px;
+        border-bottom-left-radius: 0px;
+        border: none;
+        margin-top: 20px;
+        font-size: 1.1rem;
+        background-color: var(--blue);
+    }
+
+    .new_post > button:hover{
+        cursor: pointer;
+        color: white;
+        transform: scale(1.125);
+        text-decoration: underline;
+        /* box-shadow: 0px -2px 2px 0px rgba(22, 50, 78, 0.774); */
+    }
+
+        .new_post > button::before{
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 0px;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: var(--blue);
+            clip-path: polygon(51% 0, 100% 0%, 100% 100%, 50% 100%, 0% 50%);
+            z-index: -1;
+        }
+
+        .new_post > button:hover::before{
+            animation-name: hover_arrow;
+            animation-duration: 0.3s;
+            animation-timing-function: ease-out;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }

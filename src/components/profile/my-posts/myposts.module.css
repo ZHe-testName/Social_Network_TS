@@ -1,0 +1,15 @@
+.myposts{
+    padding: 10px;
+    margin-bottom: 35px;
+}
+
+.header{
+    font-size: 1.4rem;
+}
+
+.posts_block{
+    border-radius: 5px;
+    border: 2px double var(--lightblue);
+    background-color: rgba(175, 240, 248, 0.192);
+    margin-top: 20px;
+}

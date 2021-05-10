@@ -1,0 +1,94 @@
+@keyframes like_dislike_anim {
+    0%{
+        transform: rotateZ(0deg);
+        transform-origin: 0 100%;
+    }
+
+    15%{
+        transform: rotateZ(-15deg);
+        transform-origin: 0 100%;
+    }
+
+    40%{
+        transform: rotateZ(25deg);
+    }
+
+    75%{
+        transform: rotateZ(-15deg);
+    }
+
+    100%{
+        transform: rotateZ(0deg) scale(1.2);
+    }
+}
+
+.post{
+    display: flex;
+    max-width: 550px;
+    min-height: 100px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: var(--lightblue);
+
+}
+
+.post > img{
+    margin: 10px;
+    border-radius: 50%;
+    max-width: 70px;
+    max-height: 70px;
+}
+
+.text_area{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end
+}
+
+.post_text{
+    width: 100%;
+    margin: 10px;
+    margin-bottom: 0px;
+    padding: 10px;
+    background-color: rgb(247, 247, 247);
+    border-radius: 15px;
+}
+
+.text_area > input{
+    visibility: hidden;
+}
+
+.text_area > label{
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    outline: none;
+}
+
+
+.text_area > label:hover{
+    /* animation-name: like_dislike_anim;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards; */
+    cursor: pointer;
+}
+
+.text_area > input:checked label{
+    border: 3px solid black;
+}
+
+.like{
+    margin: 10px;
+    background-image: url("../../../../imgs/liketrans.png");
+    clip-path: inset(2% 0 0 0);
+}
+
+.dislike{
+    margin: 10px;
+    background-image: url("../../../../imgs/disliketrans.png");
+    margin-right: 35px;
+}

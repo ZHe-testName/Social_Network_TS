@@ -1,0 +1,14 @@
+nav{
+    padding: 10px;
+    background-color: var(--lightblue);
+    grid-area: g;
+  }
+  
+  nav > ul{
+    list-style-type: none;
+    font-size: 1.3rem;
+  }
+
+  nav a{
+    color: rgb(0, 174, 255);
+  }
