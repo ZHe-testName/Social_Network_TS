@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+li{
+  list-style-type: none;
+}
+
 .app-wrapper{
   margin: 0 auto;
   max-width: 1200px;
@@ -12,7 +16,7 @@
   grid-template-columns: 2fr 10fr;
   grid-template-areas:  "h h"
                         "g m";
-  grid-gap: 10px;
+  gap: 10px;
 }
 
 .main-content{

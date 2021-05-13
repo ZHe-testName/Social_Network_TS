@@ -1,6 +1,9 @@
 :root{
+  --transparent_lightblue: rgba(175, 240, 248, 0.192);
   --lightblue:  rgb(175, 239, 255);
   --blue:  rgb(117, 196, 216);
+  --h2_font_size: 2rem;
+  --main_blocks_border_radius: 10px;
 }
 
 body {

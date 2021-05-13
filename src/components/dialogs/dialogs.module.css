@@ -1,5 +1,6 @@
 .dialogs_wrap{
     display: grid;
+    gap: 10px;
     grid-template-columns: 2fr 6fr;
     grid-template-rows: 1fr;
     grid-template-areas: "h h"
@@ -8,10 +9,14 @@
 
     .dialogs_header{
         grid-area: h;
+        font-size: var(--h2_font_size);
     }
 
     .dialogs_nav{
         grid-area: n;
+        background-color: var(--transparent_lightblue);
+        border-radius: var(--main_blocks_border_radius);
+        border: 2px solid var(--lightblue);
     }
 
     .dialogs_conversation{

@@ -1,4 +1,4 @@
-import './navbar.module.css';
+import classes from  './navbar.module.css';
 
 import CustomNavLink from '../custom-nav-link';
 
@@ -17,8 +17,8 @@ function Navbar(props: NavType) {
     });
 
     return(
-      <nav className='nav'>
-        <ul>
+      <nav className={classes.main_nav_bar}>
+        <ul className={classes.ul_nav_bar}>
           {links}
         </ul>
       </nav>

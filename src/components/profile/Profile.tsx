@@ -3,7 +3,7 @@ import classes from  './profile.module.css';
 
 function Profile() {
     return (
-        <main className='main'>
+        <main className={classes.profile}>
         <div className={classes.banner}></div>
 
         <div className={classes.account}>

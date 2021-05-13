@@ -10,6 +10,6 @@
 .posts_block{
     border-radius: 5px;
     border: 2px double var(--lightblue);
-    background-color: rgba(175, 240, 248, 0.192);
+    background-color: var(--transparent_lightblue);
     margin-top: 20px;
 }

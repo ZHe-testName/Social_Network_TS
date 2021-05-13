@@ -1,12 +1,30 @@
-nav{
+.main_nav_bar{
   padding: 10px;
   background-color: var(--lightblue);
+  border-radius: var(--main_blocks_border_radius);
   grid-area: g;
 }
 
-  nav > ul{
-    list-style-type: none;
+  .main_nav_bar > .ul_nav_bar{
     font-size: 1.3rem;
   }
+
+    .ul_nav_bar > li{
+      margin-top: 5px;
+    }
+
+      .ul_nav_bar a{
+        text-decoration: none;
+        color: rgb(0, 136, 177);
+      }
+    
+      .ul_nav_bar a:active{
+        border: 2px solid black;
+      }
+    
+      .ul_nav_bar a:hover{
+        color: grey;
+        text-decoration: underline;
+      }
 
   

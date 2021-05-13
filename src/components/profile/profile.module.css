@@ -1,4 +1,4 @@
-main{
+.profile{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -12,6 +12,7 @@ main{
     background-size: cover;
     background-origin: no-repeat;
     background-image:url("../../imgs/9765_1546220514.jpg");
+    border-radius: var(--main_blocks_border_radius);
   }
   
   .account{

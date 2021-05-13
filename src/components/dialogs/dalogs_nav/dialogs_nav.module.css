@@ -1,0 +1,68 @@
+.users_list{
+    background: transparent;
+}
+
+    .each_user_li{
+        display: flex;
+        margin: 20px 0px;
+        margin-left: 15px;
+    }
+
+    .active_conv{
+        transform: scale(1.2) translateX(20px);
+    }
+
+        .each_user_li a{
+            font-size: 1.2rem;
+            color: #005ed2;
+        }
+
+        /* .each_user_li a::before{
+            content: '';
+            position: absolute;
+            left: 70px;
+            top: 10px;
+            display: block;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            background: #004eff;
+        }
+
+        .each_user_li a::after{
+            position: absolute;
+            font-size: 10px;
+            top: 13px;
+            left: 59px;
+            color: #004eff;
+            content: 'online';
+            display: block;
+            width: 10px;
+            height: 10px;
+        } */
+
+        .status_indicator{
+            position: relative;
+        }
+
+            .indicator_lamp{
+                position: absolute;
+                left: 25px;
+                top: 10px;
+                display: block;
+                border-radius: 50%;
+                width: 5px;
+                height: 5px;
+                background: #004eff;
+            }
+
+            .indicator_text{
+                position: absolute;
+                font-size: 10px;
+                top: 13px;
+                left: 14px;
+                color: #004eff;
+                display: block;
+                width: 10px;
+                height: 10px;
+            }
