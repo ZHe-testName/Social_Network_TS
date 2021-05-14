@@ -12,10 +12,20 @@ function Post() {
                     {/* <button className={classes.like}></button>
 
                     <button className={classes.dislike}></button> */}
-                    <input type="radio" id="like" name="post-reactions" value="like"/>
+                    <span className={classes.counter}>21</span>
+                    <input  className={classes.text_area_input} 
+                            type="radio" 
+                            id="like" 
+                            name="post-reactions" 
+                            value="like"/>
                     <label className={classes.like} htmlFor="like"></label>
-
-                    <input type="radio" id="dislike" name="post-reactions" value="dislike"/>
+                    
+                    <span className={classes.counter}>8</span>
+                    <input  className={classes.text_area_input} 
+                            type="radio"    
+                            id="dislike" 
+                            name="post-reactions" 
+                            value="dislike"/>
                     <label className={classes.dislike} htmlFor="dislike"></label>
                 </div>
         </div>

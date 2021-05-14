@@ -4,28 +4,34 @@ import classes from './dialogs_nav.module.css';
 type LinkType = {
     href: string,
     description: string,
+    online: boolean,
 };
 
-function DialogsNav() {
+type DialogsPropsType = {
+    users: Array<LinkType>,
+};
+
+function DialogsNav(props: DialogsPropsType) {
+    const {users} = props;
+
+    const indicatorJsx = <div className={classes.status_indicator}>
+                            <div className={classes.indicator_lamp}></div>
+                            <span className={classes.indicator_text}>online</span>
+                        </div>;
+
+    const usersArr = users.map((user, i) => {
+        return  <li key={user.href} className={classes.each_user_li}>
+                    <CustomNavLink { ...user} />
+
+                    {user.online ? indicatorJsx : null}
+                </li>;
+    });
+
     return (
         <ul className={classes.users_list}>
-            <li className={classes.each_user_li}>
-                <CustomNavLink { ...{href: '/dialogs/petya', description: 'Petya'}} />
 
-                <div className={classes.status_indicator}>
-                    <div className={classes.indicator_lamp}></div>
-                    <span className={classes.indicator_text}>online</span>
-                </div>
-            </li>
-            {/* <li>
-                <a href="/dialogs/prtya">Petya</a>
-            </li>
-            <li>
-                <a href="/dialogs/masha">Masha</a>
-            </li>
-            <li>
-                <a href="/dialogs/vitya">Vitya</a>
-            </li> */}
+            {usersArr}
+
         </ul>
     );
 };

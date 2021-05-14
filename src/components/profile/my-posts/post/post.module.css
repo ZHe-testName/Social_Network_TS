@@ -54,11 +54,14 @@
     border-radius: 15px;
 }
 
-.text_area > input{
+.text_area_input{
     visibility: hidden;
+    position: absolute;
+    top: -100px;
+    left: -100px;
 }
 
-.text_area > label{
+.text_area label{
     width: 25px;
     height: 25px;
     background-color: transparent;
@@ -81,9 +84,14 @@
     border: 3px solid black;
 }
 
+.counter{
+    margin-top: 16px;
+}
+
 .like{
     margin: 10px;
-    background-image: url("../../../../imgs/liketrans.png");
+    margin-right: 20px;
+    background-image: url("../../../../imgs/like.png");
     clip-path: inset(2% 0 0 0);
 }
 

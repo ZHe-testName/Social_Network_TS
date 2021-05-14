@@ -21,15 +21,21 @@ type IdentLinkType = {
   id: string,
 };
 
-const navLinks = [
-  {href: '/dialogs', description: 'Messages'},
-  {href: '/news', description: 'News'},
-  {href: '/settimgs', description: 'Settings'},
-  {href: '/profile', description: 'Profile'},
-  {href: '/music', description: 'Music'},
-];
+type DialogsUsersType = {
+  href: string,
+  description: string,
+  online: boolean,
+};
 
-function App() {
+type AppPropsType = {
+  usersConversation: Array<DialogsUsersType>,
+  navLinks: Array<LinkType>,
+};
+
+function App(props: AppPropsType) {
+  
+  const {navLinks, usersConversation} = props;
+
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
@@ -37,7 +43,7 @@ function App() {
         <Navbar links={navLinks}/>
 
         <div className="main-content">
-          <Route path="/dialogs" component={Dialogs}/>
+          <Route path="/dialogs" render={() => <Dialogs users={usersConversation}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" component={Profile}/>
