@@ -19,7 +19,7 @@
     display: flex;
     padding: 10px;
   }
-  
+
   .avatar{
     width: 140px;
     height: 140px;
@@ -30,10 +30,7 @@
     max-height: 140px; */
     margin-top: 15px;
     margin-right: 25px;
-    background-position: center;
-    background-size: cover;
-    background-origin: no-repeat;
-    background-image:url("../../imgs/1-17.jpg");
+    /* background-image:url("../../imgs/1-17.jpg"); */
   }
   
   .description{

@@ -1,4 +1,5 @@
 import classes from './post.module.css';
+import Avatar from '../../../avatar';
 
 type PostType = {
     text: string,
@@ -16,8 +17,7 @@ function Post(props: PostType) {
 
     return (
         <div className={classes.post} key={id}>
-                <img src="../../../../imgs/1-17.jpg" 
-                          alt="user avatar image"/>
+                <Avatar settings={{className: classes.post_img, imgUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
 
                 <div className={classes.text_area}>
                     <span className={classes.post_text}>{text}</span>

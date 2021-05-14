@@ -1,5 +1,5 @@
 import classes from './dialogs.module.css';
-import Conversation from './conversations';
+import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
 
 type UsersType = {

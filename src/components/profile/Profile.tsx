@@ -1,5 +1,6 @@
 import MyPosts from './my-posts';
 import classes from  './profile.module.css';
+import Avatar from '../avatar';
 
 type PostsType = {
   text: string,
@@ -20,7 +21,7 @@ function Profile(props: PropsType) {
         <div className={classes.banner}></div>
 
         <div className={classes.account}>
-          <div className={classes.avatar}></div>
+          <Avatar settings={{className: classes.avatar, imgUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
 
           <div className={classes.description}>
 
