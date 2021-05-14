@@ -2,7 +2,7 @@
     display: grid;
     gap: 10px;
     grid-template-columns: 2fr 6fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 50px;
     grid-template-areas: "h h"
                         "n c";
 }
@@ -21,4 +21,7 @@
 
     .dialogs_conversation{
         grid-area: c;
+        /* background-color: var(--transparent_lightblue); */
+        border-radius: var(--main_blocks_border_radius);
+        border: 2px solid var(--lightblue);
     }

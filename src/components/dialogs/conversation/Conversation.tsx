@@ -1,17 +1,12 @@
-import './conversation.module.css';
+import classes from './conversation.module.css';
+import Message from './message';
 
 function Conversation() {
     return (
-        <div>
-            <div>me</div>
-            <div>me</div>
-            <div>you</div>
-            <div>you</div>
-            <div>you</div>
-            <div>me</div>
-            <div>you</div>
-            <div>you</div>
-            <div>me</div>
+        <div className={classes.conversation_wrap}>
+            <Message {...{messageTxt: 'Hello!)fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
+            <Message {...{messageTxt: 'Yoy!)', avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
+            <Message {...{messageTxt: 'You here?', avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
         </div>
     );
 };

@@ -1,10 +1,24 @@
-import './conversation.module.css';
+import classes from './message.module.css';
+import Avatar from '../../../avatar';
 
-function Message() {
+type AvatarSettings = {
+    className: string,
+    imgUrl: string,
+};
+
+type MessageDescription = {
+    avaUrl: string,
+    messageTxt: string,
+};
+
+function Message(props: MessageDescription) {
+    const {messageTxt, avaUrl} = props;
+
     return (
-        <div>
-            <div></div>
-            <div>My message fakkkk</div>
+        <div className={classes.message_wrap}>
+            <Avatar settings={{className: classes.messaage_avatar, imgUrl: avaUrl}}/>
+
+            <div className={classes.message_txt}>{messageTxt}</div>
         </div>
     );
 };
