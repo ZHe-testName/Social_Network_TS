@@ -1,18 +1,32 @@
 import classes from './post.module.css';
 
-function Post() {
+type PostType = {
+    text: string,
+    likes: number,
+    dislikes: number,
+    id: string,
+};
+
+// type PropsType = {
+//     description: PostType,
+// };
+
+function Post(props: PostType) {
+    const {text, likes, dislikes, id} = props;
+
     return (
-        <div className={classes.post}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXodZSEAhaKuQ-KSl9izJj6s9gRMIGjLYwuEkfColSBx9CxqyBOmSy660Qk8FQAd3v2_w&usqp=CAU" 
+        <div className={classes.post} key={id}>
+                <img src="../../../../imgs/1-17.jpg" 
                           alt="user avatar image"/>
 
                 <div className={classes.text_area}>
-                    <span className={classes.post_text}>My post text field My post text field vhhfhfhfhfh</span>
+                    <span className={classes.post_text}>{text}</span>
 
                     {/* <button className={classes.like}></button>
 
                     <button className={classes.dislike}></button> */}
-                    <span className={classes.counter}>21</span>
+                
+                    <span className={classes.counter}>{likes}</span>
                     <input  className={classes.text_area_input} 
                             type="radio" 
                             id="like" 
@@ -20,7 +34,7 @@ function Post() {
                             value="like"/>
                     <label className={classes.like} htmlFor="like"></label>
                     
-                    <span className={classes.counter}>8</span>
+                    <span className={classes.counter}>{dislikes}</span>
                     <input  className={classes.text_area_input} 
                             type="radio"    
                             id="dislike" 

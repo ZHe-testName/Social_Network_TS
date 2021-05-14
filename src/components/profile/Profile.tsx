@@ -1,7 +1,20 @@
 import MyPosts from './my-posts';
 import classes from  './profile.module.css';
 
-function Profile() {
+type PostsType = {
+  text: string,
+  likes: number,
+  dislikes: number,
+  id: string,
+};
+
+type PropsType = {
+  posts: Array<PostsType>,
+};
+
+function Profile(props: PropsType) {
+    const {posts} = props;
+
     return (
         <main className={classes.profile}>
         <div className={classes.banner}></div>
@@ -39,7 +52,7 @@ function Profile() {
           </div>
         </div>
 
-        <MyPosts />
+        <MyPosts posts={posts}/>
       </main>
     );
 };

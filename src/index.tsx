@@ -2,36 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import dataObject from './redux/bll';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
-const navLinks = [
-  {href: '/dialogs', description: 'Messages'},
-  {href: '/news', description: 'News'},
-  {href: '/settimgs', description: 'Settings'},
-  {href: '/profile', description: 'Profile'},
-  {href: '/music', description: 'Music'},
-];
-
-const usersConversation = [
-  {href: '/dialogs/vasya', description: 'Vasya', online: true,},
-  {href: '/dialogs/masha', description: 'Masha', online: true,},
-  {href: '/dialogs/vietal', description: 'Vietal', online: false,},
-  {href: '/dialogs/somya', description: 'Sonya', online: false,},
-  {href: '/dialogs/lena', description: 'Lena', online: true,},
-];
-
-const myPosts = [
-  {text: 'Blablabla my post yo!', likes: 21, dislikes: 10}
-];
-
-const dataObject = {
-  usersConversation,
-  navLinks,
-};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App {...dataObject} />
+    <BrowserRouter>
+      <App {...dataObject} />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

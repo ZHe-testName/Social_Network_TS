@@ -1,6 +1,6 @@
 // import React from 'react';
 import './App.css';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 import Dialogs from './components/dialogs';
 import Header from './components/header';
@@ -27,17 +27,24 @@ type DialogsUsersType = {
   online: boolean,
 };
 
+type PostsType = {
+  text: string,
+  likes: number,
+  dislikes: number,
+  id: string,
+};
+
 type AppPropsType = {
   usersConversation: Array<DialogsUsersType>,
   navLinks: Array<LinkType>,
+  myPosts: Array<PostsType>,
 };
 
 function App(props: AppPropsType) {
-  
-  const {navLinks, usersConversation} = props;
+
+    const {navLinks, usersConversation, myPosts} = props;
 
   return (
-    <BrowserRouter>
       <div className='app-wrapper'>
         <Header/>
         <Navbar links={navLinks}/>
@@ -46,11 +53,10 @@ function App(props: AppPropsType) {
           <Route path="/dialogs" render={() => <Dialogs users={usersConversation}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
-          <Route path="/profile" component={Profile}/>
+          <Route path="/profile" render={() => <Profile posts={myPosts}/>}/>
           <Route path="/music" component={Music}/>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 
