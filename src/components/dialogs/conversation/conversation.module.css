@@ -1,4 +1,5 @@
 .conversation_wrap{
     display: flex;
     flex-direction: column;
+    background-color: var(--transparent_lightblue);
 }

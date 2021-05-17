@@ -19,7 +19,7 @@ function DialogsNav(props: DialogsPropsType) {
                             <span className={classes.indicator_text}>online</span>
                         </div>;
 
-    const usersArr = users.map((user, i) => {
+    const usersArr = users.map(user => {
         return  <li key={user.href} className={classes.each_user_li}>
                     <CustomNavLink { ...user} />
 

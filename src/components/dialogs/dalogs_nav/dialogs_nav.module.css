@@ -6,6 +6,8 @@
         display: flex;
         margin: 20px 0px;
         margin-left: 15px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
     }
 
     .active_conv{
@@ -15,7 +17,18 @@
         .each_user_li a{
             font-size: 1.2rem;
             color: #005ed2;
+            text-decoration: none;
         }
+
+        /* .each_user_li a:hover{
+            border-right: 2px solid var(--blue);
+        } */
+
+        /*for active conv
+        /* .each_user_li{
+            border: 2px solid var(--lightblue);
+            border-right: none;
+        } */
 
         .status_indicator{
             position: relative;
@@ -41,4 +54,6 @@
                 display: block;
                 width: 10px;
                 height: 10px;
+                outline: none;
+                user-select: none;
             }
