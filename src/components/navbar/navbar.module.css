@@ -1,4 +1,6 @@
 .main_nav_bar{
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   background-color: var(--lightblue);
   border-radius: var(--main_blocks_border_radius);

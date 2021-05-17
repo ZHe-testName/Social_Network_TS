@@ -5,7 +5,6 @@
 
 import './avatar.module.css';
 import styled from 'styled-components';
-import classes from './avatar.module.css';
 
 type AvatarSettings = {
     className: string,

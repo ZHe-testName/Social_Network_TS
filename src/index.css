@@ -4,6 +4,7 @@
   --blue:  rgb(117, 196, 216);
   --blue_deep: rgb(222 248 254);
   --message_bg: rgb(161 126 255 / 50%);
+  --online_color: #1bf600;
   --h2_font_size: 2rem;
   --main_blocks_border_radius: 10px;
 }

@@ -1,14 +1,30 @@
 header{
+    position: relative;
     padding: 5px;
-    background-color: var(--blue);
+    background-image: url(../../imgs/Mountain-Views-scaled.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     grid-area: h;
     border-radius: var(--main_blocks_border_radius);
     /* clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 100%, 81% 75%, 50% 67%, 21% 79%, 0 100%, 0% 35%, 20% 10%); */
   }
   
   header>img{
+    position: relative;
+    background-color: #5d5d5cb0;
+    padding: 5px;
+    display: block;
+    border-radius: 5px;
     width: 90px;
     height: 90px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 30px;
+  }
+
+  .filter{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter:  blur(1px);
   }

@@ -1,6 +1,7 @@
 import classes from  './navbar.module.css';
 
 import CustomNavLink from '../custom-nav-link';
+import FriendsNav from "./friends_nav";
 
 type LinkType = {
   href: string,
@@ -21,6 +22,8 @@ function Navbar(props: NavType) {
         <ul className={classes.ul_nav_bar}>
           {links}
         </ul>
+
+        <FriendsNav />
       </nav>
     );
 };

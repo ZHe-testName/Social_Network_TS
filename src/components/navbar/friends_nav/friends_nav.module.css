@@ -1,0 +1,62 @@
+@keyframes hover_animation {
+    0%{
+        transform: rotate3d(-3, 0, 0, 28deg);
+    }
+
+    50%{
+        transform: rotate3d(0, 0, 0, 28deg) scale(1.1) translateY(-30px);
+        z-index: 1;
+    }
+
+    100%{
+        transform: scale(1.18) translateY(0px);
+        z-index: 1;
+    }
+}
+
+.friends_block{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    justify-content: space-between;
+    padding: 10px;
+    perspective: 250px;
+    perspective-origin: center center;
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgb(6, 0, 116) 0%, rgba(9,9,121,1) 39%, rgba(0,212,255,1) 100%);
+}
+
+    .friend_avatar_box{
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 5px;
+        margin-top: -24px;
+        padding: 5px;
+        padding-top: 0px;
+        border: 1px solid var(--blue);
+        background-color: var(--blue_deep);
+        transform: rotate3d(-3, 0, 0, 28deg);
+    }
+
+    .friend_avatar_box:hover{
+        animation-name: hover_animation;
+        animation-duration: 0.3s;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in;
+        cursor: pointer;
+    }
+
+        .friend_avatar{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+    .all_friends_link{
+        text-decoration: none;
+        color: var(--blue);
+        margin-top: 15px;
+    }

@@ -21,7 +21,7 @@ function Message(props: MessageDescription) {
         <div className={className}>
             <Avatar settings={{className: classes.messaage_avatar, imgUrl: avaUrl}}/>
 
-            <div className={classes.message_txt}>{messageTxt}</div>
+            <div className={classes.message_txt}><div>{messageTxt}</div></div>
         </div>
     );
 };

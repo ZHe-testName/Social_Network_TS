@@ -61,7 +61,7 @@
                 border-radius: 50%;
                 width: 5px;
                 height: 5px;
-                background: #004eff;
+                background: var(--online_color);
             }
 
             .indicator_text{
@@ -69,7 +69,7 @@
                 font-size: 10px;
                 top: 13px;
                 left: 14px;
-                color: #004eff;
+                color: var(--online_color);
                 display: block;
                 width: 10px;
                 height: 10px;
