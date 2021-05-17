@@ -6,13 +6,15 @@
         display: flex;
         margin: 20px 0px;
         margin-left: 15px;
+        padding: 7px;
+        padding-left: 10px;
         border-bottom-left-radius: 10px;
         border-top-left-radius: 10px;
     }
 
-    .active_conv{
+    /* .active_conv{
         transform: scale(1.2) translateX(20px);
-    }
+    } */
 
         .each_user_li a{
             font-size: 1.2rem;
@@ -24,11 +26,28 @@
             border-right: 2px solid var(--blue);
         } */
 
-        /*for active conv
-        /* .each_user_li{
+        /*for active conv*/
+        .active_conv{
             border: 2px solid var(--lightblue);
+            background-color: var(--blue_deep);
             border-right: none;
+            transform: scale(1.1) translateX(4px);
+        }
+/* 
+        .each_user_li::before{
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 195px;
+            display: block;
+            box-sizing: border-box;
+            border-top: 2px solid var(--lightblue);
+            border-bottom: 2px solid var(--lightblue);
+            height: 44px;
+            width: 16px;
+            background-color: var(--transparent_lightblue);
         } */
+ 
 
         .status_indicator{
             position: relative;

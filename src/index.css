@@ -2,6 +2,8 @@
   --transparent_lightblue: rgba(175, 240, 248, 0.192);
   --lightblue:  rgb(175, 239, 255);
   --blue:  rgb(117, 196, 216);
+  --blue_deep: rgb(222 248 254);
+  --message_bg: rgb(161 126 255 / 50%);
   --h2_font_size: 2rem;
   --main_blocks_border_radius: 10px;
 }

@@ -25,7 +25,7 @@
         padding: 10px;
         padding-left: 20px;
         max-width: 65%;
-        background-color: var(--lightblue);
+        background-color: var(--message_bg);
         word-wrap: break-word;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%, 10px 51%, 10px 10px, 0 0);
     }
