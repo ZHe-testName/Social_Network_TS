@@ -21,6 +21,12 @@ type IdentLinkType = {
   id: string,
 };
 
+type FriendsCardsType = {
+  avatar?: string,
+  name: string,
+  href: string,
+};
+
 type DialogsUsersType = {
   href: string,
   description: string,
@@ -38,16 +44,17 @@ type AppPropsType = {
   usersConversation: Array<DialogsUsersType>,
   navLinks: Array<LinkType>,
   myPosts: Array<PostsType>,
+  friendsAvatarCards: Array<FriendsCardsType>,
 };
 
 function App(props: AppPropsType) {
 
-    const {navLinks, usersConversation, myPosts} = props;
+    const {navLinks, usersConversation, myPosts, friendsAvatarCards} = props;
 
   return (
       <div className='app-wrapper'>
         <Header/>
-        <Navbar links={navLinks}/>
+        <Navbar {...{links: navLinks, friendsArr: friendsAvatarCards}}/>
 
         <div className="main-content">
           <Route path="/dialogs" render={() => <Dialogs users={usersConversation}/>}/>

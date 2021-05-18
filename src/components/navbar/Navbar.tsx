@@ -8,22 +8,31 @@ type LinkType = {
   description: string,
 };
 
+type FriendsCardsType = {
+  avatar?: string,
+  name: string,
+  href: string,
+};
+
 type NavType = {
   links: Array<LinkType>,
+  friendsArr: Array<FriendsCardsType>,
 };
 
 function Navbar(props: NavType) {
-    const links = props.links.map((linkSettings: LinkType) => {
+    const {links, friendsArr} = props;
+
+    const linksArr = links.map((linkSettings: LinkType) => {
       return <li key={linkSettings.href} ><CustomNavLink {...linkSettings} /></li>
     });
 
     return(
       <nav className={classes.main_nav_bar}>
         <ul className={classes.ul_nav_bar}>
-          {links}
+          {linksArr}
         </ul>
 
-        <FriendsNav />
+        <FriendsNav friendsArr={friendsArr}/>
       </nav>
     );
 };

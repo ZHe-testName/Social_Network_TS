@@ -19,7 +19,6 @@ type AvatarProps = {
 
 function Avatar(props: AvatarProps) {
     const {className, imgUrl, width, height} = props.settings;
-    console.log(className);
 
     const AvatarImage = styled.div`
         width: ${width}px;
