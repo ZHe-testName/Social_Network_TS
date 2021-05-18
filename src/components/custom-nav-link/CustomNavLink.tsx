@@ -3,13 +3,14 @@ import {NavLink} from 'react-router-dom';
 
 type LinkType = {
     href: string,
-    description: string,
+    description?: string | Object,
+    className?: string,
 };
 
 function CustomNavLink(props: LinkType) {
-    const {href, description} = props;
+    const {href, description, className} = props;
 
-    return (<NavLink to={href}>{description}</NavLink>);
+    return (<NavLink to={href} className={className}>{description}</NavLink>);
 };
 
 export default CustomNavLink;
