@@ -1,6 +1,5 @@
 .conversation_wrap{
     display: flex;
     flex-direction: column;
-    background-color: var(--blue_deep);
     padding-bottom: 40px;
 }

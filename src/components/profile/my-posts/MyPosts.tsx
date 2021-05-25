@@ -17,7 +17,7 @@ type PropsType = {
 function MyPosts(props: PropsType) {
     const {posts} = props;
 
-    const postsArr = posts.map(post => <Post {...post}/>);
+    const postsArr = posts.map(post => <li key={post.id}><Post {...post}/></li>);
 
     return (
     <div className={classes.myposts}>

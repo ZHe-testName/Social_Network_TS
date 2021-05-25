@@ -13,10 +13,10 @@ type PostType = {
 // };
 
 function Post(props: PostType) {
-    const {text, likes, dislikes, id} = props;
+    const {text, likes, dislikes} = props;
 
     return (
-        <div className={classes.post} key={id}>
+        <div className={classes.post}>
                 <Avatar settings={{className: classes.post_img, imgUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
 
                 <div className={classes.text_area}>

@@ -1,3 +1,5 @@
+import {v1} from 'uuid';
+
 const navLinks = [
     {href: '/dialogs', description: 'Messages'},
     {href: '/news', description: 'News'},
@@ -17,11 +19,11 @@ const navLinks = [
   ];
   
   const myPosts = [
-    {text: 'Blablabla my post yo!', likes: 21, dislikes: 10, id: 'post_1'},
-    {text: 'Another post, yeh!', likes: 51, dislikes: 69, id: 'post_2'},
-    {text: 'What a hell, what is the butifful post?', likes: 121, dislikes: 0, id: 'post_3'},
-    {text: 'Stupid post', likes: 21, dislikes: 1110, id: 'post_4'},
-    {text: 'Best ever post', likes: 2121, dislikes: 110, id: 'post_5'},
+    {text: 'Blablabla my post yo!', likes: 21, dislikes: 10, id: v1()},
+    {text: 'Another post, yeh!', likes: 51, dislikes: 69, id: v1()},
+    {text: 'What a hell, what is the butifful post?', likes: 121, dislikes: 0, id: v1()},
+    {text: 'Stupid post', likes: 21, dislikes: 1110, id: v1()},
+    {text: 'Best ever post', likes: 2121, dislikes: 110, id: v1()},
   ];
 
   const friendsAvatarCards = [
