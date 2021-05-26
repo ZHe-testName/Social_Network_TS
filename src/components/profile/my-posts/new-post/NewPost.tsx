@@ -1,11 +1,19 @@
 import React from 'react';
 import classes from './newpost.module.css';
 
-function NewPost() {
+type PostPropsType = {
+    addPost: (postText: string | undefined) => void,
+};
+
+function NewPost(props: PostPropsType) {
+    const {addPost} = props;
+
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addNewPostHandler = () => {
-        alert(newPostElement.current?.value);
+        let textAreaValue = newPostElement.current?.value;
+
+        addPost(textAreaValue);
     };
 
     return (

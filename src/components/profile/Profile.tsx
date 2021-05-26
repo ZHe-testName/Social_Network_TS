@@ -11,10 +11,11 @@ type PostsType = {
 
 type PropsType = {
   posts: Array<PostsType>,
+  addPost: (postText: string | undefined) => void,
 };
 
 function Profile(props: PropsType) {
-    const {posts} = props;
+    const {posts, addPost} = props;
 
     return (
         <main className={classes.profile}>
@@ -53,7 +54,7 @@ function Profile(props: PropsType) {
           </div>
         </div>
 
-        <MyPosts posts={posts}/>
+        <MyPosts posts={posts} addPost={addPost}/>
       </main>
     );
 };

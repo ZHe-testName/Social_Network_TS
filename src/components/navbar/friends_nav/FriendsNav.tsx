@@ -31,9 +31,10 @@ function FriendsNav(props: PropsType) {
 
         
         return (
-            <li key={href} className={classes.friend_avatar_box}>
+            <li key={href}>
                 <CustomNavLink {...{href: href, 
-                                    description: linkContent}} />
+                                    description: linkContent,
+                                    className: classes.friend_avatar_box}} />
             </li>
         );
     });

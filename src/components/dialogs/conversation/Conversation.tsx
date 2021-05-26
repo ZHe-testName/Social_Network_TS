@@ -1,6 +1,14 @@
 import classes from './conversation.module.css';
 import Message from './message';
 
+type MessageType = {
+    avaUrl: string,
+    messageTxt: string,
+    isUser: boolean,
+};
+
+type ConversationType = Array<MessageType>;
+
 function Conversation() {
     return (
         <div className={classes.conversation_wrap}>

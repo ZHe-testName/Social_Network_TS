@@ -9,10 +9,25 @@ import Navbar from './components/navbar';
 import Profile from './components/profile';
 import Settings from './components/settings';
 import News from './components/news';
+import { type } from 'os';
+
+type MessageType = {
+  message: string,
+  isUser: boolean,
+};
+
+type DialogsType = Array<MessageType>;
 
 type LinkType = {
   href: string,
   description: string,
+};
+
+type MainUserType = {
+  name: string,
+  surname: string,
+  mainUserAvaUrl: string,
+  dialogs: Object,
 };
 
 type IdentLinkType = {
@@ -31,6 +46,8 @@ type DialogsUsersType = {
   href: string,
   description: string,
   online: boolean,
+  avaUrl: string,
+  dialogLink: string,
 };
 
 type PostsType = {
@@ -41,15 +58,24 @@ type PostsType = {
 };
 
 type AppPropsType = {
+  mainUser: MainUserType,
   usersConversation: Array<DialogsUsersType>,
   navLinks: Array<LinkType>,
   myPosts: Array<PostsType>,
   friendsAvatarCards: Array<FriendsCardsType>,
+  addPost: (postText: string | undefined) => void,
+  sendMessage: (messageText: string | undefined) => void,
 };
 
 function App(props: AppPropsType) {
 
-    const {navLinks, usersConversation, myPosts, friendsAvatarCards} = props;
+    const { mainUser,
+            navLinks, 
+            usersConversation, 
+            myPosts, 
+            friendsAvatarCards,
+            addPost,
+            sendMessage,} = props;
 
   return (
       <div className='app-wrapper'>
@@ -57,10 +83,10 @@ function App(props: AppPropsType) {
         <Navbar {...{links: navLinks, friendsArr: friendsAvatarCards}}/>
 
         <div className="main-content">
-          <Route path="/dialogs" render={() => <Dialogs users={usersConversation}/>}/>
+          <Route path="/dialogs" render={() => <Dialogs mainUser={mainUser} users={usersConversation}  sendMessage={sendMessage}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
-          <Route path="/profile" render={() => <Profile posts={myPosts}/>}/>
+          <Route path="/profile" render={() => <Profile posts={myPosts} addPost={addPost}/>}/>
           <Route path="/music" component={Music}/>
         </div>
       </div>

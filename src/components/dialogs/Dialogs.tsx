@@ -7,20 +7,41 @@ type UsersType = {
     href: string,
     description: string,
     online: boolean,
+    avaUrl: string,
+    dialogLink: string,
   };
 
-type DialogsPropsType = {
-    users: Array<UsersType>,
+type MainUserType = {
+    name: string,
+    surname: string,
+    mainUserAvaUrl: string,
+    dialogs: Object,
 };
 
+type DialogsPropsType = {
+    mainUser: MainUserType,
+    users: Array<UsersType>,
+    sendMessage: (messageText: string | undefined) => void,
+};
+
+type MessageType = {
+    avaUrl: string,
+    messageTxt: string,
+    isUser: boolean,
+};
+
+type ConversationType = Array<MessageType>;
+
 function Dialogs(props: DialogsPropsType) {
-    const {users} = props;
+    const {users, sendMessage, mainUser} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>()
 
+    const currentConversationArr = null;
+
     const sendMessageHandler = () => {
         const messageTxt = newMessageElement.current?.value;
-        alert(messageTxt);
+        sendMessage(messageTxt);
     };
 
     return (
