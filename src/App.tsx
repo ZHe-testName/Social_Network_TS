@@ -44,6 +44,7 @@ type DialogsUsersType = {
   href: string,
   description: string,
   online: boolean,
+  selected: boolean,
   avaUrl: string,
   messageArr: Array <MessageType>,
 };

@@ -7,6 +7,7 @@ type UsersType = {
     href: string,
     description: string,
     online: boolean,
+    selected: boolean,
     avaUrl: string,
     messageArr: Array <MessageType>,
 };
@@ -22,6 +23,12 @@ type MainUserType = {
     mainUserAvaUrl: string,
 };
 
+type ConversationMessagesType = {
+    avaUrl: string,
+    isUser: boolean,
+    messageArr: [],
+};
+
 type DialogsPropsType = {
     mainUser: MainUserType,
     users: Array <UsersType>,
@@ -33,8 +40,18 @@ function Dialogs(props: DialogsPropsType) {
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
 
-    const currentConversationArr = null;
+    let conversation = {...users.find(user => user.selected)};
 
+    const messagesArr = conversation ? conversation.messageArr : [];
+
+    const renderMessageArr = messagesArr?.map(messageObj => {
+        return messageObj.isUser ? {avaUrl: mainUser.mainUserAvaUrl, ...messageObj} : 
+                                    {avaUrl: conversation.avaUrl, ...messageObj};
+    });
+
+    console.log(conversation);
+
+    // conversation.messageArr?.push({})
     const sendMessageHandler = () => {
         const messageTxt = newMessageElement.current?.value;
         sendMessage(messageTxt);

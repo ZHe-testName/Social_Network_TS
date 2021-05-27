@@ -7,7 +7,9 @@ type MessageType = {
     isUser: boolean,
 };
 
-type ConversationType = Array<MessageType>;
+type ConversationType = {
+    messages: Array<MessageType> | Array<void>;
+};
 
 function Conversation() {
     return (
