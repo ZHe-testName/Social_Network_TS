@@ -5,15 +5,6 @@ const mainUser = {
   name: 'Zheka',
   surname: 'Khorunzhyi',
   mainUserAvaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
-  dialogs: {
-    lena: [
-      {message: 'Hello!fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', isUser: true},
-      {message: 'Yoy!)!', isUser: true},
-      {message: 'You are here!)', isUser: true},
-      {message: 'Hey!', isUser: false},
-      {message: 'Yes, WTF?', isUser: false},
-    ],
-  },
 };
 
 const navLinks = [
@@ -26,40 +17,46 @@ const navLinks = [
 
   
   const usersConversation = [
-    {
-      href: '/dialogs/vasya', 
-      description: 'Vasya', 
-      online: true, 
-      avaUrl: 'http://s020.radikal.ru/i706/1501/36/75ac2f1e2bca.jpg',
-      dialogLink: 'vasya',
-    },
-    {
-      href: '/dialogs/masha', 
-      description: 'Masha', 
-      online: true,
-      avaUrl: 'http://avatar-lotos.at.ua/_si/0/90042470.jpg',
-      dialogLink: 'masha',
-    },
-    {
-      href: '/dialogs/vietal', 
-      description: 'Vietal', 
-      online: false,
-      avaUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIzgUvXLnRImezj5_MMmqHF3aJHbp4vq86Yw&usqp=CAU',
-      dialogLink: 'vietal',
-    },
-    {
-      href: '/dialogs/somya', 
-      description: 'Sonya', 
-      online: false,
-      avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg',
-      dialogLink: 'sonya',
-    },
+    // {
+    //   href: '/dialogs/vasya', 
+    //   description: 'Vasya', 
+    //   online: true, 
+    //   avaUrl: 'http://s020.radikal.ru/i706/1501/36/75ac2f1e2bca.jpg',
+    //   messageArr: [],
+    // },
+    // {
+    //   href: '/dialogs/masha', 
+    //   description: 'Masha', 
+    //   online: true,
+    //   avaUrl: 'http://avatar-lotos.at.ua/_si/0/90042470.jpg',
+    //   messageArr: [],
+    // },
+    // {
+    //   href: '/dialogs/vietal', 
+    //   description: 'Vietal', 
+    //   online: false,
+    //   avaUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIzgUvXLnRImezj5_MMmqHF3aJHbp4vq86Yw&usqp=CAU',
+    //   messageArr: [],
+    // },
+    // {
+    //   href: '/dialogs/somya', 
+    //   description: 'Sonya', 
+    //   online: false,
+    //   avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg',
+    //   messageArr: [],
+    // },
     {
       href: '/dialogs/lena', 
       description: 'Lena', 
       online: true,
       avaUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPeoq1yV8_WeZRPOy6tvqvBdbl6SAOgNXeWA&usqp=CAU',
-      dialogLink: 'lena',
+      messageArr: [
+        {message: 'Hello!fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', isUser: true},
+        {message: 'Yoy!)!', isUser: true},
+        {message: 'You are here!)', isUser: true},
+        {message: 'Hey!', isUser: false},
+        {message: 'Yes, WTF?', isUser: false},
+      ],
     },
   ];
   

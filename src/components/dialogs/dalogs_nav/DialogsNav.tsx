@@ -12,7 +12,7 @@ type DialogsPropsType = {
 };
 
 function DialogsNav(props: DialogsPropsType) {
-    const {users} = props;
+    let {users} = props;
 
     const indicatorJsx = <div className={classes.status_indicator}>
                             <div className={classes.indicator_lamp}></div>

@@ -12,11 +12,10 @@ import News from './components/news';
 import { type } from 'os';
 
 type MessageType = {
+  // avaUrl: string,
   message: string,
   isUser: boolean,
 };
-
-type DialogsType = Array<MessageType>;
 
 type LinkType = {
   href: string,
@@ -27,7 +26,6 @@ type MainUserType = {
   name: string,
   surname: string,
   mainUserAvaUrl: string,
-  dialogs: Object,
 };
 
 type IdentLinkType = {
@@ -47,7 +45,7 @@ type DialogsUsersType = {
   description: string,
   online: boolean,
   avaUrl: string,
-  dialogLink: string,
+  messageArr: Array <MessageType>,
 };
 
 type PostsType = {
@@ -59,7 +57,7 @@ type PostsType = {
 
 type AppPropsType = {
   mainUser: MainUserType,
-  usersConversation: Array<DialogsUsersType>,
+  usersConversation: Array <DialogsUsersType>,
   navLinks: Array<LinkType>,
   myPosts: Array<PostsType>,
   friendsAvatarCards: Array<FriendsCardsType>,
@@ -83,7 +81,7 @@ function App(props: AppPropsType) {
         <Navbar {...{links: navLinks, friendsArr: friendsAvatarCards}}/>
 
         <div className="main-content">
-          <Route path="/dialogs" render={() => <Dialogs mainUser={mainUser} users={usersConversation}  sendMessage={sendMessage}/>}/>
+          <Route path="/dialogs" render={() => <Dialogs mainUser={mainUser} users={usersConversation} sendMessage={sendMessage}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" render={() => <Profile posts={myPosts} addPost={addPost}/>}/>
