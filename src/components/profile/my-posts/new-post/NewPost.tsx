@@ -21,7 +21,6 @@ function NewPost(props: PostPropsType) {
     const onChangeHandler = () => {
         const textAreaValue = newPostElement.current?.value;
 
-        console.log(textAreaValue);
         textAreaOnChange(textAreaValue);
     };
 

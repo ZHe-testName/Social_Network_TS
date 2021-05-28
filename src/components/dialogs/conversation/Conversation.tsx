@@ -11,25 +11,16 @@ type ConversationType = {
     messages: Array<MessageType>;
 };
 
-function Conversation() {
-    // const {messages} = props;
-    // let messagesForRender; 
+function Conversation(props: ConversationType) {
+    const {messages} = props;
 
-    // if (!messages){
-    //     messagesForRender = [];
-    // };
-
-    // messagesForRender = messages.map(message => <Message {...message}/>);
+    const messagesForRender = messages.map(message => <Message {...message}/>);
 
     return (
         <div className={classes.conversation_wrap}>
-            <Message {...{  messageTxt: 'Hello!)fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 
-                            avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
-                            isUser: true}}/>
-            <Message {...{  messageTxt: 'Yoy!)', isUser: true, avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
-            <Message {...{  messageTxt: 'You are here!)',isUser: true, avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
-            <Message {...{  messageTxt: 'Hey, yes WTF?',
-                            isUser: false, avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg'}}/>
+
+           {messagesForRender}
+           
         </div>
     );
 };

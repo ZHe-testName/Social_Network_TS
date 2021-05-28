@@ -1,7 +1,7 @@
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
-import React from 'react';
+import React, {KeyboardEvent} from 'react';
 
 type UsersType = {
     href: string,
@@ -22,6 +22,7 @@ type MainUserType = {
     surname: string,
     mainUserAvaUrl: string,
     newPostText: string,
+    newMessageText: string,
 };
 
 type ConversationMessagesType = {
@@ -30,14 +31,22 @@ type ConversationMessagesType = {
     messageArr: [],
 };
 
+type TestMessageType = {
+    messageTxt: string, 
+    isUser: boolean,
+    avaUrl: string,
+};
+
 type DialogsPropsType = {
+    messages: Array<TestMessageType>,
     mainUser: MainUserType,
     users: Array <UsersType>,
     sendMessage: (messageText: string | undefined) => void,
+    messageInputOnChange: (text: string | undefined) => void,
 };
 
 function Dialogs(props: DialogsPropsType) {
-    const {users, sendMessage, mainUser} = props;
+    const {users, messages, mainUser, sendMessage, messageInputOnChange} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
 
@@ -55,8 +64,22 @@ function Dialogs(props: DialogsPropsType) {
     // conversation.messageArr?.push({})
     const sendMessageHandler = () => {
         const messageTxt = newMessageElement.current?.value;
+
         sendMessage(messageTxt);
     };
+
+    const onChangeHandler = () => {
+        const messageTxt = newMessageElement.current?.value;
+
+        messageInputOnChange(messageTxt);
+    };
+
+    // const onEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    //     console.log(e);
+    //     if (e.key === 'Enter'){
+    //         console.log('sd');
+    //     }
+    // };
 
     return (
         <div className={classes.dialogs_wrap}>
@@ -69,14 +92,16 @@ function Dialogs(props: DialogsPropsType) {
             <div className={classes.dialogs_conversation_outside_box}>
 
                 <div className={classes.dialogs_conversation}>
-                    <Conversation />
+                    <Conversation messages={messages} />
                 </div>
 
                 <div className={classes.new_message_panel}>
                     <textarea   
-                                ref={newMessageElement}
-                                rows={1}
-                                placeholder="Typing here...">
+                            value={mainUser.newMessageText}
+                            ref={newMessageElement}
+                            rows={1}
+                            placeholder="Typing here..."
+                            onChange={onChangeHandler}>
 
                     </textarea>
 

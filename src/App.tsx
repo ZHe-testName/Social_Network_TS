@@ -26,6 +26,7 @@ type MainUserType = {
   surname: string,
   mainUserAvaUrl: string,
   newPostText: string,
+  newMessageText: string,
 };
 
 type IdentLinkType = {
@@ -56,15 +57,23 @@ type PostsType = {
   id: string,
 };
 
+type TestMessageType = {
+  messageTxt: string, 
+  isUser: boolean,
+  avaUrl: string,
+};
+
 type AppPropsType = {
   mainUser: MainUserType,
   usersConversation: Array <DialogsUsersType>,
   navLinks: Array<LinkType>,
   myPosts: Array<PostsType>,
   friendsAvatarCards: Array<FriendsCardsType>,
+  testMessagesArr: Array<TestMessageType>,
   addPost: (postText: string | undefined) => void,
   sendMessage: (messageText: string | undefined) => void,
   textAreaOnChange: (text: string | undefined) => void,
+  messageInputOnChange: (text: string | undefined) => void,
 };
 
 function App(props: AppPropsType) {
@@ -72,11 +81,13 @@ function App(props: AppPropsType) {
     const { mainUser,
             navLinks, 
             usersConversation, 
-            myPosts, 
+            myPosts,
+            testMessagesArr, 
             friendsAvatarCards,
             addPost,
             sendMessage,
-            textAreaOnChange,} = props;
+            textAreaOnChange,
+            messageInputOnChange,} = props;
 
   return (
       <div className='app-wrapper'>
@@ -84,10 +95,12 @@ function App(props: AppPropsType) {
         <Navbar {...{links: navLinks, friendsArr: friendsAvatarCards}}/>
 
         <div className="main-content">
-          <Route path="/dialogs" render={() => <Dialogs 
+          <Route path="/dialogs" render={() => <Dialogs
+                                                      messages={testMessagesArr} 
                                                       mainUser={mainUser} 
                                                       users={usersConversation} 
-                                                      sendMessage={sendMessage}/>}/>
+                                                      sendMessage={sendMessage}
+                                                      messageInputOnChange={messageInputOnChange}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" render={() => <Profile 

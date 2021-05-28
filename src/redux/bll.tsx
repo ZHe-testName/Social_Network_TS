@@ -5,6 +5,7 @@ const mainUser = {
   surname: 'Khorunzhyi',
   mainUserAvaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
   newPostText: '',
+  newMessageText: '',
 };
 
 const navLinks = [
@@ -101,6 +102,49 @@ const navLinks = [
     },
   ];
 
+  const testMessagesArr = [
+    {  
+      messageTxt: 'Hello!)', 
+      isUser: true,
+      avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
+    },
+    {  
+      messageTxt: 'Yo!)', 
+      isUser: true, 
+      avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
+    },
+    {  
+      messageTxt: 'You are here!)',
+      isUser: true, 
+      avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
+    },
+    {  
+      messageTxt: 'Hey, yes WTF?',
+      isUser: false, 
+      avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg',
+    },
+    {  
+      messageTxt: 'I wona ask you about some little things of our feature trip... ', 
+      isUser: true, 
+      avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
+    },
+    {  
+      messageTxt: 'When? Where? How Much?)',
+      isUser: true, 
+      avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
+    },
+    {  
+      messageTxt: 'Damn..! I drop all ditails to your email 2 days ago...',
+      isUser: false, 
+      avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg',
+    },
+    {  
+      messageTxt: 'Ooopss...) Thanks, see your, sis!))',
+      isUser: true, 
+      avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
+    },
+  ];
+
   let rerenderEntireTree = () => {};
 
   const addPost = (postText: string = '') => {
@@ -119,9 +163,9 @@ const navLinks = [
   };   
 
   const sendMessage = (messageText: string = '') => {
-    const targetUser = usersConversation.find(user => user.selected);
+    testMessagesArr.push({messageTxt: messageText, isUser: true, avaUrl: mainUser.mainUserAvaUrl});
 
-    targetUser?.messageArr.push({message: messageText, isUser: true});
+    mainUser.newMessageText = '';
 
     rerenderEntireTree();
   };
@@ -129,7 +173,11 @@ const navLinks = [
   const textAreaOnChange = (text: string = '') => {
     mainUser.newPostText = text;
 
-    console.log(mainUser.newPostText);
+    rerenderEntireTree();
+  };
+
+  const messageInputOnChange = (text: string = '') => {
+    mainUser.newMessageText = text;
 
     rerenderEntireTree();
   };
@@ -144,9 +192,11 @@ const navLinks = [
     navLinks,
     myPosts,
     friendsAvatarCards,
+    testMessagesArr,
     addPost,
     sendMessage,
     textAreaOnChange,
+    messageInputOnChange,
   };
 
   export default dataObject;
