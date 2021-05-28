@@ -9,25 +9,34 @@ type PostsType = {
   id: string,
 };
 
+type MainUserType = {
+  name: string,
+  surname: string,
+  mainUserAvaUrl: string,
+  newPostText: string,
+};
+
 type PropsType = {
   posts: Array<PostsType>,
+  mainUser: MainUserType,
   addPost: (postText: string | undefined) => void,
+  textAreaOnChange: (text: string | undefined) => void,
 };
 
 function Profile(props: PropsType) {
-    const {posts, addPost} = props;
+    const {posts, mainUser, addPost, textAreaOnChange} = props;
 
     return (
         <main className={classes.profile}>
         <div className={classes.banner}></div>
 
         <div className={classes.account}>
-          <Avatar settings={{className: classes.avatar, imgUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg'}}/>
+          <Avatar settings={{className: classes.avatar, imgUrl: mainUser.mainUserAvaUrl}}/>
 
           <div className={classes.description}>
 
             <span className={classes.username}>
-              Zheka Khorunzhyi
+              {`${mainUser.name} ${mainUser.surname}`}
             </span>
 
             <div className="extra-info">
@@ -54,7 +63,11 @@ function Profile(props: PropsType) {
           </div>
         </div>
 
-        <MyPosts posts={posts} addPost={addPost}/>
+        <MyPosts 
+                posts={posts} 
+                newPostText={mainUser.newPostText}
+                addPost={addPost}
+                textAreaOnChange={textAreaOnChange} />
       </main>
     );
 };

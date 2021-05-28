@@ -9,7 +9,6 @@ import Navbar from './components/navbar';
 import Profile from './components/profile';
 import Settings from './components/settings';
 import News from './components/news';
-import { type } from 'os';
 
 type MessageType = {
   // avaUrl: string,
@@ -26,6 +25,7 @@ type MainUserType = {
   name: string,
   surname: string,
   mainUserAvaUrl: string,
+  newPostText: string,
 };
 
 type IdentLinkType = {
@@ -64,6 +64,7 @@ type AppPropsType = {
   friendsAvatarCards: Array<FriendsCardsType>,
   addPost: (postText: string | undefined) => void,
   sendMessage: (messageText: string | undefined) => void,
+  textAreaOnChange: (text: string | undefined) => void,
 };
 
 function App(props: AppPropsType) {
@@ -74,7 +75,8 @@ function App(props: AppPropsType) {
             myPosts, 
             friendsAvatarCards,
             addPost,
-            sendMessage,} = props;
+            sendMessage,
+            textAreaOnChange,} = props;
 
   return (
       <div className='app-wrapper'>
@@ -82,10 +84,17 @@ function App(props: AppPropsType) {
         <Navbar {...{links: navLinks, friendsArr: friendsAvatarCards}}/>
 
         <div className="main-content">
-          <Route path="/dialogs" render={() => <Dialogs mainUser={mainUser} users={usersConversation} sendMessage={sendMessage}/>}/>
+          <Route path="/dialogs" render={() => <Dialogs 
+                                                      mainUser={mainUser} 
+                                                      users={usersConversation} 
+                                                      sendMessage={sendMessage}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
-          <Route path="/profile" render={() => <Profile posts={myPosts} addPost={addPost}/>}/>
+          <Route path="/profile" render={() => <Profile 
+                                                      mainUser={mainUser}   
+                                                      posts={myPosts} 
+                                                      addPost={addPost} 
+                                                      textAreaOnChange={textAreaOnChange}/>}/>
           <Route path="/music" component={Music}/>
         </div>
       </div>

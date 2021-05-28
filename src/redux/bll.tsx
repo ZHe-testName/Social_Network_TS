@@ -1,10 +1,10 @@
-import {rerenderEntireTree} from '../rerender';
 import {v1} from 'uuid';
 
 const mainUser = {
   name: 'Zheka',
   surname: 'Khorunzhyi',
   mainUserAvaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
+  newPostText: '',
 };
 
 const navLinks = [
@@ -15,8 +15,9 @@ const navLinks = [
     {href: '/music', description: 'Music'},
   ];
 
-  
   const usersConversation = [
+
+
     {
       href: '/dialogs/vasya', 
       description: 'Vasya', 
@@ -100,6 +101,7 @@ const navLinks = [
     },
   ];
 
+  let rerenderEntireTree = () => {};
 
   const addPost = (postText: string = '') => {
     const newPost = {
@@ -111,6 +113,8 @@ const navLinks = [
 
     myPosts.push(newPost);
 
+    mainUser.newPostText = '';
+    
     rerenderEntireTree();
   };   
 
@@ -120,8 +124,18 @@ const navLinks = [
     targetUser?.messageArr.push({message: messageText, isUser: true});
 
     rerenderEntireTree();
+  };
 
-    console.log(usersConversation);
+  const textAreaOnChange = (text: string = '') => {
+    mainUser.newPostText = text;
+
+    console.log(mainUser.newPostText);
+
+    rerenderEntireTree();
+  };
+
+  export const subscribe = (observer: () => void) => {
+    rerenderEntireTree = observer;
   };
   
   const dataObject = {
@@ -132,6 +146,7 @@ const navLinks = [
     friendsAvatarCards,
     addPost,
     sendMessage,
+    textAreaOnChange,
   };
 
   export default dataObject;

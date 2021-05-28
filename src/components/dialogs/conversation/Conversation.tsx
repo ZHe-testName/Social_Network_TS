@@ -8,10 +8,19 @@ type MessageType = {
 };
 
 type ConversationType = {
-    messages: Array<MessageType> | Array<void>;
+    messages: Array<MessageType>;
 };
 
 function Conversation() {
+    // const {messages} = props;
+    // let messagesForRender; 
+
+    // if (!messages){
+    //     messagesForRender = [];
+    // };
+
+    // messagesForRender = messages.map(message => <Message {...message}/>);
+
     return (
         <div className={classes.conversation_wrap}>
             <Message {...{  messageTxt: 'Hello!)fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 

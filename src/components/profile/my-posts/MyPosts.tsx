@@ -11,19 +11,24 @@ type PostsType = {
 
 type PropsType = {
     posts: Array<PostsType>,
+    newPostText: string,
     addPost: (postText: string | undefined) => void,
+    textAreaOnChange: (text: string | undefined) => void,
 };
 
 
 function MyPosts(props: PropsType) {
-    const {posts, addPost} = props;
+    const {posts, newPostText, addPost, textAreaOnChange} = props;
 
     const postsArr = posts.map(post => <li key={post.id}><Post {...post}/></li>);
 
     return (
     <div className={classes.myposts}>
         <span className={classes.header}>My Posts</span>
-        <NewPost addPost={addPost}/>
+        <NewPost 
+                newPostText={newPostText}
+                addPost={addPost}
+                textAreaOnChange={textAreaOnChange}/>
 
         <div className={classes.posts_block}>
 
