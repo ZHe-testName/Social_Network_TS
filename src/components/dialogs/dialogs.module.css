@@ -28,6 +28,8 @@
 
         .new_message_panel{
             display: flex;
+            position: sticky;
+            bottom: 0px;
         }
 
             .new_message_panel > textarea{
@@ -42,9 +44,15 @@
                 background-color: rgba(228, 228, 228, 0.87);
             }
 
+            .new_message_panel > textarea:focus{
+                background-color: rgb(228, 228, 228);
+            }
+
             .send_message_button{
                 margin-left: 5px;
-                width: 35px ;
+                margin-top: 5px;
+                width: 60px;
+                height: 25px
             }
 
         .dialogs_conversation{

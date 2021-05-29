@@ -148,8 +148,10 @@ const navLinks = [
   let rerenderEntireTree = () => {};
 
   const addPost = (postText: string = '') => {
+    if (!postText) return;
+
     const newPost = {
-      text: postText,
+      text: postText.trim(),
       likes: 0,
       dislikes: 0,
       id: v1(),
@@ -163,7 +165,9 @@ const navLinks = [
   };   
 
   const sendMessage = (messageText: string = '') => {
-    testMessagesArr.push({messageTxt: messageText, isUser: true, avaUrl: mainUser.mainUserAvaUrl});
+    if (!messageText) return;
+
+    testMessagesArr.push({messageTxt: messageText.trim(), isUser: true, avaUrl: mainUser.mainUserAvaUrl});
 
     mainUser.newMessageText = '';
 
