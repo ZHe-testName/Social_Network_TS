@@ -104,12 +104,14 @@ function Dialogs(props: DialogsPropsType) {
                             onChange={onChangeHandler}>
 
                     </textarea>
+                    <div className={classes.send_button_wrap}>
+                        <button 
+                                className={classes.send_message_button}
+                                onClick={sendMessageHandler}>
+                            Send
+                        </button>
+                    </div>
 
-                    <button 
-                            className={classes.send_message_button}
-                            onClick={sendMessageHandler}>
-                        Send
-                    </button>
                 </div>
             </div>
         </div>
