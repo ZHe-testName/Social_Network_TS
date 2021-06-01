@@ -104,41 +104,49 @@ const navLinks = [
 
   const testMessagesArr = [
     {  
+      id: v1(),
       messageTxt: 'Hello!)', 
       isUser: true,
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
     },
     {  
+      id: v1(),
       messageTxt: 'Yo!)', 
       isUser: true, 
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
     },
     {  
+      id: v1(),
       messageTxt: 'You are here!)',
       isUser: true, 
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
     },
     {  
+      id: v1(),
       messageTxt: 'Hey, yes WTF?',
       isUser: false, 
       avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg',
     },
-    {  
+    { 
+      id: v1(), 
       messageTxt: 'I wona ask you about some little things of our feature trip... ', 
       isUser: true, 
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
     },
     {  
+      id: v1(),
       messageTxt: 'When? Where? How Much?)',
       isUser: true, 
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
     },
     {  
+      id: v1(),
       messageTxt: 'Damn..! I drop all ditails to your email 2 days ago...',
       isUser: false, 
       avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg',
     },
     {  
+      id: v1(),
       messageTxt: 'Ooopss...) Thanks, see your, sis!))',
       isUser: true, 
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
@@ -167,7 +175,7 @@ const navLinks = [
   const sendMessage = (messageText: string = '') => {
     if (!messageText) return;
 
-    testMessagesArr.push({messageTxt: messageText.trim(), isUser: true, avaUrl: mainUser.mainUserAvaUrl});
+    testMessagesArr.push({messageTxt: messageText.trim(), isUser: true, avaUrl: mainUser.mainUserAvaUrl, id: v1()});
 
     mainUser.newMessageText = '';
 

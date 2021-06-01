@@ -5,6 +5,7 @@ type MessageType = {
     avaUrl: string,
     messageTxt: string,
     isUser: boolean,
+    id: string,
 };
 
 type ConversationType = {

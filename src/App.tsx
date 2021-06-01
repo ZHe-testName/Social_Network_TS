@@ -61,6 +61,7 @@ type TestMessageType = {
   messageTxt: string, 
   isUser: boolean,
   avaUrl: string,
+  id: string,
 };
 
 type AppPropsType = {

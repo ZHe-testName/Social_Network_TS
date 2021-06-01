@@ -1,19 +1,17 @@
 @keyframes send_arrow_animation {
     0%{
-        border-radius: 5px;
-        clip-path: polygon(0% 0%, 100% 0, 100% 50%, 100% 100%, 0% 100%);
-        transform: translateX(0px) translateZ(0px) rotateY(0deg);
+        clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+        transform: rotateZ(0deg);
     }
-    50%{
-        transform: translateX(15px) translateZ(60px) rotateY(-90deg);
-    }
-    70%{
-        transform: translateX(0px) translateZ(100px) rotateY(-210deg);
-    }
+    /* 50%{
+        transform: rotateZ(-180deg);
+    } */
+    /* 70%{
+        transform: translateX(15px) scale(1.1);
+    } */
     100%{
-        border-radius: 0px;
-        clip-path: polygon(0% 0%, 51% 25%, 100% 50%, 48% 76%, 0% 100%);
-        transform: translateX(0px) translateZ(0px) rotateY(-360deg);
+        clip-path: polygon(50% 0, 100% 100%, 100% 100%, 0 100%, 0 100%);
+        transform: rotateZ(-360deg);
     }
 }
 
@@ -67,9 +65,9 @@
                 background-color: rgb(228, 228, 228);
             }
 
-            .send_button_wrap{
+            /* .send_button_wrap{
                 perspective: 130px;
-            }
+            } */
 
             .send_message_button{
                 margin-left: 5px;
@@ -78,13 +76,11 @@
                 height: 25px;
                 border: none;
                 background-color: var(--blue);
-                border-radius: 5px;
             }
 
             .send_message_button:focus{
                 animation-name: send_arrow_animation;
                 animation-duration: 1.4s;
-                animation-fill-mode: forwards;
             }
 
         .dialogs_conversation{
