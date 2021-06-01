@@ -10,15 +10,16 @@ type MessageDescription = {
     avaUrl: string,
     messageTxt: string,
     isUser: boolean,
+    id: string,
 };
 
 function Message(props: MessageDescription) {
-    const {messageTxt, avaUrl, isUser} = props;
+    const {messageTxt, avaUrl, isUser, id} = props;
 
     const className = isUser ? classes.message_user_wrap : classes.message_guest_wrap;
 
     return (
-        <div className={className}>
+        <div key={id} className={className}>
             <Avatar settings={{className: classes.messaage_avatar, imgUrl: avaUrl}}/>
 
             <div className={classes.message_txt}><div>{messageTxt}</div></div>

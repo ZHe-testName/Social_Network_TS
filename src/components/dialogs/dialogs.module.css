@@ -1,7 +1,7 @@
 @keyframes send_arrow_animation {
     0%{
-        clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, 0 0);
-        transform: rotateZ(0deg);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(0px);
     }
     /* 50%{
         transform: rotateZ(-180deg);
@@ -9,9 +9,17 @@
     /* 70%{
         transform: translateX(15px) scale(1.1);
     } */
+    30%{
+        clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(0px) scale(1.2);
+    }
+    70%{
+        clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(-35px)  scale(0);
+    }
     100%{
-        clip-path: polygon(50% 0, 100% 100%, 100% 100%, 0 100%, 0 100%);
-        transform: rotateZ(-360deg);
+        clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(0px);
     }
 }
 
@@ -45,6 +53,7 @@
 
         .new_message_panel{
             display: flex;
+            position: relative;
             position: sticky;
             bottom: 0px;
         }
@@ -66,12 +75,14 @@
             }
 
             /* .send_button_wrap{
+                position: relative;
                 perspective: 130px;
             } */
 
             .send_message_button{
-                margin-left: 5px;
-                margin-top: 5px;
+                position: absolute;
+                right: -1px;
+                top: 6px;
                 width: 60px;
                 height: 25px;
                 border: none;
@@ -80,7 +91,12 @@
 
             .send_message_button:focus{
                 animation-name: send_arrow_animation;
-                animation-duration: 1.4s;
+                animation-duration: 0.4s;
+            }
+            
+            .send_button_gag{
+                width: 60px;
+                height: 25px;
             }
 
         .dialogs_conversation{
