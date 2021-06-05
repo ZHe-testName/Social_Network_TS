@@ -91,7 +91,7 @@ function App(props: AppPropsType) {
             messageInputOnChange,} = props;
 
   return (
-      <div className='app-wrapper'>
+      <div id='app' className='app-wrapper'>
         <Header/>
         <Navbar {...{links: navLinks, friendsArr: friendsAvatarCards}}/>
 

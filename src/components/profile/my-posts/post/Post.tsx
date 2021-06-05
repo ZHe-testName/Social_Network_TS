@@ -6,6 +6,7 @@ type PostType = {
     likes: number,
     dislikes: number,
     id: string,
+    // likeDislikeHandler: () => void;
 };
 
 // type PropsType = {

@@ -15,7 +15,7 @@
     }
     70%{
         clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
-        transform: translateY(-35px)  scale(0);
+        transform: translateY(-40px)  scale(0);
     }
     100%{
         clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);

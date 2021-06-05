@@ -155,6 +155,11 @@ const navLinks = [
 
   let rerenderEntireTree = () => {};
 
+  function scrolElem() {
+
+    console.log('scroled');
+  };
+
   const addPost = (postText: string = '') => {
     if (!postText) return;
 
@@ -180,6 +185,8 @@ const navLinks = [
     mainUser.newMessageText = '';
 
     rerenderEntireTree();
+
+    scrolElem();
   };
 
   const textAreaOnChange = (text: string = '') => {
