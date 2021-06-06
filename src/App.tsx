@@ -65,30 +65,43 @@ type TestMessageType = {
 };
 
 type AppPropsType = {
-  mainUser: MainUserType,
-  usersConversation: Array <DialogsUsersType>,
-  navLinks: Array<LinkType>,
-  myPosts: Array<PostsType>,
-  friendsAvatarCards: Array<FriendsCardsType>,
-  testMessagesArr: Array<TestMessageType>,
+  _state: {
+    mainUser: MainUserType,
+    usersConversation: Array <DialogsUsersType>,
+    navLinks: Array<LinkType>,
+    myPosts: Array<PostsType>,
+    friendsAvatarCards: Array<FriendsCardsType>,
+    testMessagesArr: Array<TestMessageType>,
+  },
   addPost: (postText: string | undefined) => void,
   sendMessage: (messageText: string | undefined) => void,
   textAreaOnChange: (text: string | undefined) => void,
   messageInputOnChange: (text: string | undefined) => void,
+  getState: () => {
+    mainUser: MainUserType,
+    usersConversation: Array <DialogsUsersType>,
+    navLinks: Array<LinkType>,
+    myPosts: Array<PostsType>,
+    friendsAvatarCards: Array<FriendsCardsType>,
+    testMessagesArr: Array<TestMessageType>,
+  },
 };
 
 function App(props: AppPropsType) {
 
-    const { mainUser,
-            navLinks, 
-            usersConversation, 
-            myPosts,
-            testMessagesArr, 
-            friendsAvatarCards,
+    const {
             addPost,
             sendMessage,
             textAreaOnChange,
             messageInputOnChange,} = props;
+
+    const {
+            mainUser,
+            navLinks, 
+            usersConversation, 
+            myPosts,
+            testMessagesArr, 
+            friendsAvatarCards,} = props.getState();
 
   return (
       <div id='app' className='app-wrapper'>
