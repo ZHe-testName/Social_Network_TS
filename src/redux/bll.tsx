@@ -153,7 +153,7 @@ const store =  {
   getState(){
     return this._state;
   },
-  rerenderEntireTree(){
+  _callSubscriber(){
 
   },
   addPost(postText: string = ''){
@@ -170,7 +170,7 @@ const store =  {
 
     this._state.mainUser.newPostText = '';
     
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   sendMessage(messageText: string = ''){
     if (!messageText) return;
@@ -186,21 +186,21 @@ const store =  {
 
     this._state.mainUser.newMessageText = '';
 
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   textAreaOnChange(text: string = ''){
     this._state.mainUser.newPostText = text;
 
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   messageInputOnChange(text: string = ''){
     console.log(this);
     this._state.mainUser.newMessageText = text;
 
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   subscribe(observer: () => void){
-    this.rerenderEntireTree = observer;
+    this._callSubscriber = observer;
   },
 };
   

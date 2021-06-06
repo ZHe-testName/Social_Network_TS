@@ -9,6 +9,7 @@ import Navbar from './components/navbar';
 import Profile from './components/profile';
 import Settings from './components/settings';
 import News from './components/news';
+import store from './redux/bll';
 
 type MessageType = {
   // avaUrl: string,
@@ -88,12 +89,10 @@ type AppPropsType = {
 };
 
 function App(props: AppPropsType) {
-
-    const {
-            addPost,
-            sendMessage,
-            textAreaOnChange,
-            messageInputOnChange,} = props;
+  const messageInputOnChange = store.messageInputOnChange.bind(store),
+    addPost = store.addPost.bind(store),
+    sendMessage = store.sendMessage.bind(store),
+    textAreaOnChange = store.textAreaOnChange.bind(store);
 
     const {
             mainUser,
