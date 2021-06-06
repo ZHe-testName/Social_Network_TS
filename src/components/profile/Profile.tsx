@@ -16,15 +16,22 @@ type MainUserType = {
   newPostText: string,
 };
 
+type DispatchPropsType = {
+  type: string,
+  message?: string,
+  id?: string,
+  observerFunc?: () => void,
+};
+
+
 type PropsType = {
   posts: Array<PostsType>,
   mainUser: MainUserType,
-  addPost: (postText: string | undefined) => void,
-  textAreaOnChange: (text: string | undefined) => void,
+  dispatch: (action: DispatchPropsType) => void;
 };
 
 function Profile(props: PropsType) {
-    const {posts, mainUser, addPost, textAreaOnChange} = props;
+    const {posts, mainUser, dispatch} = props;
 
     return (
         <main className={classes.profile}>
@@ -66,8 +73,7 @@ function Profile(props: PropsType) {
         <MyPosts 
                 posts={posts} 
                 newPostText={mainUser.newPostText}
-                addPost={addPost}
-                textAreaOnChange={textAreaOnChange} />
+                dispatch={dispatch} />
       </main>
     );
 };

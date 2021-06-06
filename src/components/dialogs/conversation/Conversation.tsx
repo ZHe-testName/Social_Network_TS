@@ -1,6 +1,6 @@
 import classes from './conversation.module.css';
 import Message from './message';
-
+import {v1} from 'uuid';
 type MessageType = {
     avaUrl: string,
     messageTxt: string,
@@ -15,14 +15,14 @@ type ConversationType = {
 function Conversation(props: ConversationType) {
     const {messages} = props;
 
-    const messagesForRender = messages.map(message => <Message {...message}/>);
+    const messagesForRender = messages.map(message => <Message key={v1()} {...message}/>);
 
     return (
-        <div className={classes.conversation_wrap}>
+        <ul className={classes.conversation_wrap}>
 
            {messagesForRender}
            
-        </div>
+        </ul>
     );
 };
 

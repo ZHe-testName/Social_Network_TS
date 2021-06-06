@@ -9,16 +9,22 @@ type PostsType = {
     id: string,
   };
 
+type DispatchPropsType = {
+    type: string,
+    message?: string,
+    id?: string,
+    observerFunc?: () => void,
+};
+
 type PropsType = {
     posts: Array<PostsType>,
     newPostText: string,
-    addPost: (postText: string | undefined) => void,
-    textAreaOnChange: (text: string | undefined) => void,
+    dispatch: (action: DispatchPropsType) => void;
 };
 
 
 function MyPosts(props: PropsType) {
-    const {posts, newPostText, addPost, textAreaOnChange} = props;
+    const {posts, newPostText, dispatch} = props;
 
     const postsArr = posts.map(post => <li key={post.id}><Post {...post}/></li>);
 
@@ -27,8 +33,7 @@ function MyPosts(props: PropsType) {
         <span className={classes.header}>My Posts</span>
         <NewPost 
                 newPostText={newPostText}
-                addPost={addPost}
-                textAreaOnChange={textAreaOnChange}/>
+                dispatch={dispatch}/>
 
         <div className={classes.posts_block}>
 

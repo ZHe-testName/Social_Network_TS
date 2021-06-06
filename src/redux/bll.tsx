@@ -1,5 +1,12 @@
 import {v1} from 'uuid';
 
+type DispatchPropsType = {
+  type: string,
+  message?: string,
+  id?: string,
+  observerFunc?: () => void,
+};
+
 const store =  {
   _state: {
     mainUser: {
@@ -150,58 +157,110 @@ const store =  {
       },
     ],
   },
-  getState(){
-    return this._state;
-  },
   _callSubscriber(){
 
   },
-  addPost(postText: string = ''){
-    if (!postText) return;
 
-    const newPost = {
-      text: postText.trim(),
-      likes: 0,
-      dislikes: 0,
-      id: v1(),
+  dispatch(action: DispatchPropsType){
+    if (action.type === 'ADD-POST'){
+      if (!action.message) return;
+
+      const newPost = {
+        text: action.message.trim(),
+        likes: 0,
+        dislikes: 0,
+        id: v1(),
+      };
+  
+      this._state.myPosts.push(newPost);
+  
+      this._state.mainUser.newPostText = '';
+      
+      this._callSubscriber();
     };
 
-    this._state.myPosts.push(newPost);
+    if (action.type === 'UPDATE-NEW-POST-TEXT' && action.message){
+      this._state.mainUser.newPostText = action.message;
 
-    this._state.mainUser.newPostText = '';
+      this._callSubscriber();
+    };
+
+    if (action.type === 'SEND-MESSAGE'){
+      if (!action.message) return;
+
+      this._state.testMessagesArr.push(
+        {
+          messageTxt: action.message.trim(), 
+          isUser: true, 
+          avaUrl: this._state.mainUser.mainUserAvaUrl, 
+          id: v1(),
+        }
+      );
+  
+      this._state.mainUser.newMessageText = '';
+  
+      this._callSubscriber();
+    };
+
+    if (action.type === 'UPDATE-NEW-MESSAGE-TEXT' && action.message){
+      this._state.mainUser.newMessageText = action.message;
+
+      this._callSubscriber();
+    };
+
+    if (action.type === 'SUBSCRIBE' && action.observerFunc){
+      this._callSubscriber = action.observerFunc;
+    };
+  },
+
+  getState(){
+    return this._state;
+  },
+  // addPost(postText: string = ''){
+  //   if (!postText) return;
+
+  //   const newPost = {
+  //     text: postText.trim(),
+  //     likes: 0,
+  //     dislikes: 0,
+  //     id: v1(),
+  //   };
+
+  //   this._state.myPosts.push(newPost);
+
+  //   this._state.mainUser.newPostText = '';
     
-    this._callSubscriber();
-  },
-  sendMessage(messageText: string = ''){
-    if (!messageText) return;
+  //   this._callSubscriber();
+  // },
+  // sendMessage(messageText: string = ''){
+  //   if (!messageText) return;
 
-    this._state.testMessagesArr.push(
-      {
-        messageTxt: messageText.trim(), 
-        isUser: true, 
-        avaUrl: this._state.mainUser.mainUserAvaUrl, 
-        id: v1(),
-      }
-    );
+  //   this._state.testMessagesArr.push(
+  //     {
+  //       messageTxt: messageText.trim(), 
+  //       isUser: true, 
+  //       avaUrl: this._state.mainUser.mainUserAvaUrl, 
+  //       id: v1(),
+  //     }
+  //   );
 
-    this._state.mainUser.newMessageText = '';
+  //   this._state.mainUser.newMessageText = '';
 
-    this._callSubscriber();
-  },
-  textAreaOnChange(text: string = ''){
-    this._state.mainUser.newPostText = text;
+  //   this._callSubscriber();
+  // },
+  // textAreaOnChange(text: string = ''){
+  //   this._state.mainUser.newPostText = text;
 
-    this._callSubscriber();
-  },
-  messageInputOnChange(text: string = ''){
-    console.log(this);
-    this._state.mainUser.newMessageText = text;
+  //   this._callSubscriber();
+  // },
+  // messageInputOnChange(text: string = ''){
+  //   this._state.mainUser.newMessageText = text;
 
-    this._callSubscriber();
-  },
-  subscribe(observer: () => void){
-    this._callSubscriber = observer;
-  },
+  //   this._callSubscriber();
+  // },
+  // subscribe(observer: () => void){
+  //   this._callSubscriber = observer;
+  // },
 };
   
   // const dataObject = {

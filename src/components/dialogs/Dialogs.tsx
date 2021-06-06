@@ -38,16 +38,22 @@ type TestMessageType = {
     id: string,
 };
 
+type DispatchPropsType = {
+    type: string,
+    message?: string,
+    id?: string,
+    observerFunc?: () => void,
+  };
+
 type DialogsPropsType = {
     messages: Array<TestMessageType>,
     mainUser: MainUserType,
     users: Array <UsersType>,
-    sendMessage: (messageText: string | undefined) => void,
-    messageInputOnChange: (text: string | undefined) => void,
+    dispatch: (action: DispatchPropsType) => void,
 };
 
 function Dialogs(props: DialogsPropsType) {
-    const {users, messages, mainUser, sendMessage, messageInputOnChange} = props;
+    const {users, messages, mainUser, dispatch} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
 
@@ -64,15 +70,19 @@ function Dialogs(props: DialogsPropsType) {
 
     // conversation.messageArr?.push({})
     const sendMessageHandler = () => {
-        const messageTxt = newMessageElement.current?.value;
+        if (newMessageElement.current?.value){
+            const messageTxt = newMessageElement.current.value;
 
-        sendMessage(messageTxt);
+            dispatch({type: 'SEND-MESSAGE', message: messageTxt});
+        }
     };
 
     const onChangeHandler = () => {
-        const messageTxt = newMessageElement.current?.value;
+        if (newMessageElement.current?.value){
+            const messageTxt = newMessageElement.current?.value;
 
-        messageInputOnChange(messageTxt);
+            dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', message: messageTxt});
+        };
     };
 
     // const onEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {

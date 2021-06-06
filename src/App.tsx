@@ -74,10 +74,7 @@ type AppPropsType = {
     friendsAvatarCards: Array<FriendsCardsType>,
     testMessagesArr: Array<TestMessageType>,
   },
-  addPost: (postText: string | undefined) => void,
-  sendMessage: (messageText: string | undefined) => void,
-  textAreaOnChange: (text: string | undefined) => void,
-  messageInputOnChange: (text: string | undefined) => void,
+  
   getState: () => {
     mainUser: MainUserType,
     usersConversation: Array <DialogsUsersType>,
@@ -89,10 +86,7 @@ type AppPropsType = {
 };
 
 function App(props: AppPropsType) {
-  const messageInputOnChange = store.messageInputOnChange.bind(store),
-    addPost = store.addPost.bind(store),
-    sendMessage = store.sendMessage.bind(store),
-    textAreaOnChange = store.textAreaOnChange.bind(store);
+  const dispatch = store.dispatch.bind(store);
 
     const {
             mainUser,
@@ -112,15 +106,13 @@ function App(props: AppPropsType) {
                                                       messages={testMessagesArr} 
                                                       mainUser={mainUser} 
                                                       users={usersConversation} 
-                                                      sendMessage={sendMessage}
-                                                      messageInputOnChange={messageInputOnChange}/>}/>
+                                                      dispatch={dispatch}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" render={() => <Profile 
                                                       mainUser={mainUser}   
                                                       posts={myPosts} 
-                                                      addPost={addPost} 
-                                                      textAreaOnChange={textAreaOnChange}/>}/>
+                                                      dispatch={dispatch}/>}/>
           <Route path="/music" component={Music}/>
         </div>
       </div>

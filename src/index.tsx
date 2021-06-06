@@ -20,7 +20,7 @@ export const rerenderEntireTree = () => {
 
 rerenderEntireTree();
 
-store.subscribe(rerenderEntireTree);
+store.dispatch({type: 'SUBSCRIBE', observerFunc: rerenderEntireTree});
 
 
 // If you want to start measuring performance in your app, pass a function

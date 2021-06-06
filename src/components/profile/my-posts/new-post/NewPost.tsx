@@ -1,27 +1,38 @@
 import React from 'react';
 import classes from './newpost.module.css';
 
-type PostPropsType = {
-    newPostText: string,
-    addPost: (postText: string | undefined) => void,
-    textAreaOnChange: (text: string | undefined) => void,
+type DispatchPropsType = {
+    type: string,
+    message?: string,
+    id?: string,
+    observerFunc?: () => void,
 };
 
+type PostPropsType = {
+    newPostText: string,
+    dispatch: (action: DispatchPropsType) => void;
+};
+
+
 function NewPost(props: PostPropsType) {
-    const {newPostText, addPost, textAreaOnChange} = props;
+    const {newPostText, dispatch} = props;
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addNewPostHandler = () => {
-        const textAreaValue = newPostElement.current?.value;
+        if (newPostElement.current?.value){
+            const textAreaValue = newPostElement.current.value;
 
-        addPost(textAreaValue);
+            dispatch({type: 'ADD-POST', message: textAreaValue});
+        };
     };
 
     const onChangeHandler = () => {
-        const textAreaValue = newPostElement.current?.value;
+        if (newPostElement.current?.value){
+            const textAreaValue = newPostElement.current.value;
 
-        textAreaOnChange(textAreaValue);
+            dispatch({type: 'UPDATE-NEW-POST-TEXT', message: textAreaValue});
+        };
     };
 
     return (
