@@ -1,5 +1,8 @@
 import {v1} from 'uuid';
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 type DispatchPropsType = {
   type: string,
   message?: string,
@@ -216,22 +219,6 @@ const store =  {
   getState(){
     return this._state;
   },
-  // addPost(postText: string = ''){
-  //   if (!postText) return;
-
-  //   const newPost = {
-  //     text: postText.trim(),
-  //     likes: 0,
-  //     dislikes: 0,
-  //     id: v1(),
-  //   };
-
-  //   this._state.myPosts.push(newPost);
-
-  //   this._state.mainUser.newPostText = '';
-    
-  //   this._callSubscriber();
-  // },
   // sendMessage(messageText: string = ''){
   //   if (!messageText) return;
 
@@ -248,32 +235,11 @@ const store =  {
 
   //   this._callSubscriber();
   // },
-  // textAreaOnChange(text: string = ''){
-  //   this._state.mainUser.newPostText = text;
 
-  //   this._callSubscriber();
-  // },
-  // messageInputOnChange(text: string = ''){
-  //   this._state.mainUser.newMessageText = text;
-
-  //   this._callSubscriber();
-  // },
-  // subscribe(observer: () => void){
-  //   this._callSubscriber = observer;
-  // },
 };
-  
-  // const dataObject = {
-  //   mainUser,
-  //   usersConversation,
-  //   navLinks,
-  //   myPosts,
-  //   friendsAvatarCards,
-  //   testMessagesArr,
-  //   addPost,
-  //   sendMessage,
-  //   textAreaOnChange,
-  //   messageInputOnChange,
-  // };
 
-  export default store;
+export const addPostActionCreator = (message: string) => ({type: ADD_POST, message: message});
+
+export const onChangePostActionCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message: message});
+
+export default store;

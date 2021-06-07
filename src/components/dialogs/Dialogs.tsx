@@ -1,7 +1,8 @@
+import React, {KeyboardEvent} from 'react';
+
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
-import React, {KeyboardEvent} from 'react';
 
 type UsersType = {
     href: string,
@@ -23,12 +24,6 @@ type MainUserType = {
     mainUserAvaUrl: string,
     newPostText: string,
     newMessageText: string,
-};
-
-type ConversationMessagesType = {
-    avaUrl: string,
-    isUser: boolean,
-    messageArr: [],
 };
 
 type TestMessageType = {

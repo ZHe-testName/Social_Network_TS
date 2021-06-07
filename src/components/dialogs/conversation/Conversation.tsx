@@ -1,6 +1,7 @@
 import classes from './conversation.module.css';
 import Message from './message';
 import {v1} from 'uuid';
+
 type MessageType = {
     avaUrl: string,
     messageTxt: string,

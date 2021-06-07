@@ -1,4 +1,3 @@
-// import React from 'react';
 import './App.css';
 import {Route} from 'react-router-dom';
 
@@ -9,10 +8,10 @@ import Navbar from './components/navbar';
 import Profile from './components/profile';
 import Settings from './components/settings';
 import News from './components/news';
+
 import store from './redux/bll';
 
 type MessageType = {
-  // avaUrl: string,
   message: string,
   isUser: boolean,
 };
@@ -28,12 +27,6 @@ type MainUserType = {
   mainUserAvaUrl: string,
   newPostText: string,
   newMessageText: string,
-};
-
-type IdentLinkType = {
-  href: string,
-  description: string,
-  id: string,
 };
 
 type FriendsCardsType = {
