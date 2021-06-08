@@ -14,7 +14,7 @@ type AvatarSettings = {
 };
 
 type AvatarProps = {
-    settings: AvatarSettings
+    settings: AvatarSettings,
 };
 
 function Avatar(props: AvatarProps) {

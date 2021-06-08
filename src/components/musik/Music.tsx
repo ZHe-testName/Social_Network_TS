@@ -1,4 +1,3 @@
-import classes from './music.module.css';
 
 function Music() {
     return (

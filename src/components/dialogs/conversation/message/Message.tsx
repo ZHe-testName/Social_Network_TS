@@ -2,10 +2,10 @@ import classes from './message.module.css';
 import Avatar from '../../../avatar';
 
 
-type AvatarSettings = {
-    className: string,
-    imgUrl: string,
-};
+// type AvatarSettings = {
+//     className: string,
+//     imgUrl: string,
+// };
 
 type MessageDescription = {
     avaUrl: string,
@@ -15,7 +15,7 @@ type MessageDescription = {
 };
 
 function Message(props: MessageDescription) {
-    const {messageTxt, avaUrl, isUser, id} = props;
+    const {messageTxt, avaUrl, isUser} = props;
 
     const className = isUser ? classes.message_user_wrap : classes.message_guest_wrap;
 

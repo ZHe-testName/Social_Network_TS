@@ -1,4 +1,3 @@
-import classes from './news.module.css';
 
 function News() {
     return (

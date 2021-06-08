@@ -1,4 +1,4 @@
-import React, {FocusEvent, KeyboardEvent, MouseEvent} from 'react';
+import React, {FocusEvent, MouseEvent} from 'react';
 
 import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/bll';
 
@@ -68,12 +68,12 @@ function Dialogs(props: DialogsPropsType) {
 
     // conversation.messageArr?.push({})
     const sendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
-        e.currentTarget.classList.add(classes.send_message_button_on_click);
-
         if (newMessageElement.current?.value){
             const messageTxt = newMessageElement.current.value;
 
             dispatch(addSendMessageCreator(messageTxt));
+
+            e.currentTarget.classList.add(classes.send_message_button_on_click);
         }
 
     };
@@ -96,7 +96,6 @@ function Dialogs(props: DialogsPropsType) {
     //         console.log('sd');
     //     }
     // };
-    console.log(sendButton);
     return (
         <div className={classes.dialogs_wrap}>
             <h2 className={classes.dialogs_header}>Dialogs</h2>

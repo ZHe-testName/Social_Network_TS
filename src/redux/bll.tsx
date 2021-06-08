@@ -192,7 +192,6 @@ const store =  {
     };
 
     if (action.type === 'SEND_MESSAGE'){
-      console.log('start');
       if (!action.message) return;
 
       this._state.testMessagesArr.push(
@@ -223,23 +222,6 @@ const store =  {
   getState(){
     return this._state;
   },
-  // sendMessage(messageText: string = ''){
-  //   if (!messageText) return;
-
-  //   this._state.testMessagesArr.push(
-  //     {
-  //       messageTxt: messageText.trim(), 
-  //       isUser: true, 
-  //       avaUrl: this._state.mainUser.mainUserAvaUrl, 
-  //       id: v1(),
-  //     }
-  //   );
-
-  //   this._state.mainUser.newMessageText = '';
-
-  //   this._callSubscriber();
-  // },
-
 };
 
 export const addPostCreator = (message: string) => ({type: ADD_POST, message});

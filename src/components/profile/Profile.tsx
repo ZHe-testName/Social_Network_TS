@@ -64,7 +64,7 @@ function Profile(props: PropsType) {
 
               <div className="wedsite">
                 <span className="web">Web Site: </span>
-                <a href="#" className="user-web">www.ewgenius.com</a>
+                <a href="/website" className="user-web">www.ewgenius.com</a>
               </div>
             </div>
           </div>
