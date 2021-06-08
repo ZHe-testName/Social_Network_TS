@@ -11,6 +11,77 @@ import News from './components/news';
 
 import store from './redux/bll';
 
+type NavType = {
+  links: Array<LinkType>,
+  friendsArr: Array<FriendsCardsType>,
+};
+
+type AvatarSettings = {
+  className: string,
+  imgUrl: string,
+  width?: number,
+  height?: number,
+};
+
+type AvatarProps = {
+  settings: AvatarSettings,
+};
+
+type MessageDescription = {
+  avaUrl: string,
+  messageTxt: string,
+  isUser: boolean,
+  id: string,
+};
+
+type ConversationType = {
+  messages: Array<MessageType>;
+};
+
+
+type UsersType = {
+  href: string,
+  description: string,
+  online: boolean,
+  selected: boolean,
+  avaUrl: string,
+  messageArr: Array <MessageType>,
+};
+
+type DialogsPropsType = {
+  messages: Array<TestMessageType>,
+  mainUser: MainUserType,
+  users: Array <UsersType>,
+  dispatch: (action: DispatchPropsType) => void,
+};
+
+type PostType = {
+  text: string,
+  likes: number,
+  dislikes: number,
+  id: string,
+  // likeDislikeHandler: () => void;
+};
+
+type PostPropsType = {
+  newPostText: string,
+  dispatch: (action: DispatchPropsType) => void;
+};
+
+type DispatchPropsType = {
+  type: string,
+  message?: string,
+  id?: string,
+  observerFunc?: () => void,
+};
+
+
+type PropsType = {
+  posts: Array<PostsType>,
+  mainUser: MainUserType,
+  dispatch: (action: DispatchPropsType) => void;
+};
+
 type MessageType = {
   message: string,
   isUser: boolean,
