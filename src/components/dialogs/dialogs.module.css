@@ -3,12 +3,6 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
         transform: translateY(0px);
     }
-    /* 50%{
-        transform: rotateZ(-180deg);
-    } */
-    /* 70%{
-        transform: translateX(15px) scale(1.1);
-    } */
     30%{
         clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
         transform: translateY(0px) scale(1.2);
@@ -89,7 +83,7 @@
                 background-color: var(--blue);
             }
 
-            .send_message_button:focus{
+            .send_message_button_on_click{
                 animation-name: send_arrow_animation;
                 animation-duration: 0.4s;
             }

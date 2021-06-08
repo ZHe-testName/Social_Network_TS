@@ -1,4 +1,6 @@
-import React, {KeyboardEvent} from 'react';
+import React, {FocusEvent, KeyboardEvent, MouseEvent} from 'react';
+
+import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/bll';
 
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
@@ -51,6 +53,7 @@ function Dialogs(props: DialogsPropsType) {
     const {users, messages, mainUser, dispatch} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
+    const sendButton = React.createRef<HTMLButtonElement>();
 
     // const conversation = {...users.find(user => user.selected)};
 
@@ -64,19 +67,26 @@ function Dialogs(props: DialogsPropsType) {
     ////////////////////////////////////
 
     // conversation.messageArr?.push({})
-    const sendMessageHandler = () => {
+    const sendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
+        e.currentTarget.classList.add(classes.send_message_button_on_click);
+
         if (newMessageElement.current?.value){
             const messageTxt = newMessageElement.current.value;
 
-            dispatch({type: 'SEND-MESSAGE', message: messageTxt});
+            dispatch(addSendMessageCreator(messageTxt));
         }
+
+    };
+
+    const onBlurHandler = (e: FocusEvent<HTMLButtonElement>) => {
+        e.currentTarget.classList.remove(classes.send_message_button_on_click);
     };
 
     const onChangeHandler = () => {
         if (newMessageElement.current?.value){
-            const messageTxt = newMessageElement.current?.value;
+            const messageTxt = newMessageElement.current.value;
 
-            dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', message: messageTxt});
+            dispatch(onChangeMessageCreator(messageTxt));
         };
     };
 
@@ -86,7 +96,7 @@ function Dialogs(props: DialogsPropsType) {
     //         console.log('sd');
     //     }
     // };
-
+    console.log(sendButton);
     return (
         <div className={classes.dialogs_wrap}>
             <h2 className={classes.dialogs_header}>Dialogs</h2>
@@ -115,9 +125,9 @@ function Dialogs(props: DialogsPropsType) {
 
                     <button 
                             className={classes.send_message_button}
-                            onClick={sendMessageHandler}>
-                            Send
-                    </button>
+                            ref={sendButton}
+                            onClick={sendMessageHandler}
+                            onBlur={onBlurHandler}> Send </button>
 
                     {/* <div className={classes.send_button_wrap}>
                         

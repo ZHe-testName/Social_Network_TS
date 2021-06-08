@@ -3,6 +3,9 @@ import {v1} from 'uuid';
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+const SEND_MESSAGE = 'SEND_MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+
 type DispatchPropsType = {
   type: string,
   message?: string,
@@ -188,7 +191,8 @@ const store =  {
       this._callSubscriber();
     };
 
-    if (action.type === 'SEND-MESSAGE'){
+    if (action.type === 'SEND_MESSAGE'){
+      console.log('start');
       if (!action.message) return;
 
       this._state.testMessagesArr.push(
@@ -205,7 +209,7 @@ const store =  {
       this._callSubscriber();
     };
 
-    if (action.type === 'UPDATE-NEW-MESSAGE-TEXT' && action.message){
+    if (action.type === 'UPDATE_NEW_MESSAGE_TEXT' && action.message){
       this._state.mainUser.newMessageText = action.message;
 
       this._callSubscriber();
@@ -238,8 +242,13 @@ const store =  {
 
 };
 
-export const addPostActionCreator = (message: string) => ({type: ADD_POST, message: message});
+export const addPostCreator = (message: string) => ({type: ADD_POST, message});
 
-export const onChangePostActionCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message: message});
+export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});
+
+
+export const addSendMessageCreator = (message: string) => ({type: SEND_MESSAGE, message});
+
+export const onChangeMessageCreator = (message: string)  => ({type: UPDATE_NEW_MESSAGE_TEXT, message});
 
 export default store;

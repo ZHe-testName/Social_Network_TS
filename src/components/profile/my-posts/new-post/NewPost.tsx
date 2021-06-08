@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './newpost.module.css';
 
-import {addPostActionCreator, onChangePostActionCreator} from '../../../../redux/bll';
+import {addPostCreator, onChangePostCreator} from '../../../../redux/bll';
 
 type DispatchPropsType = {
     type: string,
@@ -25,7 +25,7 @@ function NewPost(props: PostPropsType) {
         if (newPostElement.current?.value){
             const textAreaValue = newPostElement.current.value;
 
-            dispatch(addPostActionCreator(textAreaValue));
+            dispatch(addPostCreator(textAreaValue));
         };
     };
 
@@ -33,7 +33,7 @@ function NewPost(props: PostPropsType) {
         if (newPostElement.current?.value){
             const textAreaValue = newPostElement.current.value;
 
-            dispatch(onChangePostActionCreator(textAreaValue));
+            dispatch(onChangePostCreator(textAreaValue));
         };
     };
 
