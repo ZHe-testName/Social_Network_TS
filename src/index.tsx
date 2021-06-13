@@ -17,6 +17,7 @@ export const rerenderEntireTree = () => {
       document.getElementById('root')
     );
   };
+console.log(store);
 
 rerenderEntireTree();
 

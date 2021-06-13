@@ -24,6 +24,8 @@ function App(props: AppPropsType) {
             testMessagesArr, 
             friendsAvatarCards,} = props.getState();
 
+            console.log(testMessagesArr);
+
   return (
       <div id='app' className='app-wrapper'>
         <Header/>

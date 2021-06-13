@@ -21,7 +21,7 @@ export type MessageDescription = {
     id: string,
   };
   
-export  type ConversationType = {
+export type ConversationType = {
     messages: Array<MessageType>;
   };
   
@@ -32,11 +32,10 @@ export  type UsersType = {
     online: boolean,
     selected: boolean,
     avaUrl: string,
-    messageArr: Array <MessageType>,
   };
   
 export  type DialogsPropsType = {
-    messages: Array<TestMessageType>,
+    messages: Array<MessageType>,
     mainUser: MainUserType,
     users: Array <UsersType>,
     dispatch: (action: DispatchPropsType) => void,
@@ -51,7 +50,6 @@ export  type PostType = {
     likes: number,
     dislikes: number,
     id: string,
-    // likeDislikeHandler: () => void;
   };
   
 export  type PostPropsType = {
@@ -95,13 +93,6 @@ export  type PropsType = {
     dispatch: (action: DispatchPropsType) => void;
   };
 
-export type MessageType = {
-  avaUrl: string,
-  messageTxt: string,
-  isUser: boolean,
-  id: string,
-};
-
 export type MessagePropsType = {
   message: string,
   isUser: boolean,
@@ -121,13 +112,25 @@ export  type MainUserType = {
     newMessageText: string,
   };
 
+  
+export type MessageType = {
+  avaUrl: string,
+  messageTxt: string,
+  isUser: boolean,
+  id: string,
+};
+
+export type SomeNewMessages = {
+  message: string,
+  isUser: boolean,
+};
+
 export  type DialogsUsersType = {
     href: string,
     description: string,
     online: boolean,
     selected: boolean,
     avaUrl: string,
-    messageArr: Array <MessageDescription>,
   };
   
 export  type TestMessageType = {

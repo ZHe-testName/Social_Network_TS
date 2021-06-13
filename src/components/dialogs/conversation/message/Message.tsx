@@ -4,7 +4,6 @@ import Avatar from '../../../avatar';
 import {MessageDescription} from '../../../../redux/types';
 
 function Message(props: MessageDescription) {
-    console.log(props);
     const {messageTxt, avaUrl, isUser} = props;
 
     const className = isUser ? classes.message_user_wrap : classes.message_guest_wrap;
