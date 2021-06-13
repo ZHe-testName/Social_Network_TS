@@ -3,18 +3,7 @@ import classes from './newpost.module.css';
 
 import {addPostCreator, onChangePostCreator} from '../../../../redux/bll';
 
-type DispatchPropsType = {
-    type: string,
-    message?: string,
-    id?: string,
-    observerFunc?: () => void,
-};
-
-type PostPropsType = {
-    newPostText: string,
-    dispatch: (action: DispatchPropsType) => void;
-};
-
+import {PostPropsType} from '../../../../redux/types';
 
 function NewPost(props: PostPropsType) {
     const {newPostText, dispatch} = props;

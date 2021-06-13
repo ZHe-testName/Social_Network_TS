@@ -1,17 +1,7 @@
 import classes from './post.module.css';
 import Avatar from '../../../avatar';
 
-type PostType = {
-    text: string,
-    likes: number,
-    dislikes: number,
-    id: string,
-    // likeDislikeHandler: () => void;
-};
-
-// type PropsType = {
-//     description: PostType,
-// };
+import {PostType} from '../../../../redux/types';
 
 function Post(props: PostType) {
     const {text, likes, dislikes} = props;

@@ -1,20 +1,10 @@
 import classes from './message.module.css';
 import Avatar from '../../../avatar';
 
-
-// type AvatarSettings = {
-//     className: string,
-//     imgUrl: string,
-// };
-
-type MessageDescription = {
-    avaUrl: string,
-    messageTxt: string,
-    isUser: boolean,
-    id: string,
-};
+import {MessageDescription} from '../../../../redux/types';
 
 function Message(props: MessageDescription) {
+    console.log(props);
     const {messageTxt, avaUrl, isUser} = props;
 
     const className = isUser ? classes.message_user_wrap : classes.message_guest_wrap;

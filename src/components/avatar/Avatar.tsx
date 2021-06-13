@@ -6,16 +6,7 @@
 import './avatar.module.css';
 import styled from 'styled-components';
 
-type AvatarSettings = {
-    className: string,
-    imgUrl: string,
-    width?: number,
-    height?: number,
-};
-
-type AvatarProps = {
-    settings: AvatarSettings,
-};
+import {AvatarProps} from '../../redux/types';
 
 function Avatar(props: AvatarProps) {
     const {className, imgUrl, width, height} = props.settings;

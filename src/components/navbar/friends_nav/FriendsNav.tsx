@@ -2,22 +2,14 @@ import classes from './friends_nav.module.css';
 import Avatar from '../../avatar';
 import CustomNavLink from '../../custom-nav-link';
 
+import {FriendsNavPropsType} from '../../../redux/types';
+
 // идея №1
 // максимальное количество отображаемых элэментов = 8
 // при клике на кастомную прокрутку прокрутку
 // будут подгружатся следующие/предидущие карточки с друзями 
 
-type FriendsCardsType = {
-    avatar?: string,
-    name: string,
-    href: string,
-};
-  
-type PropsType = {
-    friendsArr: Array<FriendsCardsType>,
-};
-
-function FriendsNav(props: PropsType) {
+function FriendsNav(props: FriendsNavPropsType) {
     const {friendsArr} = props;
 
     const cardsArr = friendsArr.map(card => {

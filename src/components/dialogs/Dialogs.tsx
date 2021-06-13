@@ -6,48 +6,7 @@ import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
 
-type UsersType = {
-    href: string,
-    description: string,
-    online: boolean,
-    selected: boolean,
-    avaUrl: string,
-    messageArr: Array <MessageType>,
-};
-
-type MessageType = {
-    message: string,
-    isUser: boolean,
-};
-
-type MainUserType = {
-    name: string,
-    surname: string,
-    mainUserAvaUrl: string,
-    newPostText: string,
-    newMessageText: string,
-};
-
-type TestMessageType = {
-    messageTxt: string, 
-    isUser: boolean,
-    avaUrl: string,
-    id: string,
-};
-
-type DispatchPropsType = {
-    type: string,
-    message?: string,
-    id?: string,
-    observerFunc?: () => void,
-  };
-
-type DialogsPropsType = {
-    messages: Array<TestMessageType>,
-    mainUser: MainUserType,
-    users: Array <UsersType>,
-    dispatch: (action: DispatchPropsType) => void,
-};
+import {DialogsPropsType} from '../../redux/types';
 
 function Dialogs(props: DialogsPropsType) {
     const {users, messages, mainUser, dispatch} = props;
@@ -55,18 +14,6 @@ function Dialogs(props: DialogsPropsType) {
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
     const sendButton = React.createRef<HTMLButtonElement>();
 
-    // const conversation = {...users.find(user => user.selected)};
-
-    // const messagesArr = conversation ? conversation.messageArr : [];
-
-    // const renderMessageArr = messagesArr?.map(messageObj => {
-    //     return messageObj.isUser ? {avaUrl: mainUser.mainUserAvaUrl, ...messageObj} : 
-    //                                 {avaUrl: conversation.avaUrl, ...messageObj};
-    // });
-    
-    ////////////////////////////////////
-
-    // conversation.messageArr?.push({})
     const sendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
         if (newMessageElement.current?.value){
             const messageTxt = newMessageElement.current.value;
@@ -96,6 +43,7 @@ function Dialogs(props: DialogsPropsType) {
     //         console.log('sd');
     //     }
     // };
+    
     return (
         <div className={classes.dialogs_wrap}>
             <h2 className={classes.dialogs_header}>Dialogs</h2>

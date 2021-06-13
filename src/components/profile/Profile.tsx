@@ -2,33 +2,8 @@ import MyPosts from './my-posts';
 import classes from  './profile.module.css';
 import Avatar from '../avatar';
 
-type PostsType = {
-  text: string,
-  likes: number,
-  dislikes: number,
-  id: string,
-};
+import {PropsType} from '../../redux/types';
 
-type MainUserType = {
-  name: string,
-  surname: string,
-  mainUserAvaUrl: string,
-  newPostText: string,
-};
-
-type DispatchPropsType = {
-  type: string,
-  message?: string,
-  id?: string,
-  observerFunc?: () => void,
-};
-
-
-type PropsType = {
-  posts: Array<PostsType>,
-  mainUser: MainUserType,
-  dispatch: (action: DispatchPropsType) => void;
-};
 
 function Profile(props: PropsType) {
     const {posts, mainUser, dispatch} = props;

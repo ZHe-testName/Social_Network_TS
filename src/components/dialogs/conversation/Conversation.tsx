@@ -2,16 +2,7 @@ import classes from './conversation.module.css';
 import Message from './message';
 import {v1} from 'uuid';
 
-type MessageType = {
-    avaUrl: string,
-    messageTxt: string,
-    isUser: boolean,
-    id: string,
-};
-
-type ConversationType = {
-    messages: Array<MessageType>;
-};
+import {ConversationType} from '../../../redux/types';
 
 function Conversation(props: ConversationType) {
     const {messages} = props;

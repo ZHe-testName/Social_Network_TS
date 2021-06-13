@@ -1,17 +1,11 @@
 import {v1} from 'uuid';
+import {DispatchPropsType} from './types';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 const SEND_MESSAGE = 'SEND_MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
-
-type DispatchPropsType = {
-  type: string,
-  message?: string,
-  id?: string,
-  observerFunc?: () => void,
-};
 
 const store =  {
   _state: {

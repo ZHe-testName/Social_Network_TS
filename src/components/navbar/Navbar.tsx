@@ -3,21 +3,24 @@ import classes from  './navbar.module.css';
 import CustomNavLink from '../custom-nav-link';
 import FriendsNav from "./friends_nav";
 
-type LinkType = {
-  href: string,
-  description: string,
-};
+import {NavType, LinkType} from '../../redux/types';
 
-type FriendsCardsType = {
-  avatar?: string,
-  name: string,
-  href: string,
-};
+// type LinkType = {
+//   href: string,
+//   description?: string | Object,
+//   className?: string,
+// };
 
-type NavType = {
-  links: Array<LinkType>,
-  friendsArr: Array<FriendsCardsType>,
-};
+// type FriendsCardsType = {
+//   avatar?: string,
+//   name: string,
+//   href: string,
+// };
+
+// type NavType = {
+//   links: Array<LinkType>,
+//   friendsArr: Array<FriendsCardsType>,
+// };
 
 function Navbar(props: NavType) {
     const {links, friendsArr} = props;

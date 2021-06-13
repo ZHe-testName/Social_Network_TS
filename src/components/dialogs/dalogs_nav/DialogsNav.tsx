@@ -1,18 +1,10 @@
 import CustomNavLink from '../../custom-nav-link';
 import classes from './dialogs_nav.module.css';
 
-type LinkType = {
-    href: string,
-    description: string,
-    online: boolean,
-};
+import {DialogsNavPropsType} from '../../../redux/types';
 
-type DialogsPropsType = {
-    users: Array<LinkType>,
-};
-
-function DialogsNav(props: DialogsPropsType) {
-    let {users} = props;
+function DialogsNav(props: DialogsNavPropsType) {
+    const {users} = props;
 
     const indicatorJsx = <div className={classes.status_indicator}>
                             <div className={classes.indicator_lamp}></div>

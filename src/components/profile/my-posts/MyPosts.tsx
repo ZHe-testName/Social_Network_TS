@@ -2,28 +2,10 @@ import NewPost from './new-post';
 import Post from './post';
 import classes from './myposts.module.css';
 
-type PostsType = {
-    text: string,
-    likes: number,
-    dislikes: number,
-    id: string,
-  };
-
-type DispatchPropsType = {
-    type: string,
-    message?: string,
-    id?: string,
-    observerFunc?: () => void,
-};
-
-type PropsType = {
-    posts: Array<PostsType>,
-    newPostText: string,
-    dispatch: (action: DispatchPropsType) => void;
-};
+import {PostsPropsType} from '../../../redux/types';
 
 
-function MyPosts(props: PropsType) {
+function MyPosts(props: PostsPropsType) {
     const {posts, newPostText, dispatch} = props;
 
     const postsArr = posts.map(post => <li key={post.id}><Post {...post}/></li>);
