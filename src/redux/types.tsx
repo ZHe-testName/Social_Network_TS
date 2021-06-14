@@ -29,6 +29,10 @@ export type NavBarType = {
   friendsArr: Array<FriendsCardsType>,
 };
 
+export type DialoglsReducerStateType = {
+  messages: Array<TestMessageType>,
+  newMessageText: string,
+}; 
 
 export type NavType = {
     links: Array<LinkType>,
@@ -70,7 +74,7 @@ export  type DialogsPropsType = {
     messages: Array<MessageType>,
     newMessageText: string,
     users: Array <UsersType>,
-    dispatch: (action: DispatchPropsType) => void,
+    dispatch: (action: DispatchActionPropsType) => void,
   };
 
 export type DialogsNavPropsType = {
@@ -86,10 +90,10 @@ export  type PostType = {
   
 export  type PostPropsType = {
     newPostText: string,
-    dispatch: (action: DispatchPropsType) => void;
+    dispatch: (action: DispatchActionPropsType) => void;
   };
   
-export  type DispatchPropsType = {
+export  type DispatchActionPropsType = {
     type: string,
     message?: string,
     id?: string,
@@ -116,14 +120,14 @@ export type PostsType = {
 export type PostsPropsType = {
   posts: Array<PostsType>,
   newPostText: string,
-  dispatch: (action: DispatchPropsType) => void;
+  dispatch: (action: DispatchActionPropsType) => void;
 };  
   
 export  type PropsType = {
     posts: Array<PostsType>,
     mainUser: MainUserType,
     newPostText: string,
-    dispatch: (action: DispatchPropsType) => void;
+    dispatch: (action: DispatchActionPropsType) => void;
   };
 
 export type MessagePropsType = {

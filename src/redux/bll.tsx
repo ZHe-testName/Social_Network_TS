@@ -1,5 +1,5 @@
 import {v1} from 'uuid';
-import {DispatchPropsType} from './types';
+import {DispatchActionPropsType} from './types';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -169,7 +169,7 @@ const store =  {
 
   },
 
-  dispatch(action: DispatchPropsType){
+  dispatch(action: DispatchActionPropsType){
     if (action.type === 'ADD-POST'){
       if (!action.message) return;
 
