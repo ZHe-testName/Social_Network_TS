@@ -1,11 +1,9 @@
 import {v1} from 'uuid';
+
 import {DispatchActionPropsType} from './types';
-
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-
-const SEND_MESSAGE = 'SEND_MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+import {dialogsReducer} from './reducers/dialogs-reducer';
+import {navbarReducer} from './reducers/navbar-reducer';
+import {profileReducer} from './reducers/profile-reducer';
 
 const store =  {
   _state: {
@@ -165,74 +163,27 @@ const store =  {
       ],
     },    
   },
+
   _callSubscriber(){
 
   },
 
-  dispatch(action: DispatchActionPropsType){
-    if (action.type === 'ADD-POST'){
-      if (!action.message) return;
-
-      const newPost = {
-        text: action.message.trim(),
-        likes: 0,
-        dislikes: 0,
-        id: v1(),
-      };
   
-      this._state.profilePage.posts.push(newPost);
-  
-      this._state.profilePage.newPostText = '';
-      
-      this._callSubscriber();
-    };
-
-    if (action.type === 'UPDATE-NEW-POST-TEXT' && action.message){
-      this._state.profilePage.newPostText = action.message;
-
-      this._callSubscriber();
-    };
-
-    if (action.type === 'SEND_MESSAGE'){
-      if (!action.message) return;
-
-      this._state.dialogsPage.messages.push(
-        {
-          messageTxt: action.message.trim(), 
-          isUser: true, 
-          avaUrl: this._state.profilePage.mainUser.mainUserAvaUrl, 
-          id: v1(),
-        }
-      );
-  
-      this._state.dialogsPage.newMessageText = '';
-  
-      this._callSubscriber();
-    };
-
-    if (action.type === 'UPDATE_NEW_MESSAGE_TEXT' && action.message){
-      this._state.dialogsPage.newMessageText = action.message;
-
-      this._callSubscriber();
-    };
-
-    if (action.type === 'SUBSCRIBE' && action.observerFunc){
-      this._callSubscriber = action.observerFunc;
-    };
-  },
-
   getState(){
     return this._state;
   },
+
+  subscribe(observerFunc: () => void){
+    this._callSubscriber = observerFunc;
+  },
+
+  dispatch(action: DispatchActionPropsType){
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    // this._state.dialogsPage = profileReducer(this._state.dialogsPage, action);
+    // this._state.navBar = profileReducer(this._state.navBar, action);
+
+    this._callSubscriber();
+  },
 };
-
-export const addPostCreator = (message: string) => ({type: ADD_POST, message});
-
-export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});
-
-
-export const addSendMessageCreator = (message: string) => ({type: SEND_MESSAGE, message});
-
-export const onChangeMessageCreator = (message: string)  => ({type: UPDATE_NEW_MESSAGE_TEXT, message});
 
 export default store;

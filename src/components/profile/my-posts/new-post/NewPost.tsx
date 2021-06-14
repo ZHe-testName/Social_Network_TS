@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './newpost.module.css';
 
-import {addPostCreator, onChangePostCreator} from '../../../../redux/bll';
+import {addPostCreator, onChangePostCreator} from '../../../../redux/reducers/profile-reducer';
 
 import {PostPropsType} from '../../../../redux/types';
 

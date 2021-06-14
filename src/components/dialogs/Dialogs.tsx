@@ -1,6 +1,6 @@
 import React, {FocusEvent, MouseEvent} from 'react';
 
-import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/bll';
+import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/reducers/dialogs-reducer';
 
 import classes from './dialogs.module.css';
 import Conversation from './conversation';

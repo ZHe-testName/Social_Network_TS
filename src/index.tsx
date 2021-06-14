@@ -17,11 +17,11 @@ export const rerenderEntireTree = () => {
       document.getElementById('root')
     );
   };
-console.log(store);
 
 rerenderEntireTree();
 
-store.dispatch({type: 'SUBSCRIBE', observerFunc: rerenderEntireTree});
+store.subscribe(rerenderEntireTree);
+
 
 
 // If you want to start measuring performance in your app, pass a function

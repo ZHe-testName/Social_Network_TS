@@ -28,3 +28,7 @@ export const profileReducer = (state: ProfilePageType, action: DispatchActionPro
 
     return state;
 };
+
+export const addPostCreator = (message: string) => ({type: ADD_POST, message});
+
+export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});

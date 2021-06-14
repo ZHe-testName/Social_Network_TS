@@ -27,3 +27,7 @@ export const dialogsReducer = (state: DialoglsReducerStateType, action: Dispatch
 
     return state;
 };
+
+export const addSendMessageCreator = (message: string) => ({type: SEND_MESSAGE, message});
+
+export const onChangeMessageCreator = (message: string)  => ({type: UPDATE_NEW_MESSAGE_TEXT, message});
