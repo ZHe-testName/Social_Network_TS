@@ -16,32 +16,25 @@ import {AppPropsType} from './redux/types';
 function App(props: AppPropsType) {
   const dispatch = store.dispatch.bind(store);
 
-    const {
-            mainUser,
-            navLinks, 
-            usersConversation, 
-            myPosts,
-            testMessagesArr, 
-            friendsAvatarCards,} = props.getState();
-
-            console.log(testMessagesArr);
+    const { profilePage,
+            dialogsPage,
+            navBar} = props.getState();
 
   return (
       <div id='app' className='app-wrapper'>
         <Header/>
-        <Navbar {...{links: navLinks, friendsArr: friendsAvatarCards}}/>
+        <Navbar {...navBar}/>
 
         <div className="main-content">
           <Route path="/dialogs" render={() => <Dialogs
-                                                      messages={testMessagesArr} 
-                                                      mainUser={mainUser} 
-                                                      users={usersConversation} 
+                                                      {...dialogsPage}
                                                       dispatch={dispatch}/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" render={() => <Profile 
-                                                      mainUser={mainUser}   
-                                                      posts={myPosts} 
+                                                      // mainUser={mainUser}   
+                                                      // posts={myPosts}
+                                                      {...profilePage} 
                                                       dispatch={dispatch}/>}/>
           <Route path="/music" component={Music}/>
         </div>

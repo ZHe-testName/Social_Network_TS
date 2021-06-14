@@ -6,7 +6,7 @@ import {PropsType} from '../../redux/types';
 
 
 function Profile(props: PropsType) {
-    const {posts, mainUser, dispatch} = props;
+    const {posts, mainUser, newPostText, dispatch} = props;
 
     return (
         <main className={classes.profile}>
@@ -47,7 +47,7 @@ function Profile(props: PropsType) {
 
         <MyPosts 
                 posts={posts} 
-                newPostText={mainUser.newPostText}
+                newPostText={newPostText}
                 dispatch={dispatch} />
       </main>
     );

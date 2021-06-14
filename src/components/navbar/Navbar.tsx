@@ -5,23 +5,6 @@ import FriendsNav from "./friends_nav";
 
 import {NavType, LinkType} from '../../redux/types';
 
-// type LinkType = {
-//   href: string,
-//   description?: string | Object,
-//   className?: string,
-// };
-
-// type FriendsCardsType = {
-//   avatar?: string,
-//   name: string,
-//   href: string,
-// };
-
-// type NavType = {
-//   links: Array<LinkType>,
-//   friendsArr: Array<FriendsCardsType>,
-// };
-
 function Navbar(props: NavType) {
     const {links, friendsArr} = props;
 

@@ -9,7 +9,7 @@ import DialogsNav from './dalogs_nav';
 import {DialogsPropsType} from '../../redux/types';
 
 function Dialogs(props: DialogsPropsType) {
-    const {users, messages, mainUser, dispatch} = props;
+    const {users, messages, newMessageText, dispatch} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
     const sendButton = React.createRef<HTMLButtonElement>();
@@ -60,7 +60,7 @@ function Dialogs(props: DialogsPropsType) {
 
                 <div className={classes.new_message_panel}>
                     <textarea   
-                            value={mainUser.newMessageText}
+                            value={newMessageText}
                             ref={newMessageElement}
                             rows={1}
                             placeholder="Typing here..."

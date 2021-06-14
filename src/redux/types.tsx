@@ -1,3 +1,35 @@
+export  type AppPropsType = {
+  _state: {
+    profilePage: ProfilePageType,
+    dialogsPage: DialogsPageType,
+    navBar: NavBarType,
+  },
+  
+  getState: () => {
+    profilePage: ProfilePageType,
+    dialogsPage: DialogsPageType,
+    navBar: NavBarType,
+  },
+}
+
+export type ProfilePageType = {
+  mainUser: MainUserType,
+  posts: Array<PostsType>,
+  newPostText: string,
+};
+
+export type DialogsPageType = {
+  users: Array <DialogsUsersType>,
+  messages: Array<TestMessageType>,
+  newMessageText: string,
+};
+
+export type NavBarType = {
+  links: Array<LinkType>,
+  friendsArr: Array<FriendsCardsType>,
+};
+
+
 export type NavType = {
     links: Array<LinkType>,
     friendsArr: Array<FriendsCardsType>,
@@ -36,7 +68,7 @@ export  type UsersType = {
   
 export  type DialogsPropsType = {
     messages: Array<MessageType>,
-    mainUser: MainUserType,
+    newMessageText: string,
     users: Array <UsersType>,
     dispatch: (action: DispatchPropsType) => void,
   };
@@ -90,6 +122,7 @@ export type PostsPropsType = {
 export  type PropsType = {
     posts: Array<PostsType>,
     mainUser: MainUserType,
+    newPostText: string,
     dispatch: (action: DispatchPropsType) => void;
   };
 
@@ -108,8 +141,6 @@ export  type MainUserType = {
     name: string,
     surname: string,
     mainUserAvaUrl: string,
-    newPostText: string,
-    newMessageText: string,
   };
 
   
@@ -138,24 +169,4 @@ export  type TestMessageType = {
     isUser: boolean,
     avaUrl: string,
     id: string,
-  };
-  
-export  type AppPropsType = {
-    _state: {
-      mainUser: MainUserType,
-      usersConversation: Array <DialogsUsersType>,
-      navLinks: Array<LinkType>,
-      myPosts: Array<PostsType>,
-      friendsAvatarCards: Array<FriendsCardsType>,
-      testMessagesArr: Array<TestMessageType>,
-    },
-    
-    getState: () => {
-      mainUser: MainUserType,
-      usersConversation: Array <DialogsUsersType>,
-      navLinks: Array<LinkType>,
-      myPosts: Array<PostsType>,
-      friendsAvatarCards: Array<FriendsCardsType>,
-      testMessagesArr: Array<TestMessageType>,
-    },
   };
