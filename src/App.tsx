@@ -10,7 +10,7 @@ import Settings from './components/settings';
 import News from './components/news';
 
 import store from './redux/bll';
-import { ProfilePageType } from './components/profile/Profile';
+import { MainUserType, PostsType } from './components/profile/Profile';
 import { DialogsPageType, TestMessageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
   
@@ -26,15 +26,21 @@ export type DialoglsReducerStateType = {
   newMessageText: string,
 }; 
 
+type ProfileDataType = {
+  mainUser: MainUserType,
+  posts: Array<PostsType>,
+  newPostText: string,
+};
+
 export  type AppPropsType = {
   _state: {
-    profilePage: ProfilePageType,
+    profilePage: ProfileDataType,
     dialogsPage: DialogsPageType,
     navBar: NavType,
   },
   
   getState: () => {
-    profilePage: ProfilePageType,
+    profilePage: ProfileDataType,
     dialogsPage: DialogsPageType,
     navBar: NavType,
   },

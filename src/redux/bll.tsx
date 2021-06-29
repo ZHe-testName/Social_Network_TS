@@ -21,7 +21,7 @@ const store =  {
         {text: 'Best ever post', likes: 2121, dislikes: 110, id: v1()},
       ],
       newPostText: '',
-      dispatch(action: DispatchActionPropsType){},
+      // dispatch(action: DispatchActionPropsType){},
     },
 
     dialogsPage: {
