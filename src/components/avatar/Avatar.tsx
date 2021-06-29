@@ -6,9 +6,18 @@
 import './avatar.module.css';
 import styled from 'styled-components';
 
-import {AvatarProps} from '../../redux/types';
+export  type AvatarSettings = {
+    className: string,
+    imgUrl: string,
+    width?: number,
+    height?: number,
+  };
 
-function Avatar(props: AvatarProps) {
+export  type AvatarPropsType = {
+    settings: AvatarSettings,
+  };
+
+function Avatar(props: AvatarPropsType) {
     const {className, imgUrl, width, height} = props.settings;
 
     const AvatarImage = styled.div`

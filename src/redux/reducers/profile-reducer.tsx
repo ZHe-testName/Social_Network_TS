@@ -1,7 +1,6 @@
 import {v1} from 'uuid';
-
-import {DispatchActionPropsType, ProfilePageType} from '../types';
-
+import { DispatchActionPropsType } from '../../App';
+import { ProfilePageType } from '../../components/profile/Profile';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';

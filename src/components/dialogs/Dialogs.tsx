@@ -5,8 +5,29 @@ import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/reducer
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
+import { DispatchActionPropsType } from '../../App';
 
-import {DialogsPropsType} from '../../redux/types';
+export type MessageType = {
+    avaUrl: string,
+    messageTxt: string,
+    isUser: boolean,
+    id: string,
+  };
+
+export  type UsersType = {
+    href: string,
+    description: string,
+    online: boolean,
+    selected: boolean,
+    avaUrl: string,
+  };
+
+export  type DialogsPropsType = {
+    messages: Array<MessageType>,
+    newMessageText: string,
+    users: Array <UsersType>,
+    dispatch: (action: DispatchActionPropsType) => void,
+};
 
 function Dialogs(props: DialogsPropsType) {
     const {users, messages, newMessageText, dispatch} = props;

@@ -1,11 +1,30 @@
 import MyPosts from './my-posts';
 import classes from  './profile.module.css';
 import Avatar from '../avatar';
+import { DispatchActionPropsType } from '../../App';
 
-import {PropsType} from '../../redux/types';
+export type MainUserType = {
+  name: string,
+  surname: string,
+  mainUserAvaUrl: string,
+};
+
+export type PostsType = {
+  text: string,
+  likes: number,
+  dislikes: number,
+  id: string,
+};
+
+export type ProfilePageType = {
+  mainUser: MainUserType,
+  posts: Array<PostsType>,
+  newPostText: string,
+  dispatch: (action: DispatchActionPropsType) => void;
+};
 
 
-function Profile(props: PropsType) {
+function Profile(props: ProfilePageType) {
     const {posts, mainUser, newPostText, dispatch} = props;
 
     return (

@@ -2,10 +2,14 @@ import React from 'react';
 import classes from './newpost.module.css';
 
 import {addPostCreator, onChangePostCreator} from '../../../../redux/reducers/profile-reducer';
+import { DispatchActionPropsType } from '../../../../App';
 
-import {PostPropsType} from '../../../../redux/types';
+export type NewPostPropsType = {
+    newPostText: string,
+    dispatch: (action: DispatchActionPropsType) => void;
+};
 
-function NewPost(props: PostPropsType) {
+function NewPost(props: NewPostPropsType) {
     const {newPostText, dispatch} = props;
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();

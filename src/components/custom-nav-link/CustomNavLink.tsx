@@ -1,7 +1,7 @@
 import './custom_nav_link.module.css';
 import {NavLink} from 'react-router-dom';
 
-import {LinkType} from '../../redux/types';
+import {LinkType} from '../navbar/Navbar';
 
 function CustomNavLink(props: LinkType) {
     const {href, description, className} = props;

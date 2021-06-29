@@ -1,9 +1,9 @@
 import classes from './post.module.css';
 import Avatar from '../../../avatar';
 
-import {PostType} from '../../../../redux/types';
+import { PostsType } from '../../Profile';
 
-function Post(props: PostType) {
+function Post(props: PostsType) {
     const {text, likes, dislikes} = props;
 
     return (

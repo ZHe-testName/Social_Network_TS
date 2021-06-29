@@ -1,6 +1,5 @@
 import {v1} from 'uuid';
-
-import {DispatchActionPropsType, DialoglsReducerStateType} from '../types';
+import { DialoglsReducerStateType, DispatchActionPropsType } from '../../App';
 
 const SEND_MESSAGE = 'SEND_MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';

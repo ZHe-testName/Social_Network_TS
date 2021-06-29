@@ -10,8 +10,35 @@ import Settings from './components/settings';
 import News from './components/news';
 
 import store from './redux/bll';
+import { ProfilePageType } from './components/profile/Profile';
+import { DialogsPageType, TestMessageType } from './redux/types';
+import { NavType } from './components/navbar/Navbar';
+  
+export type DispatchActionPropsType = {
+  type: string,
+  message?: string,
+  id?: string,
+  observerFunc?: () => void,
+};
 
-import {AppPropsType} from './redux/types';
+export type DialoglsReducerStateType = {
+  messages: Array<TestMessageType>,
+  newMessageText: string,
+}; 
+
+export  type AppPropsType = {
+  _state: {
+    profilePage: ProfilePageType,
+    dialogsPage: DialogsPageType,
+    navBar: NavType,
+  },
+  
+  getState: () => {
+    profilePage: ProfilePageType,
+    dialogsPage: DialogsPageType,
+    navBar: NavType,
+  },
+}
 
 function App(props: AppPropsType) {
   const dispatch = store.dispatch.bind(store);
@@ -32,8 +59,6 @@ function App(props: AppPropsType) {
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" render={() => <Profile 
-                                                      // mainUser={mainUser}   
-                                                      // posts={myPosts}
                                                       {...profilePage} 
                                                       dispatch={dispatch}/>}/>
           <Route path="/music" component={Music}/>

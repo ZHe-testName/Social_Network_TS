@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
+import { DispatchActionPropsType } from '../App';
 
-import {DispatchActionPropsType} from './types';
 import {dialogsReducer} from './reducers/dialogs-reducer';
 import {navbarReducer} from './reducers/navbar-reducer';
 import {profileReducer} from './reducers/profile-reducer';
@@ -21,6 +21,7 @@ const store =  {
         {text: 'Best ever post', likes: 2121, dislikes: 110, id: v1()},
       ],
       newPostText: '',
+      dispatch(action: DispatchActionPropsType){},
     },
 
     dialogsPage: {
@@ -178,7 +179,7 @@ const store =  {
   },
 
   dispatch(action: DispatchActionPropsType){
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    // this._state.profilePage = profileReducer(this._state.profilePage, action);
     // this._state.dialogsPage = profileReducer(this._state.dialogsPage, action);
     // this._state.navBar = profileReducer(this._state.navBar, action);
 

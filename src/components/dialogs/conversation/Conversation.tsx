@@ -1,8 +1,11 @@
 import classes from './conversation.module.css';
 import Message from './message';
 import {v1} from 'uuid';
+import { MessageType } from '../Dialogs';
 
-import {ConversationType} from '../../../redux/types';
+export type ConversationType = {
+    messages: Array<MessageType>;
+  };
 
 function Conversation(props: ConversationType) {
     const {messages} = props;

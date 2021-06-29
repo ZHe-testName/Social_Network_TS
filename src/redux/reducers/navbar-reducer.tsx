@@ -1,6 +1,10 @@
-// import {v1} from 'uuid';
+import { DialoglsReducerStateType } from '../../App';
+import { FriendsCardsType, LinkType } from '../../components/navbar/Navbar';
 
-import {NavBarType, DialoglsReducerStateType} from '../types';
+export type NavBarType = {
+    links: Array<LinkType>,
+    friendsArr: Array<FriendsCardsType>,
+  };
 
 export const navbarReducer = (state: DialoglsReducerStateType, action: NavBarType) => {
 

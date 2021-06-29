@@ -1,8 +1,11 @@
 import classes from './friends_nav.module.css';
 import Avatar from '../../avatar';
 import CustomNavLink from '../../custom-nav-link';
+import { FriendsCardsType } from '../Navbar';
 
-import {FriendsNavPropsType} from '../../../redux/types';
+export type FriendsNavPropsType = {
+    friendsArr: Array<FriendsCardsType>,
+}; 
 
 // идея №1
 // максимальное количество отображаемых элэментов = 8

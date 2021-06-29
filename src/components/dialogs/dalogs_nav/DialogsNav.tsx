@@ -1,7 +1,11 @@
 import CustomNavLink from '../../custom-nav-link';
+import { UsersType } from '../Dialogs';
 import classes from './dialogs_nav.module.css';
 
-import {DialogsNavPropsType} from '../../../redux/types';
+
+export type DialogsNavPropsType = {
+    users: Array <UsersType>,
+  };
 
 function DialogsNav(props: DialogsNavPropsType) {
     const {users} = props;

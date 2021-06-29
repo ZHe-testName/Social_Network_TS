@@ -1,8 +1,14 @@
 import NewPost from './new-post';
 import Post from './post';
 import classes from './myposts.module.css';
-
-import {PostsPropsType} from '../../../redux/types';
+import { DispatchActionPropsType } from '../../../App';
+import { PostsType } from '../Profile';
+  
+  export type PostsPropsType = {
+    posts: Array<PostsType>,
+    newPostText: string,
+    dispatch: (action: DispatchActionPropsType) => void;
+}; 
 
 
 function MyPosts(props: PostsPropsType) {
