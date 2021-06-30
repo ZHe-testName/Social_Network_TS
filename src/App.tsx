@@ -9,7 +9,7 @@ import Profile from './components/profile';
 import Settings from './components/settings';
 import News from './components/news';
 
-import store from './redux/bll';
+// import store from './redux/redux-store';
 import { MainUserType, PostsType } from './components/profile/Profile';
 import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
@@ -40,7 +40,7 @@ export type ProfileDataType = {
 // };
 
 export  type AppPropsType = {
-  _state: {
+  state: {
     profilePage: ProfileDataType,
     dialogsPage: DialogsPageType,
     navBar: NavType,
@@ -51,10 +51,12 @@ export  type AppPropsType = {
     dialogsPage: DialogsPageType,
     navBar: NavType,
   },
+
+  dispatch: (action: DispatchActionPropsType) => void;
 }
 
 function App(props: AppPropsType) {
-  const dispatch = store.dispatch.bind(store);
+  const dispatch = props.dispatch;
 
     const { profilePage,
             dialogsPage,

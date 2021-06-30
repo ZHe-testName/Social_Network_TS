@@ -1,17 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import store from './redux/bll';
+import App, { AppPropsType, ProfileDataType } from './App';
+import store from './redux/redux-store';
 
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { DialogsPageType } from './redux/types';
+import { NavType } from './components/navbar/Navbar';
+
+export type EntireTreePropsType = {
+  state: {
+    profilePage: ProfileDataType,
+    dialogsPage: DialogsPageType,
+    navBar: NavType,
+  },
+};
 
 export const rerenderEntireTree = () => {
+  console.log(store.getState());
     ReactDOM.render(
       <React.StrictMode>
         <BrowserRouter>
-          <App {...store} />
+          <App state={store.getState()} getState={store.getState} dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>
       </React.StrictMode>,
       document.getElementById('root')
