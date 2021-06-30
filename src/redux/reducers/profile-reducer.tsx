@@ -1,13 +1,13 @@
 import {v1} from 'uuid';
 import { DispatchActionPropsType } from '../../App';
-import { ProfilePageType } from '../../components/profile/Profile';
+import { ProfileDataType } from '../../App';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-export const profileReducer = (state: ProfilePageType, action: DispatchActionPropsType) => {
+export const profileReducer = (state: ProfileDataType, action: DispatchActionPropsType) => {
     if (action.type === ADD_POST){
-        if (!action.message) return;
+        if (!action.message) return state;
   
         const newPost = {
           text: action.message.trim(),

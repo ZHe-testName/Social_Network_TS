@@ -21,7 +21,6 @@ const store =  {
         {text: 'Best ever post', likes: 2121, dislikes: 110, id: v1()},
       ],
       newPostText: '',
-      // dispatch(action: DispatchActionPropsType){},
     },
 
     dialogsPage: {
@@ -179,7 +178,7 @@ const store =  {
   },
 
   dispatch(action: DispatchActionPropsType){
-    // this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
     // this._state.dialogsPage = profileReducer(this._state.dialogsPage, action);
     // this._state.navBar = profileReducer(this._state.navBar, action);
 

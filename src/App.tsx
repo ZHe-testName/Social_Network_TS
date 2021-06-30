@@ -26,7 +26,7 @@ export type DialoglsReducerStateType = {
   newMessageText: string,
 }; 
 
-type ProfileDataType = {
+export type ProfileDataType = {
   mainUser: MainUserType,
   posts: Array<PostsType>,
   newPostText: string,
