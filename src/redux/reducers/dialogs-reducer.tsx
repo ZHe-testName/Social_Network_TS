@@ -5,26 +5,34 @@ const SEND_MESSAGE = 'SEND_MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 export const dialogsReducer = (state: DialoglsReducerStateType, action: DispatchActionPropsType) => {
-        if (action.type === SEND_MESSAGE){
-          if (!action.message) return state;
+        switch (action.type){
+          case SEND_MESSAGE:
+            if (!action.message) return state;
     
-          state.messages.push(
-            {
-              messageTxt: action.message.trim(), 
-              isUser: true, 
-              avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg', 
-              id: v1(),
-            }
-        );
-    
-        state.newMessageText = '';
-      };
-  
-      if (action.type === UPDATE_NEW_MESSAGE_TEXT && action.message){
-        state.newMessageText = action.message;
-      };
+            state.messages.push(
+              {
+                messageTxt: action.message.trim(), 
+                isUser: true, 
+                avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg', 
+                id: v1(),
+              }
+            );
+        
+            state.newMessageText = '';
 
-    return state;
+            return state;
+
+          case UPDATE_NEW_MESSAGE_TEXT:
+            if (!action.message) return state;
+
+            state.newMessageText = action.message;
+
+            return state;
+
+          default:
+            return state;
+        };
+
 };
 
 export const addSendMessageCreator = (message: string) => ({type: SEND_MESSAGE, message});

@@ -6,8 +6,9 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 export const profileReducer = (state: ProfileDataType, action: DispatchActionPropsType) => {
-    if (action.type === ADD_POST){
-        if (!action.message) return state;
+  switch (action.type){
+    case ADD_POST:
+      if (!action.message) return state;
   
         const newPost = {
           text: action.message.trim(),
@@ -16,16 +17,22 @@ export const profileReducer = (state: ProfileDataType, action: DispatchActionPro
           id: v1(),
         };
     
-        state.posts.push(newPost);
+        state.posts.unshift(newPost);
     
         state.newPostText = '';
-      };
-  
-      if (action.type === UPDATE_NEW_POST_TEXT && action.message){
-        state.newPostText = action.message;
-      };
 
-    return state;
+        return state;
+
+    case UPDATE_NEW_POST_TEXT:
+      if (!action.message) return state;
+
+      state.newPostText = action.message;
+
+      return state;
+
+    default:
+      return state;
+  };
 };
 
 export const addPostCreator = (message: string) => ({type: ADD_POST, message});
