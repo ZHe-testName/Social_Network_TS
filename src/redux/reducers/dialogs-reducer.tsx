@@ -6,7 +6,7 @@ const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 export const dialogsReducer = (state: DialoglsReducerStateType, action: DispatchActionPropsType) => {
         if (action.type === SEND_MESSAGE){
-          if (!action.message) return;
+          if (!action.message) return state;
     
           state.messages.push(
             {

@@ -1,12 +1,17 @@
-import { DialoglsReducerStateType } from '../../App';
-import { FriendsCardsType, LinkType } from '../../components/navbar/Navbar';
+import { DispatchActionPropsType } from '../../App';
+import { FriendsCardsType } from '../../components/navbar/Navbar';
+
+type NavLinkType = {
+  href: string,
+  description: string, 
+};
 
 export type NavBarType = {
-    links: Array<LinkType>,
+    links: Array<NavLinkType>,
     friendsArr: Array<FriendsCardsType>,
   };
 
-export const navbarReducer = (state: DialoglsReducerStateType, action: NavBarType) => {
+export const navbarReducer = (state: NavBarType, action: DispatchActionPropsType) => {
 
     return state;
 };

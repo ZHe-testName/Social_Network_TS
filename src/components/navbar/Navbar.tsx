@@ -4,7 +4,7 @@ import CustomNavLink from '../custom-nav-link';
 import FriendsNav from "./friends_nav";
 
 export type FriendsCardsType = {
-  avatar?: string,
+  avatar: string,
   name: string,
   href: string,
 };

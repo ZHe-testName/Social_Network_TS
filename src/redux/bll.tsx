@@ -25,8 +25,6 @@ const store =  {
 
     dialogsPage: {
       users: [
-
-
         {
           href: '/dialogs/vasya', 
           description: 'Vasya', 
@@ -65,13 +63,13 @@ const store =  {
           online: true,
           selected: true,
           avaUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPeoq1yV8_WeZRPOy6tvqvBdbl6SAOgNXeWA&usqp=CAU',
-          messageArr: [
-            {message: 'Hello!fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', isUser: true},
-            {message: 'Yoy!)!', isUser: true},
-            {message: 'You are here!)', isUser: true},
-            {message: 'Hey!', isUser: false},
-            {message: 'Yes, WTF?', isUser: false},
-          ],
+          // messageArr: [
+          //   {message: 'Hello!fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', isUser: true},
+          //   {message: 'Yoy!)!', isUser: true},
+          //   {message: 'You are here!)', isUser: true},
+          //   {message: 'Hey!', isUser: false},
+          //   {message: 'Yes, WTF?', isUser: false},
+          // ],
         },
       ],
       messages: [
@@ -179,8 +177,8 @@ const store =  {
 
   dispatch(action: DispatchActionPropsType){
     this._state.profilePage = profileReducer(this._state.profilePage, action);
-    // this._state.dialogsPage = profileReducer(this._state.dialogsPage, action);
-    // this._state.navBar = profileReducer(this._state.navBar, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.navBar = navbarReducer(this._state.navBar, action);
 
     this._callSubscriber();
   },

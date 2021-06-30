@@ -11,7 +11,7 @@ import News from './components/news';
 
 import store from './redux/bll';
 import { MainUserType, PostsType } from './components/profile/Profile';
-import { DialogsPageType, TestMessageType } from './redux/types';
+import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
   
 export type DispatchActionPropsType = {
@@ -22,6 +22,7 @@ export type DispatchActionPropsType = {
 };
 
 export type DialoglsReducerStateType = {
+  users: Array<DialogsUsersType>;
   messages: Array<TestMessageType>,
   newMessageText: string,
 }; 
@@ -31,6 +32,12 @@ export type ProfileDataType = {
   posts: Array<PostsType>,
   newPostText: string,
 };
+
+// export type DialoglsDataType = {
+//   messages: Array<MessageType>,
+//   newMessageText: string,
+//   users: Array <UsersType>,
+// };
 
 export  type AppPropsType = {
   _state: {
