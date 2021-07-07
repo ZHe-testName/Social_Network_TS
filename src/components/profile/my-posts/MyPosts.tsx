@@ -1,4 +1,4 @@
-import NewPost from './new-post';
+import NewPostContainer from './new-post/NewPostContainer';
 import Post from './post';
 import classes from './myposts.module.css';
 import { DispatchActionPropsType } from '../../../App';
@@ -19,7 +19,7 @@ function MyPosts(props: PostsPropsType) {
     return (
     <div className={classes.myposts}>
         <span className={classes.header}>My Posts</span>
-        <NewPost 
+        <NewPostContainer 
                 newPostText={newPostText}
                 dispatch={dispatch}/>
 

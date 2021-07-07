@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App, { AppPropsType, ProfileDataType } from './App';
+import App, { ProfileDataType } from './App';
 import store from './redux/redux-store';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -18,7 +18,6 @@ export type EntireTreePropsType = {
 };
 
 export const rerenderEntireTree = () => {
-  console.log(store.getState());
     ReactDOM.render(
       <React.StrictMode>
         <BrowserRouter>

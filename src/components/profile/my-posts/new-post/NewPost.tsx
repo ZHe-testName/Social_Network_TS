@@ -1,32 +1,33 @@
 import React from 'react';
 import classes from './newpost.module.css';
 
-import {addPostCreator, onChangePostCreator} from '../../../../redux/reducers/profile-reducer';
-import { DispatchActionPropsType } from '../../../../App';
+// import {addPostCreator, onChangePostCreator} from '../../../../redux/reducers/profile-reducer';
+// import { DispatchActionPropsType } from '../../../../App';
 
-export type NewPostPropsType = {
+type NewPostPropsType = {
     newPostText: string,
-    dispatch: (action: DispatchActionPropsType) => void;
+    addNewPostHandler: (text: string) => void;
+    onChangeHandler: (text: string) => void;
 };
 
 function NewPost(props: NewPostPropsType) {
-    const {newPostText, dispatch} = props;
+    const {newPostText, addNewPostHandler, onChangeHandler} = props;
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addNewPostHandler = () => {
+    const onAddNewPostHandler = () => {
         if (newPostElement.current?.value){
             const textAreaValue = newPostElement.current.value;
 
-            dispatch(addPostCreator(textAreaValue));
+            addNewPostHandler(textAreaValue);
         };
     };
 
-    const onChangeHandler = () => {
+    const onChangeTextHandler = () => {
         if (newPostElement.current?.value){
             const textAreaValue = newPostElement.current.value;
 
-            dispatch(onChangePostCreator(textAreaValue));
+            onChangeHandler(textAreaValue);
         };
     };
 
@@ -38,12 +39,12 @@ function NewPost(props: NewPostPropsType) {
                     cols={90} 
                     rows={5} 
                     placeholder="Typing your post here..."
-                    onChange={onChangeHandler}>
+                    onChange={onChangeTextHandler}>
                 
             </textarea>
             
             <button className="send"
-                    onClick={addNewPostHandler}>Add post</button>
+                    onClick={onAddNewPostHandler}>Add post</button>
         </div>
     );
 };
