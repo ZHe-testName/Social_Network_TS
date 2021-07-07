@@ -1,7 +1,7 @@
 import './App.css';
 import {Route} from 'react-router-dom';
 
-import Dialogs from './components/dialogs';
+import DialogsContainer from './components/dialogs/DialogsContainer';
 import Header from './components/header';
 import Music from './components/musik';
 import Navbar from './components/navbar';
@@ -68,7 +68,7 @@ function App(props: AppPropsType) {
         <Navbar {...navBar}/>
 
         <div className="main-content">
-          <Route path="/dialogs" render={() => <Dialogs
+          <Route path="/dialogs" render={() => <DialogsContainer
                                                       {...dialogsPage}
                                                       dispatch={dispatch}/>}/>
           <Route path="/news" component={News}/>

@@ -1,9 +1,6 @@
 import React from 'react';
 import classes from './newpost.module.css';
 
-// import {addPostCreator, onChangePostCreator} from '../../../../redux/reducers/profile-reducer';
-// import { DispatchActionPropsType } from '../../../../App';
-
 type NewPostPropsType = {
     newPostText: string,
     addNewPostHandler: (text: string) => void;

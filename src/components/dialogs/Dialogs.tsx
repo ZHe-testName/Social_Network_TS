@@ -26,20 +26,21 @@ export  type DialogsPropsType = {
     messages: Array<MessageType>,
     newMessageText: string,
     users: Array <UsersType>,
-    dispatch: (action: DispatchActionPropsType) => void,
+    onChangeHandler: (text: string) => void,
+    sendMessageHandler: (text: string) => void,
 };
 
 function Dialogs(props: DialogsPropsType) {
-    const {users, messages, newMessageText, dispatch} = props;
+    const {users, messages, newMessageText, onChangeHandler, sendMessageHandler} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
     const sendButton = React.createRef<HTMLButtonElement>();
 
-    const sendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    const onSendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
         if (newMessageElement.current?.value){
             const messageTxt = newMessageElement.current.value;
 
-            dispatch(addSendMessageCreator(messageTxt));
+            sendMessageHandler(messageTxt);
 
             e.currentTarget.classList.add(classes.send_message_button_on_click);
         }
@@ -50,11 +51,11 @@ function Dialogs(props: DialogsPropsType) {
         e.currentTarget.classList.remove(classes.send_message_button_on_click);
     };
 
-    const onChangeHandler = () => {
+    const onChangeTextHandler = () => {
         if (newMessageElement.current?.value){
             const messageTxt = newMessageElement.current.value;
 
-            dispatch(onChangeMessageCreator(messageTxt));
+            onChangeHandler(messageTxt);
         };
     };
 
@@ -85,7 +86,7 @@ function Dialogs(props: DialogsPropsType) {
                             ref={newMessageElement}
                             rows={1}
                             placeholder="Typing here..."
-                            onChange={onChangeHandler}>
+                            onChange={onChangeTextHandler}>
 
                     </textarea>
 
@@ -94,7 +95,7 @@ function Dialogs(props: DialogsPropsType) {
                     <button 
                             className={classes.send_message_button}
                             ref={sendButton}
-                            onClick={sendMessageHandler}
+                            onClick={onSendMessageHandler}
                             onBlur={onBlurHandler}> Send </button>
 
                     {/* <div className={classes.send_button_wrap}>

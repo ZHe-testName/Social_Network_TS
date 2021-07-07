@@ -1,5 +1,3 @@
-// import React from 'react';
-// import classes from './newpost.module.css';
 import NewPost from './NewPost';
 
 import {addPostCreator, onChangePostCreator} from '../../../../redux/reducers/profile-reducer';
