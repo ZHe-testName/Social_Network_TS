@@ -13,6 +13,7 @@ import News from './components/news';
 import { MainUserType, PostsType } from './components/profile/Profile';
 import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
+import store from './redux/bll';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -55,12 +56,14 @@ export  type AppPropsType = {
   dispatch: (action: DispatchActionPropsType) => void;
 }
 
-function App(props: AppPropsType) {
+// {...dialogsPage}
+// dispatch={dispatch}
+function App(props: any) {
   const dispatch = props.dispatch;
 
     const { profilePage,
             dialogsPage,
-            navBar} = props.getState();
+            navBar} = store.getState();
 
   return (
       <div id='app' className='app-wrapper'>
@@ -68,15 +71,13 @@ function App(props: AppPropsType) {
         <Navbar {...navBar}/>
 
         <div className="main-content">
-          <Route path="/dialogs" render={() => <DialogsContainer
-                                                      {...dialogsPage}
-                                                      dispatch={dispatch}/>}/>
-          <Route path="/news" component={News}/>
+          <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+          {/* <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" render={() => <Profile 
                                                       {...profilePage} 
                                                       dispatch={dispatch}/>}/>
-          <Route path="/music" component={Music}/>
+          <Route path="/music" component={Music}/> */}
         </div>
       </div>
   );

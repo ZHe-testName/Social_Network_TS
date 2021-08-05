@@ -1,14 +1,26 @@
 import NewPost from './NewPost';
 
 import {addPostCreator, onChangePostCreator} from '../../../../redux/reducers/profile-reducer';
-import { DispatchActionPropsType } from '../../../../App';
+import { DispatchActionPropsType, ProfileDataType } from '../../../../App';
+import { connect } from 'react-redux';
+import { DialogsPageType } from '../../../../redux/types';
+import { NavType } from '../../../navbar/Navbar';
 
 export type NewPostContainerPropsType = {
     newPostText: string,
     dispatch: (action: DispatchActionPropsType) => void;
 };
 
+export type EntireTreePropsType = {
+    state: {
+      profilePage: ProfileDataType,
+      dialogsPage: DialogsPageType,
+      navBar: NavType,
+    },
+  };
+
 function NewPostContainer(props: NewPostContainerPropsType) {
+    
     const {newPostText, dispatch} = props;
 
     const addNewPostHandler = (text:string) => {
@@ -30,5 +42,23 @@ function NewPostContainer(props: NewPostContainerPropsType) {
             onChangeHandler={onChangeHandler}/>
     );
 };
+
+// const mapStateToProps = (state: EntireTreePropsType) => {
+//     return {
+//         newPostText: state.profilePage.
+// };
+
+// const mapStateToProps = () => {
+//     return {
+//         addNewPostHandler: () => {
+
+//         },
+//         onChangeHandler: () => {
+
+//         },
+//     };
+// };
+
+// const superNewPostContaeiner = connect(mapStateToProps, mapStateToProps)(NewPost);
 
 export default NewPostContainer;

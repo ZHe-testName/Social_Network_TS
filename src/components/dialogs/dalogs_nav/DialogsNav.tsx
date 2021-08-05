@@ -7,6 +7,8 @@ export type DialogsNavPropsType = {
     users: Array <UsersType>,
   };
 
+//@ts-ignore
+
 function DialogsNav(props: DialogsNavPropsType) {
     const {users} = props;
 

@@ -1,11 +1,8 @@
 import React, {FocusEvent, MouseEvent} from 'react';
 
-import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/reducers/dialogs-reducer';
-
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
-import { DispatchActionPropsType } from '../../App';
 
 export type MessageType = {
     avaUrl: string,
@@ -30,7 +27,7 @@ export  type DialogsPropsType = {
     sendMessageHandler: (text: string) => void,
 };
 
-function Dialogs(props: DialogsPropsType) {
+function Dialogs(props: any) {
     const {users, messages, newMessageText, onChangeHandler, sendMessageHandler} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();

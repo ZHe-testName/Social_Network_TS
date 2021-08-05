@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { DialogsPageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
+import { Provider } from 'react-redux';
 
 export type EntireTreePropsType = {
   state: {
@@ -17,12 +18,16 @@ export type EntireTreePropsType = {
   },
 };
 
+// state={store.getState()} getState={store.getState} dispatch={store.dispatch.bind(store)}
+
 export const rerenderEntireTree = () => {
     ReactDOM.render(
       <React.StrictMode>
-        <BrowserRouter>
-          <App state={store.getState()} getState={store.getState} dispatch={store.dispatch.bind(store)}/>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Provider store={store}>
+              <App />
+            </Provider> 
+          </BrowserRouter>
       </React.StrictMode>,
       document.getElementById('root')
     );

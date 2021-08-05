@@ -3,6 +3,8 @@ import Message from './message';
 import {v1} from 'uuid';
 import { MessageType } from '../Dialogs';
 
+//@ts-ignore
+
 export type ConversationType = {
     messages: Array<MessageType>;
   };
