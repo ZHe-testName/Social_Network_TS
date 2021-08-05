@@ -19,9 +19,7 @@ function MyPosts(props: PostsPropsType) {
     return (
     <div className={classes.myposts}>
         <span className={classes.header}>My Posts</span>
-        <NewPostContainer 
-                newPostText={newPostText}
-                dispatch={dispatch}/>
+        <NewPostContainer />
 
         <div className={classes.posts_block}>
 

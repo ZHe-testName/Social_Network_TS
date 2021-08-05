@@ -28,7 +28,6 @@ export  type DialogsPropsType = {
 };
 
 function Dialogs(props: DialogsPropsType) {
-    console.log(props);
     const {users, messages, newMessageText, onChangeHandler, sendMessageHandler} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();

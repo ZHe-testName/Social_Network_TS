@@ -23,7 +23,7 @@ const initialState = {
 
 export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionPropsType) => {
   switch (action.type){
-    case ADD_POST:
+    case ADD_POST:{
       if (!action.message) return state;
   
         const newPost = {
@@ -32,20 +32,27 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
           dislikes: 0,
           id: v1(),
         };
-    
-        state.posts.unshift(newPost);
-    
-        state.newPostText = '';
+        
+        const stateCopy = {...state};
 
-        return state;
+        stateCopy.posts = [...state.posts];
+        stateCopy.posts.unshift(newPost);
+    
+        stateCopy.newPostText = '';
+        console.log(state.posts);
+console.log(stateCopy.posts);
+        return stateCopy;
+      }
 
-    case UPDATE_NEW_POST_TEXT:
+    case UPDATE_NEW_POST_TEXT:{
       if (!action.message) return state;
 
-      state.newPostText = action.message;
+      const stateCopy = {...state};
 
-      return state;
+      stateCopy.newPostText = action.message;
 
+      return stateCopy;
+}
     default:
       return state;
   };

@@ -19,46 +19,51 @@ export type EntireTreePropsType = {
     },
   };
 
-function NewPostContainer(props: NewPostContainerPropsType) {
+// function NewPostContainer(props: NewPostContainerPropsType) {
     
-    const {newPostText, dispatch} = props;
+//     const {newPostText, dispatch} = props;
 
-    const addNewPostHandler = (text:string) => {
-        if (text){
-            dispatch(addPostCreator(text));
-        };
+//     const addNewPostHandler = (text:string) => {
+//         if (text){
+//             dispatch(addPostCreator(text));
+//         };
+//     };
+
+//     const onChangeHandler = (text:string) => {
+//         if (text){
+//             dispatch(onChangePostCreator(text));
+//         };
+//     };
+
+//     return (
+//         <NewPost 
+//             newPostText={newPostText}
+//             addNewPostHandler={addNewPostHandler}
+//             onChangeHandler={onChangeHandler}/>
+//     );
+// };
+const mapStateToProps = (state: any) => {
+    return {
+        mainUser: state.profilePage.mainUser,
+        newPostText: state.profilePage.newPostText,
+        posts: state.profilePage.posts,
     };
-
-    const onChangeHandler = (text:string) => {
-        if (text){
-            dispatch(onChangePostCreator(text));
-        };
-    };
-
-    return (
-        <NewPost 
-            newPostText={newPostText}
-            addNewPostHandler={addNewPostHandler}
-            onChangeHandler={onChangeHandler}/>
-    );
 };
 
-// const mapStateToProps = (state: EntireTreePropsType) => {
-//     return {
-//         newPostText: state.profilePage.
-// };
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addNewPostHandler: (text: string) => {
+            dispatch(addPostCreator(text))
+        },
 
-// const mapStateToProps = () => {
-//     return {
-//         addNewPostHandler: () => {
+        onChangeHandler: (text: string) => {
+            dispatch(onChangePostCreator(text))
+        },
+    };
+};
 
-//         },
-//         onChangeHandler: () => {
+const NewPostContainer = connect(mapStateToProps, mapDispatchToProps)(NewPost);
 
-//         },
-//     };
-// };
 
-// const superNewPostContaeiner = connect(mapStateToProps, mapStateToProps)(NewPost);
 
 export default NewPostContainer;

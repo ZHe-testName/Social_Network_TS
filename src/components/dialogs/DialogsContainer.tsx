@@ -3,6 +3,7 @@ import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/reducer
 import { DispatchActionPropsType } from '../../App';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
+import { AppPropsType } from '../../App';
 
 export type MessageType = {
     avaUrl: string,
@@ -25,7 +26,6 @@ export  type DialogsContainerPropsType = {
     users: Array <UsersType>,
     dispatch: (action: DispatchActionPropsType) => void,
 };
-//@ts-ignore
 
 // function DialogsContainer(props: any) {
     // DialogsContainerPropsType
@@ -83,6 +83,7 @@ export  type DialogsContainerPropsType = {
 // };
 
 const mapStateToProps = (state: any) => {
+    console.log(state);
     return {
         newMessageText: state.dialogsPage.newMessageText,
         messages: state.dialogsPage.messages,

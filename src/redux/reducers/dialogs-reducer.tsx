@@ -108,10 +108,14 @@ const initialState =  {
 
 export const dialogsReducer = (state: DialoglsReducerStateType = initialState, action: DispatchActionPropsType) => {
         switch (action.type){
-          case SEND_MESSAGE:
+          case SEND_MESSAGE:{
             if (!action.message) return state;
+
+            const stateCopy = {...state};
+
+            stateCopy.messages = [...stateCopy.messages];
     
-            state.messages.push(
+            stateCopy.messages.push(
               {
                 messageTxt: action.message.trim(), 
                 isUser: true, 
@@ -120,17 +124,19 @@ export const dialogsReducer = (state: DialoglsReducerStateType = initialState, a
               }
             );
         
-            state.newMessageText = '';
+            stateCopy.newMessageText = '';
 
-            return state;
-
-          case UPDATE_NEW_MESSAGE_TEXT:
+            return stateCopy;
+}
+          case UPDATE_NEW_MESSAGE_TEXT:{
             if (!action.message) return state;
 
-            state.newMessageText = action.message;
+            const stateCopy = {...state};
 
-            return state;
+            stateCopy.newMessageText = action.message;
 
+            return stateCopy;
+}
           default:
             return state;
         };

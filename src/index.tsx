@@ -19,23 +19,17 @@ export type EntireTreePropsType = {
 };
 
 // state={store.getState()} getState={store.getState} dispatch={store.dispatch.bind(store)}
+ReactDOM.render(
+  <React.StrictMode>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider> 
+      </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-export const rerenderEntireTree = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-          <BrowserRouter>
-            <Provider store={store}>
-              <App />
-            </Provider> 
-          </BrowserRouter>
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
-  };
-
-rerenderEntireTree();
-
-store.subscribe(rerenderEntireTree);
 
 
 
