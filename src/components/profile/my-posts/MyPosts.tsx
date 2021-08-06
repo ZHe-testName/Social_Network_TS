@@ -1,8 +1,8 @@
-import NewPostContainer from './new-post/NewPostContainer';
 import Post from './post';
 import classes from './myposts.module.css';
 import { DispatchActionPropsType } from '../../../App';
 import { PostsType } from '../Profile';
+import NewPost from './new-post';
   
   export type PostsPropsType = {
     posts: Array<PostsType>,
@@ -11,15 +11,20 @@ import { PostsType } from '../Profile';
 }; 
 
 
-function MyPosts(props: PostsPropsType) {
-    const {posts, newPostText, dispatch} = props;
+function MyPosts(props: any) {
+    const {posts, newPostText, addNewPostHandler, onChangeHandler} = props;
 
-    const postsArr = posts.map(post => <li key={post.id}><Post {...post}/></li>);
+    if (!posts) return props;
+
+    const postsArr = posts.map((post: any )=> <li key={post.id}><Post {...post}/></li>);
 
     return (
     <div className={classes.myposts}>
         <span className={classes.header}>My Posts</span>
-        <NewPostContainer />
+        <NewPost
+                newPostText={newPostText}
+                addNewPostHandler={addNewPostHandler}
+                onChangeHandler={onChangeHandler}/>
 
         <div className={classes.posts_block}>
 

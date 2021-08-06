@@ -2,6 +2,7 @@ import MyPosts from './my-posts';
 import classes from  './profile.module.css';
 import Avatar from '../avatar';
 import { DispatchActionPropsType } from '../../App';
+import MyPostsContainer from './my-posts/MyPostsContainer';
 
 export type MainUserType = {
   name: string,
@@ -63,11 +64,12 @@ function Profile(props: ProfilePageType) {
             </div>
           </div>
         </div>
+        <MyPostsContainer />
 
-        <MyPosts 
+        {/* <MyPosts 
                 posts={posts} 
                 newPostText={newPostText}
-                dispatch={dispatch} />
+                dispatch={dispatch} /> */}
       </main>
     );
 };

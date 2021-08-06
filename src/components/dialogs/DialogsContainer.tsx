@@ -83,7 +83,6 @@ export  type DialogsContainerPropsType = {
 // };
 
 const mapStateToProps = (state: any) => {
-    console.log(state);
     return {
         newMessageText: state.dialogsPage.newMessageText,
         messages: state.dialogsPage.messages,

@@ -22,37 +22,31 @@ const initialState = {
 };
 
 export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionPropsType) => {
+  console.log(action, state);
   switch (action.type){
-    case ADD_POST:{
+    case ADD_POST:
       if (!action.message) return state;
-  
-        const newPost = {
-          text: action.message.trim(),
-          likes: 0,
-          dislikes: 0,
-          id: v1(),
-        };
+      const newPost = {
+        text: action.message.trim(),
+        likes: 0,
+        dislikes: 0,
+        id: v1(),
+      };
+
+      return {
+        ...state,
+        posts: [newPost, ...state.posts],
+        newPostText: '',
+      };
         
-        const stateCopy = {...state};
-
-        stateCopy.posts = [...state.posts];
-        stateCopy.posts.unshift(newPost);
-    
-        stateCopy.newPostText = '';
-        console.log(state.posts);
-console.log(stateCopy.posts);
-        return stateCopy;
-      }
-
-    case UPDATE_NEW_POST_TEXT:{
+    case UPDATE_NEW_POST_TEXT:
       if (!action.message) return state;
 
-      const stateCopy = {...state};
+      return {
+        ...state,
+        newPostText: action.message,
+      };
 
-      stateCopy.newPostText = action.message;
-
-      return stateCopy;
-}
     default:
       return state;
   };

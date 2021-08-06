@@ -111,31 +111,49 @@ export const dialogsReducer = (state: DialoglsReducerStateType = initialState, a
           case SEND_MESSAGE:{
             if (!action.message) return state;
 
-            const stateCopy = {...state};
+            const messageObj =  {
+              messageTxt: action.message.trim(), 
+              isUser: true, 
+              avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg', 
+              id: v1(),
+            }
 
-            stateCopy.messages = [...stateCopy.messages];
+            return {
+              ...state,
+              messages: [messageObj, ...state.messages],
+              newMessageText: '',
+            };
+
+            // const stateCopy = {...state};
+
+            // stateCopy.messages = [...stateCopy.messages];
     
-            stateCopy.messages.push(
-              {
-                messageTxt: action.message.trim(), 
-                isUser: true, 
-                avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg', 
-                id: v1(),
-              }
-            );
+            // stateCopy.messages.push(
+            //   {
+            //     messageTxt: action.message.trim(), 
+            //     isUser: true, 
+            //     avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg', 
+            //     id: v1(),
+            //   }
+            // );
         
-            stateCopy.newMessageText = '';
+            // stateCopy.newMessageText = '';
 
-            return stateCopy;
+            // return stateCopy;
 }
           case UPDATE_NEW_MESSAGE_TEXT:{
             if (!action.message) return state;
 
-            const stateCopy = {...state};
+            return {
+              ...state,
+              newMessageText: action.message,
+            };
 
-            stateCopy.newMessageText = action.message;
+            // const stateCopy = {...state};
 
-            return stateCopy;
+            // stateCopy.newMessageText = action.message;
+
+            // return stateCopy;
 }
           default:
             return state;
