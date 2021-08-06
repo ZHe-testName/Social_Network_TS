@@ -3,6 +3,7 @@ import { DispatchUsersPropsType } from "../../App";
 
 const FOLLOW = 'FOLLOW',
     UNFOLLOW = 'UNFOLLOW',
+    CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
     SET_USERS = 'SET_USERS';
 
 export type UserObjType = {
@@ -73,19 +74,24 @@ const initialState = {
 
 export const usersReducer = (state: UsersPropsType = initialState, action: DispatchUsersPropsType) => {
     switch (action.type) {
-        case FOLLOW:
+        case CHANGE_FOLLOW_STATUS:
             return {
                 ...state,
                 users: state.users.map((user: UserObjType) => user.id === action.id ? {...user, followed: !user.followed} : user),
             };
-        case UNFOLLOW:
-            return {
-                ...state,
-                users: state.users.map((user: UserObjType) => user.id === action.id ? {...user, followed: !user.followed} : user),
-            };
+        // case FOLLOW:
+        //     return {
+        //         ...state,
+        //         users: state.users.map((user: UserObjType) => user.id === action.id ? {...user, followed: !user.followed} : user),
+        //     };
+        // case UNFOLLOW:
+        //     return {
+        //         ...state,
+        //         users: state.users.map((user: UserObjType) => user.id === action.id ? {...user, followed: !user.followed} : user),
+        //     };
         case SET_USERS:
             if (!action.users) return state;
-            
+
             return {
                 ...state,
                 users: [...state.users, ...action.users],
@@ -94,6 +100,7 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Dispa
     return state;
 };
 
-export const followActionCreator = (userId: string) => ({type: FOLLOW, userId});
-export const unFollowActionCreator = (userId: string) => ({type: UNFOLLOW, userId});
+// export const followActionCreator = (userId: string) => ({type: FOLLOW, userId});
+// export const unFollowActionCreator = (userId: string) => ({type: UNFOLLOW, userId});
+export const changeFollowStatusActionCreator = (userId: string) => ({type: CHANGE_FOLLOW_STATUS, userId});
 export const setUsersActionCreator = (users: Array<UserObjType>) => ({type: SET_USERS, users});
