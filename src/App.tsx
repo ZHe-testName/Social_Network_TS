@@ -15,12 +15,19 @@ import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/type
 import { NavType } from './components/navbar/Navbar';
 import store from './redux/bll';
 import Users from './components/users';
+import { UserObjType } from './redux/reducers/uders-reducer';
   
 export type DispatchActionPropsType = {
   type: string,
   message?: string,
   id?: string,
   observerFunc?: () => void,
+};
+
+export type DispatchUsersPropsType = {
+  type: string,
+  id?: string,
+  users?: Array<UserObjType>,
 };
 
 export type DialoglsReducerStateType = {

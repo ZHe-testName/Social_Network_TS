@@ -22,7 +22,6 @@ const initialState = {
 };
 
 export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionPropsType) => {
-  console.log(action, state);
   switch (action.type){
     case ADD_POST:
       if (!action.message) return state;
