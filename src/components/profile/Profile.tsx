@@ -19,14 +19,11 @@ export type PostsType = {
 
 export type ProfilePageType = {
   mainUser: MainUserType,
-  posts: Array<PostsType>,
-  newPostText: string,
-  dispatch: (action: DispatchActionPropsType) => void;
 };
 
 
 function Profile(props: ProfilePageType) {
-    const {posts, mainUser, newPostText, dispatch} = props;
+    const {mainUser} = props;
 
     return (
         <main className={classes.profile}>
@@ -66,10 +63,6 @@ function Profile(props: ProfilePageType) {
         </div>
         <MyPostsContainer />
 
-        {/* <MyPosts 
-                posts={posts} 
-                newPostText={newPostText}
-                dispatch={dispatch} /> */}
       </main>
     );
 };

@@ -14,6 +14,7 @@ import { MainUserType, PostsType } from './components/profile/Profile';
 import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
 import store from './redux/bll';
+import Users from './components/users';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -75,9 +76,9 @@ function App(props: any) {
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
           <Route path="/profile" render={() => <Profile 
-                                                      {...profilePage} 
-                                                      dispatch={dispatch}/>}/>
+                                                      mainUser={profilePage.mainUser} />}/>
           <Route path="/music" component={Music}/>
+          <Route path="/users" component={Users}/>
         </div>
       </div>
   );
