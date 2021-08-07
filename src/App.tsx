@@ -14,8 +14,8 @@ import { MainUserType, PostsType } from './components/profile/Profile';
 import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
 import store from './redux/bll';
-import Users from './components/users';
 import { UserObjType } from './redux/reducers/uders-reducer';
+import UsersContainer from './components/users/UsersContainer';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -26,7 +26,7 @@ export type DispatchActionPropsType = {
 
 export type DispatchUsersPropsType = {
   type: string,
-  id?: string,
+  userId?: string,
   users?: Array<UserObjType>,
 };
 
@@ -85,7 +85,7 @@ function App(props: any) {
           <Route path="/profile" render={() => <Profile 
                                                       mainUser={profilePage.mainUser} />}/>
           <Route path="/music" component={Music}/>
-          <Route path="/users" component={Users}/>
+          <Route path="/users" render={() => <UsersContainer />}/>
         </div>
       </div>
   );
