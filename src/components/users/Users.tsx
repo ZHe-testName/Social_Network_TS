@@ -5,82 +5,82 @@ import { v1 } from 'uuid';
 
 const Users = (props: any) => {
     if (props.users.length === 0){
-        props.setUsers([
-            {
-                id: v1(),
-                avatar: 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-                userName: 'Jony',
-                status: 'Hors-rider',
-                location: {
-                    country: 'USA',
-                    city: 'Springfield',
+            props.setUsers([
+                {
+                    id: v1(),
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
+                    userName: 'Jony',
+                    status: 'Hors-rider',
+                    location: {
+                        country: 'USA',
+                        city: 'Springfield',
+                    },
+                    followed: true,
                 },
-                followed: true,
-            },
-            {
-                id: v1(),
-                avatar: 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-                userName: 'Hitler',
-                status: 'My War is My',
-                location: {
-                    city: 'Berlin',
-                    country: 'Germany',
+                {
+                    id: v1(),
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
+                    userName: 'Hitler',
+                    status: 'My War is Me',
+                    location: {
+                        city: 'Berlin',
+                        country: 'Germany',
+                    },
+                    followed: true,
                 },
-                followed: true,
-            },
-            {
-                id: v1(),
-                avatar: 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-                userName: 'Vitalik',
-                status: 'I sow your train',
-                location: {
-                    country: 'Ukraine',
-                    city: 'Zhmerunka',
+                {
+                    id: v1(),
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
+                    userName: 'Vitalik',
+                    status: 'I sow your train',
+                    location: {
+                        country: 'Ukraine',
+                        city: 'Zhmerunka',
+                    },
+                    followed: false,
                 },
-                followed: false,
-            },
-            {
-                id: v1(),
-                avatar: 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-                userName: 'Koony Lee',
-                status: 'My heart is buket of the ice',
-                location: {
-                    country: 'Japan',
-                    city: 'Tokyo',
+                {
+                    id: v1(),
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
+                    userName: 'Koony Lee',
+                    status: 'My heart is buket of the ice',
+                    location: {
+                        country: 'Japan',
+                        city: 'Tokyo',
+                    },
+                    followed: true,
                 },
-                followed: true,
-            },
-        ]);
+            ]);
     };
 
-    return <div>
+    return <div className={classes.usersBlock}>
         {
-            props.users.map((user: any) => <div key={user.id}>
-                <span>
-                    <div><img 
-                            className={classes.userImg}
-                            src={user.avatar} 
-                            alt="User photo is here" /></div>
-                    
+            props.users.map((user: any) => (
+                <div 
+                    className={classes.userWrap}
+                    key={user.id}>
                     <div>
+                        <img 
+                            src={user.avatar} 
+                            alt="User photo is here" />
+                        
                         <button onClick={() => { props.followSwitch(user.id) }}>
                             {user.followed ? 'FOLLOW' : 'UNFOLLOW'}
                         </button>
                     </div>
-                </span>
-                
-                <span>
-                    <span>
-                        <div>{user.userName}</div>
-                        <div>{user.status}</div>
-                    </span>
+                    
+                    <div>
+                        <div>
+                            <span>{user.userName}</span>
+                            <span>{user.status}</span>
+                        </div>
 
-                    <span>
-                        <div>{user.location.country}</div>
-                        <div>{user.location.city}</div>
-                    </span>
-                </span>
-            </div>)
+                        <div>
+                            <span>{user.location.country}</span>
+                            <span>{user.location.city}</span>
+                        </div>
+                    </div>
+                </div>))
         }
     </div>;
 };
