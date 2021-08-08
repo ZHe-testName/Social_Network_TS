@@ -21,7 +21,7 @@ const Users = (props: any) => {
                     id: v1(),
                     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
                     userName: 'Hitler',
-                    status: 'My War is Me',
+                    status: 'My War, is Me',
                     location: {
                         city: 'Berlin',
                         country: 'Germany',
@@ -32,7 +32,7 @@ const Users = (props: any) => {
                     id: v1(),
                     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
                     userName: 'Vitalik',
-                    status: 'I sow your train',
+                    status: 'Ptato-Drincker',
                     location: {
                         country: 'Ukraine',
                         city: 'Zhmerunka',
@@ -43,7 +43,7 @@ const Users = (props: any) => {
                     id: v1(),
                     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
                     userName: 'Koony Lee',
-                    status: 'My heart is buket of the ice',
+                    status: 'My heart - is buket of the ice',
                     location: {
                         country: 'Japan',
                         city: 'Tokyo',
@@ -71,8 +71,8 @@ const Users = (props: any) => {
                     
                     <div>
                         <div>
-                            <span>{user.userName}</span>
-                            <span>{user.status}</span>
+                            <h3>{user.userName}</h3>
+                            <div>{user.status}</div>
                         </div>
 
                         <div>

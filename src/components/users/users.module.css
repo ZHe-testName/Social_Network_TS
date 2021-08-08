@@ -19,6 +19,11 @@
         margin: 0 15px;
     } 
 
+    .userWrap > div:last-of-type{
+        align-items: flex-start;
+        width: 100%;
+    }
+
         .userWrap img {
             width: 60px;
             height: 60px;
@@ -30,3 +35,29 @@
             margin-top: 10px;
         }
 
+        .userWrap h3 {
+            display: inline-block;
+            padding: 3px 30px 0px 5px;
+            background: linear-gradient(135deg, var(--transparent_lightblue) 31%, white);
+            border-radius: 5px;
+            border: 2px solid var(--lightblue); 
+            margin-bottom: 5px;
+        }
+
+        .userWrap > div:last-of-type div:last-of-type {
+            align-self: flex-end; 
+        }
+
+        .userWrap > div:last-of-type div:first-of-type div{
+            padding: 3px 15px 0px 5px;
+            border-radius: 5px;
+            border: 1px solid var(--lightblue);
+        }
+            .userWrap > div:last-of-type span{
+                color: var(--letters_dark_blue);
+                padding: 5px 3px;
+                border-radius: 5px;
+                background-color: #e7f2ff;
+                border: 1px solid var(--lightblue); 
+                margin-right: 15px;
+            }
