@@ -32,7 +32,7 @@ const Users = (props: any) => {
                     id: v1(),
                     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6R5bWe_h3yBz109vOZ9ghU0PWG-JFp0tTfw&usqp=CAU',
                     userName: 'Vitalik',
-                    status: 'Ptato-Drincker',
+                    status: 'Potato-Drinker',
                     location: {
                         country: 'Ukraine',
                         city: 'Zhmerunka',
@@ -64,8 +64,10 @@ const Users = (props: any) => {
                             src={user.avatar} 
                             alt="User photo is here" />
                         
-                        <button onClick={() => { props.followSwitch(user.id) }}>
-                            {user.followed ? 'FOLLOW' : 'UNFOLLOW'}
+                        <button 
+                            className={user.followed ? classes.followBtnStyle : classes.unfollowBtnStyle}
+                            onClick={() => { props.followSwitch(user.id) }}>
+                            {user.followed ? 'follow' : 'unfollow'}
                         </button>
                     </div>
                     

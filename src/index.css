@@ -8,13 +8,19 @@
   --transparent_lightblue: rgba(175, 240, 248, 0.192);
   --lightblue:  rgb(175, 239, 255);
   --blue:  rgb(117, 196, 216);
-  --blue_deep: rgb(222 248 254);
+  --blue_deep: rgb(222, 248, 254);
   /* --message_bg: rgb(158 218 253 / 50%); */
   --message_bg: white;
   --online_color: #1bf600;
   --h2_font_size: 2rem;
   --main_blocks_border_radius: 10px;
   --letters_dark_blue: rgb(0, 136, 177);
+  --hotpink: rgb(255, 105, 105);
+  --dark_red: rgb(183, 28, 0);
+  --milk_pink: rgb(251, 168, 168);
+  --light_green: rgb(4, 181, 4);
+  --green_shadow: #82ff00;
+  --green_text: #00ab00;
 }
 
 /**/

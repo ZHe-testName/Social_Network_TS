@@ -17,7 +17,7 @@
 
       .ul_nav_bar a{
         text-decoration: none;
-        color: rgb(0, 136, 177);
+        color: var(--letters_dark_blue);
       }
     
       .ul_nav_bar a:hover{
