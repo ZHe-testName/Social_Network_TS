@@ -77,13 +77,14 @@
         .followBtnStyle{
             position: relative;
             color: var(--green_text);
-            box-shadow: 0px 0px 4px 0px var(--green_shadow);
+            transition-property: box-shadow;
+            transition-duration: 0.5s;
         }
 
-        .unfollowBtnStyle{
-            position: relative;
-            color: var(--dark_red);
-            box-shadow: 0px 0px 4px 0px var(--dark_red);
+        .followBtnStyle:hover{
+            box-shadow: 0px 0px 7px 0px var(--green_shadow);
+            transition-property: box-shadow;
+            transition-duration: 0.3s;
         }
 
         .followBtnStyle::after {
@@ -97,6 +98,19 @@
             clip-path: polygon(56% 77%, 69% 23%, 82% 6%, 93% 26%, 74% 50%, 51% 100%, 41% 64%, 17% 35%, 0 13%, 24% 0);
             animation-name: followanim;
             animation-duration: 0.5s;
+        }
+    
+        .unfollowBtnStyle{
+            position: relative;
+            color: var(--dark_red);
+            transition-property: box-shadow;
+            transition-duration: 0.5s;
+        }
+
+        .unfollowBtnStyle:hover{
+            box-shadow: 0px 0px 7px 0px var(--dark_red);
+            transition-property: box-shadow;
+            transition-duration: 0.2s;
         }
 
         .unfollowBtnStyle::after {

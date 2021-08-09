@@ -4,6 +4,7 @@ import { UserObjType, UsersPropsType } from '../../redux/reducers/uders-reducer'
 import { v1 } from 'uuid';
 
 const Users = (props: any) => {
+    console.log('hi');
     if (props.users.length === 0){
             props.setUsers([
                 {

@@ -23,9 +23,7 @@ export type UsersPropsType = {
 };
 
 const initialState = {
-    users: [
-    
-    ],
+    users: [],
 };
 
 export const usersReducer = (state: UsersPropsType = initialState, action: DispatchUsersPropsType) => {
@@ -37,6 +35,7 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Dispa
             };
        
         case SET_USERS:
+            console.log('red');
             if (!action.users) return state;
 
             return {
