@@ -1,37 +1,49 @@
+import { type } from "os";
 import { v1 } from "uuid";
 import { DispatchUsersPropsType } from "../../App";
 
-const FOLLOW = 'FOLLOW',
-    UNFOLLOW = 'UNFOLLOW',
-    CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
+const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
     SET_USERS = 'SET_USERS';
 
-export type UserObjType = {
-    id: string,
-    avatar: string,
-    userName: string,
-    status: string,
-    location: {
-        country: string,
-        city: string,
-    },
+// export type UserObjType = {
+//     id: string,
+//     avatar: string,
+//     userName: string,
+//     status: string,
+//     location: {
+//         country: string,
+//         city: string,
+//     },
+//     followed: boolean,
+// };
+
+// export type UsersPropsType = {
+//     users: Array<UserObjType>,
+// };
+
+export type UserType = {
     followed: boolean,
+    id: number,
+    name: string,
+    photos: {small: string | null, large:string | null},
+    status: string | null,
+    uniqueUrlName: string | null,
 };
 
-export type UsersPropsType = {
-    users: Array<UserObjType>,
+export type StateUserType = {
+    users: Array<UserType>,
 };
 
 const initialState = {
     users: [],
 };
 
-export const usersReducer = (state: UsersPropsType = initialState, action: DispatchUsersPropsType) => {
+export const usersReducer = (state: StateUserType = initialState, action: DispatchUsersPropsType): StateUserType => {
     switch (action.type) {
         case CHANGE_FOLLOW_STATUS:
             return {
                 ...state,
-                users: state.users.map((user: UserObjType) => user.id === action.userId ? {...user, followed: !user.followed} : user),
+                users: state.users.map((user: UserType) => user.id === action.userId ? {...user, followed: !user.followed} : user),
             };
        
         case SET_USERS:
@@ -46,4 +58,4 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Dispa
 };
 
 export const changeFollowStatusActionCreator = (userId: string) => ({type: CHANGE_FOLLOW_STATUS, userId});
-export const setUsersActionCreator = (users: Array<UserObjType>) => ({type: SET_USERS, users});
+export const setUsersActionCreator = (users: StateUserType) => ({type: SET_USERS, users});

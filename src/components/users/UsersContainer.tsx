@@ -4,19 +4,23 @@ import { changeFollowStatusActionCreator, setUsersActionCreator } from "../../re
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 
+type SetStateToProps = {
+
+};
+
 type MapDispatchPropsType = {
     followSwitch: (userId: string) => void,
     setUsers: (users: any) => void,
 };
 
-const setStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         ...state,
         users: state.usersPage.users,
     };
 };
 
-const setDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         followSwitch: (userId: string) => {
             dispatch(changeFollowStatusActionCreator(userId))
@@ -28,6 +32,6 @@ const setDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     };
 };
 
-const UsersContainer = connect(setStateToProps, setDispatchToProps)(Users);
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
 
 export default UsersContainer;

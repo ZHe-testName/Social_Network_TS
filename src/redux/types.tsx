@@ -36,3 +36,4 @@ export  type DialogsUsersType = {
 //     newPostText: string,
 //     dispatch: (action: DispatchActionPropsType) => void;
 //   };
+

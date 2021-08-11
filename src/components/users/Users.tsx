@@ -1,6 +1,6 @@
 import classes from './users.module.css';
 import React from 'react';
-import { UserObjType, UsersPropsType } from '../../redux/reducers/uders-reducer';
+// import { UserObjType, UsersPropsType } from '../../redux/reducers/uders-reducer';
 import { v1 } from 'uuid';
 import axios from 'axios';
 import userPhoto from '../../imgs/images.png';
@@ -14,7 +14,7 @@ class Users extends React.Component<{users: any, setUsers: any, followSwitch: an
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
                 .then(responce => {
                     this.props.setUsers(responce.data.items.slice(1, 5))
-                });
+                })
         };
     }
 

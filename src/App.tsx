@@ -14,8 +14,9 @@ import { MainUserType, PostsType } from './components/profile/Profile';
 import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
 import { NavType } from './components/navbar/Navbar';
 import store from './redux/bll';
-import { UserObjType } from './redux/reducers/uders-reducer';
+// import { UserObjType } from './redux/reducers/uders-reducer';
 import UsersContainer from './components/users/UsersContainer';
+import { UserType } from './redux/reducers/uders-reducer';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -26,8 +27,8 @@ export type DispatchActionPropsType = {
 
 export type DispatchUsersPropsType = {
   type: string,
-  userId?: string,
-  users?: Array<UserObjType>,
+  userId?: number,
+  users?: Array<UserType>,
 };
 
 export type DialoglsReducerStateType = {
