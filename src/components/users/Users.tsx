@@ -1,12 +1,12 @@
 import classes from './users.module.css';
 import React from 'react';
-// import { UserObjType, UsersPropsType } from '../../redux/reducers/uders-reducer';
-import { v1 } from 'uuid';
 import axios from 'axios';
 import userPhoto from '../../imgs/images.png';
+import { StateUserType, UserType } from '../../redux/reducers/uders-reducer';
+import { UsersPropsType } from './UsersContainer';
 
-class Users extends React.Component<{users: any, setUsers: any, followSwitch: any}, {}>{
-    constructor(props: any) {
+class Users extends React.Component<UsersPropsType, StateUserType>{
+    constructor(props: UsersPropsType) {
         super(props)
     }
     getUsers = () => {
@@ -22,7 +22,7 @@ class Users extends React.Component<{users: any, setUsers: any, followSwitch: an
         return <div className={classes.usersBlock}>
         <>
             {
-            this.props.users.map((user: any) => (
+            this.props.users.map((user: UserType) => (
                 <div 
                     className={classes.userWrap}
                     key={user.id}>

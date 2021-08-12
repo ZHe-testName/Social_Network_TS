@@ -1,88 +1,19 @@
-import {addSendMessageCreator, onChangeMessageCreator} from '../../redux/reducers/dialogs-reducer';
-
-import { DispatchActionPropsType } from '../../App';
+import {addSendMessageCreator, InitialStateType, onChangeMessageCreator} from '../../redux/reducers/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
-import { AppPropsType } from '../../App';
+import { Dispatch } from 'redux';
+import { AppStateType } from '../../redux/redux-store';
 
-export type MessageType = {
-    avaUrl: string,
-    messageTxt: string,
-    isUser: boolean,
-    id: string,
-  };
+type MapStateToProps = InitialStateType;
 
-export  type UsersType = {
-    href: string,
-    description: string,
-    online: boolean,
-    selected: boolean,
-    avaUrl: string,
-  };
-
-export  type DialogsContainerPropsType = {
-    messages: Array<MessageType>,
-    newMessageText: string,
-    users: Array <UsersType>,
-    dispatch: (action: DispatchActionPropsType) => void,
+type MapDispatchPropsType = {
+    sendMessageHandler: (text: string) => void,
+    onChangeHandler: (text: string) => void,
 };
 
-// function DialogsContainer(props: any) {
-    // DialogsContainerPropsType
-    // const {users, messages, newMessageText, dispatch} = props;
+export type DialogsPropsType = MapStateToProps & MapDispatchPropsType;
 
-    // const sendMessageHandler = (text: string) => {
-    //     if (text){
-    //         dispatch(addSendMessageCreator(text));
-    //     }
-
-    // };
-
-    // const onChangeHandler = (text: string) => {
-    //     if (text){
-    //         dispatch(onChangeMessageCreator(text));
-    //     };
-    // };
-
-    // const onEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    //     console.log(e);
-    //     if (e.key === 'Enter'){
-    //         console.log('sd');
-    //     }
-    // };
-    
-//     return (
-//         <StoreContext.Consumer> 
-//             {
-//                 (store) => {
-//                     const {users, messages, newMessageText} = store.getState().dialogsPage;
-
-//                     const sendMessageHandler = (text: string) => {
-//                         if (text){
-//                             store.dispatch(addSendMessageCreator(text));
-//                         }
-                
-//                     };
-                
-//                     const onChangeHandler = (text: string) => {
-//                         if (text){
-//                             store.dispatch(onChangeMessageCreator(text));
-//                         };
-//                     };
-
-//                     return <Dialogs 
-//                             users={users}
-//                             messages={messages}
-//                             newMessageText={newMessageText}
-//                             sendMessageHandler={sendMessageHandler}
-//                             onChangeHandler={onChangeHandler}/>;
-//                 }
-//         }
-//         </StoreContext.Consumer> 
-//     );
-// };
-
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppStateType): InitialStateType => {
     return {
         newMessageText: state.dialogsPage.newMessageText,
         messages: state.dialogsPage.messages,
@@ -90,7 +21,7 @@ const mapStateToProps = (state: any) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         sendMessageHandler: (text: string) => {
             dispatch(addSendMessageCreator(text))

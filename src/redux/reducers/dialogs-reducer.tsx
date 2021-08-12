@@ -1,5 +1,22 @@
 import {v1} from 'uuid';
-import { DialoglsReducerStateType, DispatchActionPropsType } from '../../App';
+import { DispatchActionPropsType } from '../../App';
+
+export type DialogsUserType = {
+  href: string, 
+  description: string, 
+  online: boolean, 
+  selected: boolean,
+  avaUrl: string,
+};
+
+export type DialogsMessageType = {
+  id: string,
+  messageTxt: string, 
+  isUser: boolean,
+  avaUrl: string,
+};
+
+export type InitialStateType = typeof initialState;
 
 const SEND_MESSAGE = 'SEND_MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
@@ -12,7 +29,6 @@ const initialState =  {
       online: true, 
       selected: false,
       avaUrl: 'http://s020.radikal.ru/i706/1501/36/75ac2f1e2bca.jpg',
-      messageArr: [],
     },
     {
       href: '/dialogs/masha', 
@@ -20,7 +36,6 @@ const initialState =  {
       online: true,
       selected: false,
       avaUrl: 'http://avatar-lotos.at.ua/_si/0/90042470.jpg',
-      messageArr: [],
     },
     {
       href: '/dialogs/vietal', 
@@ -28,7 +43,6 @@ const initialState =  {
       online: false,
       selected: false,
       avaUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIzgUvXLnRImezj5_MMmqHF3aJHbp4vq86Yw&usqp=CAU',
-      messageArr: [],
     },
     {
       href: '/dialogs/somya', 
@@ -36,7 +50,6 @@ const initialState =  {
       online: false,
       selected: false,
       avaUrl: 'https://www.meme-arsenal.com/memes/cc345be87cc4ebce0eac0f9d662358db.jpg',
-      messageArr: [],
     },
     {
       href: '/dialogs/lena', 
@@ -52,7 +65,8 @@ const initialState =  {
       //   {message: 'Yes, WTF?', isUser: false},
       // ],
     },
-  ],
+  ] as Array<DialogsUserType>,
+
   messages: [
     {  
       id: v1(),
@@ -102,11 +116,14 @@ const initialState =  {
       isUser: true, 
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
     },
-  ],
+  ] as Array<DialogsMessageType>,
+
   newMessageText: '',
 }
 
-export const dialogsReducer = (state: DialoglsReducerStateType = initialState, action: DispatchActionPropsType) => {
+
+
+export const dialogsReducer = (state: InitialStateType = initialState, action: DispatchActionPropsType): InitialStateType => {
         switch (action.type){
           case SEND_MESSAGE:{
             if (!action.message) return state;
@@ -123,23 +140,6 @@ export const dialogsReducer = (state: DialoglsReducerStateType = initialState, a
               messages: [messageObj, ...state.messages],
               newMessageText: '',
             };
-
-            // const stateCopy = {...state};
-
-            // stateCopy.messages = [...stateCopy.messages];
-    
-            // stateCopy.messages.push(
-            //   {
-            //     messageTxt: action.message.trim(), 
-            //     isUser: true, 
-            //     avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg', 
-            //     id: v1(),
-            //   }
-            // );
-        
-            // stateCopy.newMessageText = '';
-
-            // return stateCopy;
 }
           case UPDATE_NEW_MESSAGE_TEXT:{
             if (!action.message) return state;
@@ -148,12 +148,6 @@ export const dialogsReducer = (state: DialoglsReducerStateType = initialState, a
               ...state,
               newMessageText: action.message,
             };
-
-            // const stateCopy = {...state};
-
-            // stateCopy.newMessageText = action.message;
-
-            // return stateCopy;
 }
           default:
             return state;

@@ -1,16 +1,29 @@
 import { connect } from "react-redux";
-import { addPostCreator, onChangePostCreator } from "../../../redux/reducers/profile-reducer";
+import { Dispatch } from "redux";
+import { addPostCreator, onChangePostCreator, PostType } from "../../../redux/reducers/profile-reducer";
+import { AppStateType } from "../../../redux/redux-store";
 import MyPosts from "./MyPosts";
 
-const mapStateToProps = (state: any) => {
+type MapStateToPorops = {
+    posts: Array<PostType> | [],
+    newPostText: string,
+};
+
+type MapDispatchToProps = {
+    addNewPostHandler: (text: string) => void,
+    onChangeHandler: (text: string) => void,
+};
+
+export type MyPostsPropsType = MapStateToPorops & MapDispatchToProps;
+
+const mapStateToProps = (state: AppStateType): MapStateToPorops => {
     return {
-        mainUser: state.profilePage.mainUser,
         newPostText: state.profilePage.newPostText,
         posts: state.profilePage.posts,
     };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
     return {
         addNewPostHandler: (text: string) => {
             dispatch(addPostCreator(text))

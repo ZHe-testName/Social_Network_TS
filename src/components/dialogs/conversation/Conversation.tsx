@@ -1,12 +1,10 @@
 import classes from './conversation.module.css';
 import Message from './message';
 import {v1} from 'uuid';
-import { MessageType } from '../Dialogs';
-
-//@ts-ignore
+import { DialogsMessageType } from '../../../redux/reducers/dialogs-reducer';
 
 export type ConversationType = {
-    messages: Array<MessageType>;
+    messages: Array<DialogsMessageType>;
   };
 
 function Conversation(props: ConversationType) {

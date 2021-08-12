@@ -17,6 +17,7 @@ import store from './redux/bll';
 // import { UserObjType } from './redux/reducers/uders-reducer';
 import UsersContainer from './components/users/UsersContainer';
 import { UserType } from './redux/reducers/uders-reducer';
+import { AppStateType } from './redux/redux-store';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -25,17 +26,11 @@ export type DispatchActionPropsType = {
   observerFunc?: () => void,
 };
 
-export type DispatchUsersPropsType = {
+export type DispatchUsersActionType = {
   type: string,
   userId?: number,
   users?: Array<UserType>,
 };
-
-export type DialoglsReducerStateType = {
-  users: Array<DialogsUsersType>;
-  messages: Array<TestMessageType>,
-  newMessageText: string,
-}; 
 
 export type ProfileDataType = {
   mainUser: MainUserType,
@@ -48,31 +43,28 @@ export type ProfileDataType = {
 //   newMessageText: string,
 //   users: Array <UsersType>,
 // };
-
-export  type AppPropsType = {
-  state: {
-    profilePage: ProfileDataType,
-    dialogsPage: DialogsPageType,
-    navBar: NavType,
-  },
+// type AppPropsType = {
+//   state: {
+//     profilePage: ProfileDataType,
+//     dialogsPage: DialogsPageType,
+//     navBar: NavType,
+//   },
   
-  getState: () => {
-    profilePage: ProfileDataType,
-    dialogsPage: DialogsPageType,
-    navBar: NavType,
-  },
+//   getState: () => {
+//     profilePage: ProfileDataType,
+//     dialogsPage: DialogsPageType,
+//     navBar: NavType,
+//   },
 
-  dispatch: (action: DispatchActionPropsType) => void;
-}
+//   dispatch: (action: DispatchActionPropsType) => void;
+// }
 
 // {...dialogsPage}
 // dispatch={dispatch}
-function App(props: any) {
-  const dispatch = props.dispatch;
-
-    const { profilePage,
-            dialogsPage,
-            navBar} = store.getState();
+function App() {
+  const { profilePage,
+          dialogsPage,
+          navBar} = store.getState();
 
   return (
       <div id='app' className='app-wrapper'>

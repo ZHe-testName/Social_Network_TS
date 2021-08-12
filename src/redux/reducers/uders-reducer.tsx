@@ -1,6 +1,4 @@
-import { type } from "os";
-import { v1 } from "uuid";
-import { DispatchUsersPropsType } from "../../App";
+    import { DispatchUsersActionType } from "../../App";
 
 const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
     SET_USERS = 'SET_USERS';
@@ -31,14 +29,14 @@ export type UserType = {
 };
 
 export type StateUserType = {
-    users: Array<UserType>,
+    users: Array<UserType> | [],
 };
 
-const initialState = {
+const initialState: StateUserType = {
     users: [],
 };
 
-export const usersReducer = (state: StateUserType = initialState, action: DispatchUsersPropsType): StateUserType => {
+export const usersReducer = (state: StateUserType = initialState, action: DispatchUsersActionType): StateUserType => {
     switch (action.type) {
         case CHANGE_FOLLOW_STATUS:
             return {
@@ -57,5 +55,5 @@ export const usersReducer = (state: StateUserType = initialState, action: Dispat
     return state;
 };
 
-export const changeFollowStatusActionCreator = (userId: string) => ({type: CHANGE_FOLLOW_STATUS, userId});
+export const changeFollowStatusActionCreator = (userId: number) => ({type: CHANGE_FOLLOW_STATUS, userId});
 export const setUsersActionCreator = (users: StateUserType) => ({type: SET_USERS, users});

@@ -3,29 +3,8 @@ import React, {FocusEvent, MouseEvent} from 'react';
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
+import { DialogsPropsType } from './DialogsContainer';
 
-export type MessageType = {
-    avaUrl: string,
-    messageTxt: string,
-    isUser: boolean,
-    id: string,
-  };
-
-export  type UsersType = {
-    href: string,
-    description: string,
-    online: boolean,
-    selected: boolean,
-    avaUrl: string,
-  };
-
-export  type DialogsPropsType = {
-    messages: Array<MessageType>,
-    newMessageText: string,
-    users: Array <UsersType>,
-    onChangeHandler: (text: string) => void,
-    sendMessageHandler: (text: string) => void,
-};
 
 function Dialogs(props: DialogsPropsType) {
     const {users, messages, newMessageText, onChangeHandler, sendMessageHandler} = props;

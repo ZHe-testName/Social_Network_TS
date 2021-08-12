@@ -5,6 +5,21 @@ import { ProfileDataType } from '../../App';
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+type InitialState = typeof initialState;
+
+export type MainUserType = {
+  name: string,
+  surname: string,
+  mainUserAvaUrl: string,
+};
+
+export type PostType = {
+  text: string, 
+  likes: number, 
+  dislikes: number, 
+  id: string,
+};
+
 const initialState = {
   mainUser: {
     name: 'Zheka',
@@ -21,7 +36,7 @@ const initialState = {
   newPostText: '',
 };
 
-export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionPropsType) => {
+export const profileReducer = (state: InitialState = initialState, action: DispatchActionPropsType): InitialState => {
   switch (action.type){
     case ADD_POST:
       if (!action.message) return state;

@@ -3,6 +3,8 @@ import classes from './myposts.module.css';
 import { DispatchActionPropsType } from '../../../App';
 import { PostsType } from '../Profile';
 import NewPost from './new-post';
+import { MyPostsPropsType } from './MyPostsContainer';
+import { PostType } from '../../../redux/reducers/profile-reducer';
   
   export type PostsPropsType = {
     posts: Array<PostsType>,
@@ -11,12 +13,10 @@ import NewPost from './new-post';
 }; 
 
 
-function MyPosts(props: any) {
+function MyPosts(props: MyPostsPropsType) {
     const {posts, newPostText, addNewPostHandler, onChangeHandler} = props;
 
-    if (!posts) return props;
-
-    const postsArr = posts.map((post: any )=> <li key={post.id}><Post {...post}/></li>);
+    const postsArr = posts.map((post: PostType )=> <li key={post.id}><Post {...post}/></li>);
 
     return (
     <div className={classes.myposts}>

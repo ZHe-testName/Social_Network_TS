@@ -1,32 +1,33 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { changeFollowStatusActionCreator, setUsersActionCreator } from "../../redux/reducers/uders-reducer";
+import { changeFollowStatusActionCreator, setUsersActionCreator, StateUserType, UserType } from "../../redux/reducers/uders-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 
-type SetStateToProps = {
-
+type MapStateToProps = {
+    users: Array<UserType>,
 };
 
 type MapDispatchPropsType = {
-    followSwitch: (userId: string) => void,
+    followSwitch: (userId: number) => void,
     setUsers: (users: any) => void,
 };
 
-const mapStateToProps = (state: AppStateType) => {
+export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
+
+const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
-        ...state,
         users: state.usersPage.users,
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        followSwitch: (userId: string) => {
+        followSwitch: (userId: number) => {
             dispatch(changeFollowStatusActionCreator(userId))
         },
 
-        setUsers: (users: any) => {
+        setUsers: (users: StateUserType) => {
             dispatch(setUsersActionCreator(users));
         },
     };
