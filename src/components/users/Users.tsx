@@ -6,10 +6,7 @@ import { StateUserType, UserType } from '../../redux/reducers/uders-reducer';
 import { UsersPropsType } from './UsersContainer';
 
 class Users extends React.Component<UsersPropsType, StateUserType>{
-    constructor(props: UsersPropsType) {
-        super(props)
-    }
-    getUsers = () => {
+    componentDidMount() {
         if (this.props.users.length === 0){
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
                 .then(responce => {
@@ -56,8 +53,8 @@ class Users extends React.Component<UsersPropsType, StateUserType>{
 
         </>
        
-        <button
-            onClick={this.getUsers}>Get Users</button>
+        {/* <button
+            onClick={this.getUsers}>Get Users</button> */}
     </div>;
 };
 };
