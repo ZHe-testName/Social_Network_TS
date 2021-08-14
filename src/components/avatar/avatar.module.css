@@ -1,0 +1,6 @@
+.avatar {
+    background-position: center;
+    background-size: cover;
+    background-origin: no-repeat;
+    border: 1px solid black;
+}

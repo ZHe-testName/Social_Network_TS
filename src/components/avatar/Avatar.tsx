@@ -4,13 +4,11 @@
 //через styled-componets библиотеку
 
 import './avatar.module.css';
-import styled from 'styled-components';
+import classes from './avatar.module.css';
 
 export  type AvatarSettings = {
     className: string,
     imgUrl: string,
-    width?: number,
-    height?: number,
   };
 
 export  type AvatarPropsType = {
@@ -18,20 +16,22 @@ export  type AvatarPropsType = {
   };
 
 function Avatar(props: AvatarPropsType) {
-    const {className, imgUrl, width, height} = props.settings;
+    const { className, imgUrl } = props.settings;
 
-    const AvatarImage = styled.div`
-        width: ${width}px;
-        height: ${height}px;
-        background-position: center;
-        background-size: cover;
-        background-origin: no-repeat;
-        background-image: url(${imgUrl});
-        border: 1px solid black;
-    `;
+    // const AvatarImage = styled.div`
+    //     width: ${width}px;
+    //     height: ${height}px;
+    //     background-position: center;
+    //     background-size: cover;
+    //     background-origin: no-repeat;
+    //     background-image: url(${imgUrl});
+    //     border: 1px solid black;
+    // `;
 
     return (
-        <AvatarImage className={className}></AvatarImage>
+        <div 
+          className={`${classes.avatar} ${className}`}
+          style={{backgroundImage: `url(${imgUrl})`}}></div>
     );
 };
 

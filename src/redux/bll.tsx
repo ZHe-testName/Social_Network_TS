@@ -146,7 +146,7 @@ const store =  {
         },
     
         { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIzgUvXLnRImezj5_MMmqHF3aJHbp4vq86Yw&usqp=CAU', 
-          name: 'Vietal', 
+          name: 'Sanya', 
           href: '/vietal',
         },
     
