@@ -29,6 +29,19 @@
     }
 }
 
+.puginationNumStyle {
+    margin-right: 5px;
+}
+
+.puginationNumStyle:hover {
+    cursor: pointer;
+}
+
+.currentPage {
+    font-weight: bold;
+    font-size: 24px;
+}
+
 .userWrap {
     display: flex;
     justify-content: flex-start;

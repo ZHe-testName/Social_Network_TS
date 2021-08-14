@@ -1,7 +1,9 @@
-    import { DispatchUsersActionType } from "../../App";
+import { DispatchUsersActionType } from "../../App";
 
 const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
-    SET_USERS = 'SET_USERS';
+    SET_USERS = 'SET_USERS',
+    CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE',
+    SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 // export type UserObjType = {
 //     id: string,
@@ -30,10 +32,16 @@ export type UserType = {
 
 export type StateUserType = {
     users: Array<UserType> | [],
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
 };
 
 const initialState: StateUserType = {
     users: [],
+    pageSize: 4,
+    totalUsersCount: 0,
+    currentPage: 1,
 };
 
 export const usersReducer = (state: StateUserType = initialState, action: DispatchUsersActionType): StateUserType => {
@@ -49,11 +57,29 @@ export const usersReducer = (state: StateUserType = initialState, action: Dispat
 
             return {
                 ...state,
-                users: [...state.users, ...action.users],
+                users: [...action.users],
             };
+
+        case CHANGE_CURRENT_PAGE:
+            if (!action.currenPage) return state;
+
+            return {
+                ...state,
+                currentPage: action.currenPage,
+            }; 
+
+        case SET_TOTAL_USERS_COUNT:
+            if (!action.totalUsersCount) return state;
+
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount,
+            }; 
     }
     return state;
 };
 
 export const changeFollowStatusActionCreator = (userId: number) => ({type: CHANGE_FOLLOW_STATUS, userId});
 export const setUsersActionCreator = (users: StateUserType) => ({type: SET_USERS, users});
+export const changeCurrentPageActionCreator = (currenPage: number) => ({type: CHANGE_CURRENT_PAGE, currenPage});
+export const setTotalUsersCountActionCreator = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});

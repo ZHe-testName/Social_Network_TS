@@ -1,7 +1,5 @@
-import MyPosts from './my-posts';
 import classes from  './profile.module.css';
 import Avatar from '../avatar';
-import { DispatchActionPropsType } from '../../App';
 import MyPostsContainer from './my-posts/MyPostsContainer';
 
 export type MainUserType = {
@@ -61,8 +59,8 @@ function Profile(props: ProfilePageType) {
             </div>
           </div>
         </div>
-        <MyPostsContainer />
 
+        <MyPostsContainer />
       </main>
     );
 };

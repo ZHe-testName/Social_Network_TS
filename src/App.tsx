@@ -11,13 +11,13 @@ import News from './components/news';
 
 // import store from './redux/redux-store';
 import { MainUserType, PostsType } from './components/profile/Profile';
-import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
-import { NavType } from './components/navbar/Navbar';
+// import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
+// import { NavType } from './components/navbar/Navbar';
 import store from './redux/bll';
 // import { UserObjType } from './redux/reducers/uders-reducer';
 import UsersContainer from './components/users/UsersContainer';
 import { UserType } from './redux/reducers/uders-reducer';
-import { AppStateType } from './redux/redux-store';
+// import { AppStateType } from './redux/redux-store';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -30,6 +30,8 @@ export type DispatchUsersActionType = {
   type: string,
   userId?: number,
   users?: Array<UserType>,
+  currenPage?: number,
+  totalUsersCount?: number,
 };
 
 export type ProfileDataType = {
@@ -63,7 +65,6 @@ export type ProfileDataType = {
 // dispatch={dispatch}
 function App() {
   const { profilePage,
-          dialogsPage,
           navBar} = store.getState();
 
   return (
