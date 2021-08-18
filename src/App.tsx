@@ -32,6 +32,7 @@ export type DispatchUsersActionType = {
   users?: Array<UserType>,
   currenPage?: number,
   totalUsersCount?: number,
+  isFetching?: boolean,
 };
 
 export type ProfileDataType = {

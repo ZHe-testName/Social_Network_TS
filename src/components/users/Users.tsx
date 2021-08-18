@@ -13,7 +13,7 @@ type UsersType = {
 
 function Users (props: UsersType) {
     //Сделать карусель с пагинацией, потому что не влезает
-    const pagesAmount = Math.ceil(props.totalUsersCount / props.pageSize);
+    // const pagesAmount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     const pages = [];
 
