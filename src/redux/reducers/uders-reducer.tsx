@@ -3,7 +3,8 @@ import { DispatchUsersActionType } from "../../App";
 const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
     SET_USERS = 'SET_USERS',
     CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE',
-    SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+    SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT',
+    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 // export type UserObjType = {
 //     id: string,
@@ -35,6 +36,7 @@ export type StateUserType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
+    isFetching: boolean,
 };
 
 const initialState: StateUserType = {
@@ -42,6 +44,7 @@ const initialState: StateUserType = {
     pageSize: 4,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false,
 };
 
 export const usersReducer = (state: StateUserType = initialState, action: DispatchUsersActionType): StateUserType => {
@@ -74,6 +77,12 @@ export const usersReducer = (state: StateUserType = initialState, action: Dispat
             return {
                 ...state,
                 totalUsersCount: action.totalUsersCount,
+            };
+            
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: !state.isFetching,
             }; 
     }
     return state;
@@ -83,3 +92,4 @@ export const changeFollowStatusActionCreator = (userId: number) => ({type: CHANG
 export const setUsersActionCreator = (users: StateUserType) => ({type: SET_USERS, users});
 export const changeCurrentPageActionCreator = (currenPage: number) => ({type: CHANGE_CURRENT_PAGE, currenPage});
 export const setTotalUsersCountActionCreator = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
+export const toggleIsFetchingActionCreator = () => ({type: TOGGLE_IS_FETCHING});
