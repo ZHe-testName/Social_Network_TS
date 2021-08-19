@@ -8,7 +8,7 @@ import classes from './avatar.module.css';
 
 export  type AvatarSettings = {
     className: string,
-    imgUrl: string,
+    imgUrl: string | null,
   };
 
 export  type AvatarPropsType = {

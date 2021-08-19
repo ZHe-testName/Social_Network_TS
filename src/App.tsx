@@ -5,18 +5,20 @@ import DialogsContainer from './components/dialogs/DialogsContainer';
 import Header from './components/header';
 import Music from './components/musik';
 import Navbar from './components/navbar';
-import Profile from './components/profile';
+// import Profile from './components/profile';
 import Settings from './components/settings';
 import News from './components/news';
 
 // import store from './redux/redux-store';
-import { MainUserType, PostsType } from './components/profile/Profile';
+// import { MainUserType, PostsType } from './components/profile/Profile';
 // import { DialogsPageType, DialogsUsersType, TestMessageType } from './redux/types';
 // import { NavType } from './components/navbar/Navbar';
 import store from './redux/bll';
 // import { UserObjType } from './redux/reducers/uders-reducer';
 import UsersContainer from './components/users/UsersContainer';
 import { UserType } from './redux/reducers/uders-reducer';
+import ProfileContainer from './components/profile/ProfileContainer';
+import { ProfileUserType } from './redux/reducers/profile-reducer';
 // import { AppStateType } from './redux/redux-store';
   
 export type DispatchActionPropsType = {
@@ -35,11 +37,13 @@ export type DispatchUsersActionType = {
   isFetching?: boolean,
 };
 
-export type ProfileDataType = {
-  mainUser: MainUserType,
-  posts: Array<PostsType>,
-  newPostText: string,
+export type DispatchProfileUserActionType = {
+  type: string,
+  message?: string,
+  userProfile?: ProfileUserType,
 };
+
+
 
 // export type DialoglsDataType = {
 //   messages: Array<MessageType>,
@@ -65,8 +69,7 @@ export type ProfileDataType = {
 // {...dialogsPage}
 // dispatch={dispatch}
 function App() {
-  const { profilePage,
-          navBar} = store.getState();
+  const {navBar} = store.getState();
 
   return (
       <div id='app' className='app-wrapper'>
@@ -77,8 +80,7 @@ function App() {
           <Route path="/dialogs" render={() => <DialogsContainer/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
-          <Route path="/profile" render={() => <Profile 
-                                                      mainUser={profilePage.mainUser} />}/>
+          <Route path="/profile" render={() => <ProfileContainer />}/>
           <Route path="/music" component={Music}/>
           <Route path="/users" render={() => <UsersContainer />}/>
         </div>

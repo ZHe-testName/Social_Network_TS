@@ -1,6 +1,7 @@
 import classes from './users.module.css';
 import userPhoto from '../../imgs/images.png';
 import { UserType } from '../../redux/reducers/uders-reducer';
+import { NavLink } from 'react-router-dom';
 
 type UsersType = {
     users: Array<UserType>,
@@ -38,11 +39,14 @@ function Users (props: UsersType) {
                         className={classes.userWrap}
                         key={user.id}>
                         <div>
-                            <img 
-                                src={user.photos.small 
-                                        ? user.photos.small 
-                                        : userPhoto} 
-                                alt="User avatar is here" />
+                            <NavLink to={'/profile/' + user.id}>
+                                <img 
+                                    src={user.photos.small 
+                                            ? user.photos.small 
+                                            : userPhoto} 
+                                    alt="User avatar is here" />
+                            </NavLink>
+
                             
                             <button 
                                 className={user.followed ? classes.followBtnStyle : classes.unfollowBtnStyle}

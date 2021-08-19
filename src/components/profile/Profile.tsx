@@ -1,6 +1,7 @@
 import classes from  './profile.module.css';
 import Avatar from '../avatar';
 import MyPostsContainer from './my-posts/MyPostsContainer';
+import { ProfileUserType } from '../../redux/reducers/profile-reducer';
 
 export type MainUserType = {
   name: string,
@@ -16,24 +17,24 @@ export type PostsType = {
 };
 
 export type ProfilePageType = {
-  mainUser: MainUserType,
+  user: ProfileUserType,
 };
 
 
 function Profile(props: ProfilePageType) {
-    const {mainUser} = props;
+    const {user} = props;
 
     return (
         <main className={classes.profile}>
         <div className={classes.banner}></div>
 
         <div className={classes.account}>
-          <Avatar settings={{className: classes.avatar, imgUrl: mainUser.mainUserAvaUrl}}/>
+          <Avatar settings={{className: classes.avatar, imgUrl: user.photos.small}}/>
 
           <div className={classes.description}>
 
             <span className={classes.username}>
-              {`${mainUser.name} ${mainUser.surname}`}
+              {`${user.fullName}`}
             </span>
 
             <div className="extra-info">

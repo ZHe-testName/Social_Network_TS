@@ -1,9 +1,9 @@
 import {v1} from 'uuid';
-import { DispatchActionPropsType } from '../App';
+// import { DispatchActionPropsType } from '../App';
 
-import {dialogsReducer} from './reducers/dialogs-reducer';
-import {navbarReducer} from './reducers/navbar-reducer';
-import {profileReducer} from './reducers/profile-reducer';
+// import {dialogsReducer} from './reducers/dialogs-reducer';
+// import {navbarReducer} from './reducers/navbar-reducer';
+// import {profileReducer} from './reducers/profile-reducer';
 
 const store =  {
   _state: {
@@ -176,12 +176,12 @@ const store =  {
     this._callSubscriber = observerFunc;
   },
 
-  dispatch(action: DispatchActionPropsType){
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-    this._state.navBar = navbarReducer(this._state.navBar, action);
-    this._callSubscriber();
-  },
+  // dispatch(action: DispatchActionPropsType){
+  //   // this._state.profilePage = profileReducer(this._state.profilePage, action);
+  //   this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+  //   this._state.navBar = navbarReducer(this._state.navBar, action);
+  //   this._callSubscriber();
+  // },
 };
 
 export default store;

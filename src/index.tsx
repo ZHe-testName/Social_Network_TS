@@ -1,22 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App, { ProfileDataType } from './App';
+import App from './App';
 import store from './redux/redux-store';
 
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { DialogsPageType } from './redux/types';
-import { NavType } from './components/navbar/Navbar';
+// import { DialogsPageType } from './redux/types';
+// import { NavType } from './components/navbar/Navbar';
 import { Provider } from 'react-redux';
 
-export type EntireTreePropsType = {
-  state: {
-    profilePage: ProfileDataType,
-    dialogsPage: DialogsPageType,
-    navBar: NavType,
-  },
-};
+// export type EntireTreePropsType = {
+//   state: {
+//     profilePage: ProfileDataType,
+//     dialogsPage: DialogsPageType,
+//     navBar: NavType,
+//   },
+// };
 
 // state={store.getState()} getState={store.getState} dispatch={store.dispatch.bind(store)}
 ReactDOM.render(

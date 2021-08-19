@@ -1,6 +1,6 @@
 import Post from './post';
 import classes from './myposts.module.css';
-import { DispatchActionPropsType } from '../../../App';
+import { DispatchProfileUserActionType } from '../../../App';
 import { PostsType } from '../Profile';
 import NewPost from './new-post';
 import { MyPostsPropsType } from './MyPostsContainer';
@@ -9,7 +9,7 @@ import { PostType } from '../../../redux/reducers/profile-reducer';
   export type PostsPropsType = {
     posts: Array<PostsType>,
     newPostText: string,
-    dispatch: (action: DispatchActionPropsType) => void;
+    dispatch: (action: DispatchProfileUserActionType) => void;
 }; 
 
 
