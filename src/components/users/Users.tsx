@@ -23,7 +23,7 @@ function Users (props: UsersType) {
 
     return (
             <div className={classes.usersBlock}>
-                <div>
+                <div className={classes.paginationBlock}>
                     {
                         pages.map(page => <span  
                                             key={page}   

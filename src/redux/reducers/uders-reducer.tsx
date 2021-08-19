@@ -64,24 +64,18 @@ export const usersReducer = (state: StateUserType = initialState, action: Dispat
             };
             
         case TOGGLE_IS_FETCHING:
-            if (action.isFetching) {
+            if (action.isFetching === true || action.isFetching === false) {
                 return {
                     ...state,
                     isFetching: action.isFetching,
                 }; 
             };
-
-            return {
-                ...state,
-                isFetching: action.isFetching,
-            }; 
-            
     }
     return state;
 };
 
-export const changeFollowStatusActionCreator = (userId: number) => ({type: CHANGE_FOLLOW_STATUS, userId});
-export const setUsersActionCreator = (users: StateUserType) => ({type: SET_USERS, users});
-export const changeCurrentPageActionCreator = (currenPage: number) => ({type: CHANGE_CURRENT_PAGE, currenPage});
-export const setTotalUsersCountActionCreator = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
-export const toggleIsFetchingActionCreator = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const followSwitch = (userId: number) => ({type: CHANGE_FOLLOW_STATUS, userId});
+export const setUsers = (users: StateUserType) => ({type: SET_USERS, users});
+export const changePage = (currenPage: number) => ({type: CHANGE_CURRENT_PAGE, currenPage});
+export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
+export const toggleLoader = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching});

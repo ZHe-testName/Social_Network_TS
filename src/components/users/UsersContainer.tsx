@@ -1,14 +1,15 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { changeCurrentPageActionCreator, 
-        changeFollowStatusActionCreator, 
-        setTotalUsersCountActionCreator, 
-        toggleIsFetchingActionCreator,
-        setUsersActionCreator, 
+// import { Dispatch } from "redux";
+
+import { changePage, 
+        followSwitch, 
+        setTotalUsersCount, 
+        toggleLoader,
         StateUserType, 
-        UserType } from "../../redux/reducers/uders-reducer";
+        UserType, 
+        setUsers} from "../../redux/reducers/uders-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";
@@ -82,30 +83,45 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        followSwitch: (userId: number) => {
-            dispatch(changeFollowStatusActionCreator(userId));
-        },
+//можно для диспача екшнкриэйторов использовать функцию mapDispatchToProps
+//которая возвращает объект диспачей 
 
-        setUsers: (users: StateUserType) => {
-            dispatch(setUsersActionCreator(users));
-        },
+// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+//     return {
+//         followSwitch: (userId: number) => {
+//             dispatch(changeFollowStatusActionCreator(userId));
+//         },
 
-        changePage: (currentPage: number) => {
-            dispatch(changeCurrentPageActionCreator(currentPage));
-        },
+//         setUsers: (users: StateUserType) => {
+//             dispatch(setUsersActionCreator(users));
+//         },
 
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUsersCountActionCreator(totalUsersCount));
-        },  
+//         changePage: (currentPage: number) => {
+//             dispatch(changeCurrentPageActionCreator(currentPage));
+//         },
 
-        toggleLoader: (isFetching) => {
-            dispatch(toggleIsFetchingActionCreator(isFetching));
-        },
-    };
-};
+//         setTotalUsersCount: (totalUsersCount: number) => {
+//             dispatch(setTotalUsersCountActionCreator(totalUsersCount));
+//         },  
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersRequestContainer);
+//         toggleLoader: (isFetching) => {
+//             dispatch(toggleIsFetchingActionCreator(isFetching));
+//         },
+//     };
+// };
+
+//а можно "попросить" conect самому задиспатчить экшнкрэйторы и передать в них значения
+//если передавать туда объект с криэйторами в качестве значений
+//это гораздо уменшает наш код
+
+//еще меньше кода можно писать если использовать одиноковые имена свойств и значений
+
+const UsersContainer = connect(mapStateToProps, {
+                                                    followSwitch,
+                                                    setUsers,
+                                                    changePage,
+                                                    setTotalUsersCount,
+                                                    toggleLoader,
+                                                })(UsersRequestContainer);
 
 export default UsersContainer;

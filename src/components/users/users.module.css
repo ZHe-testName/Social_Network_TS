@@ -29,6 +29,11 @@
     }
 }
 
+.paginationBlock {
+    width: 160px;
+    margin: 0px auto;
+}
+
 .puginationNumStyle {
     margin-right: 5px;
 }
