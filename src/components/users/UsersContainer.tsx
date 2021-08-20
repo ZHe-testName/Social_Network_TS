@@ -34,9 +34,9 @@ export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
 
 class UsersRequestContainer extends React.Component<UsersPropsType, StateUserType>{
     componentDidMount() {
-        this.props.toggleLoader(true);
-
         if (this.props.users.length === 0){
+            this.props.toggleLoader(true);
+            
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then(responce => {
                     this.props.toggleLoader(false);

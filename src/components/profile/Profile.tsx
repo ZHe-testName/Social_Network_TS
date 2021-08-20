@@ -3,6 +3,7 @@ import Avatar from '../avatar';
 import MyPostsContainer from './my-posts/MyPostsContainer';
 import { ProfileUserType } from '../../redux/reducers/profile-reducer';
 import Preloader from '../preloader/Preloader';
+import userPhoto from '../../imgs/images.png';
 
 export type MainUserType = {
   name: string,
@@ -24,6 +25,7 @@ export type ProfilePageType = {
 
 function Profile(props: ProfilePageType) {
     const {user} = props;
+
     if (!user) {
       return (
         <Preloader />
@@ -35,7 +37,9 @@ function Profile(props: ProfilePageType) {
         <div className={classes.banner}></div>
 
         <div className={classes.account}>
-          <Avatar settings={{className: classes.avatar, imgUrl: user.photos.small}}/>
+          <Avatar settings={{className: classes.avatar, imgUrl: user.photos.small ? 
+                                                          user.photos.small : 
+                                                          userPhoto}}/>
 
           <div className={classes.description}>
 
@@ -43,25 +47,37 @@ function Profile(props: ProfilePageType) {
               {`${user.fullName}`}
             </span>
 
-            <div className="extra-info">
-              <div className="birth">
-                <span className="date">Date of Birth: </span>
-                <span className="user-birth">29 april 1990</span>
+            <div className={classes.extraInfo}>
+              <div className="job">
+                <span className="lookinAJob">Looking for a job: </span>
+                <span className="res">{user.lookingForAJob ? 'YES' : 'NO'}</span>
               </div>
 
-              <div className="location">
-                <span className="city">City: </span>
-                <span className="user-city">Vinnitsya</span>
+              <div className="status">
+                <span className="city">Status: </span>
+                <span className="user-city">{user.aboutMe || 'no status'}</span>
               </div>
 
-              <div className="education">
+              {/* <div className="education">
                 <span className="eduq">Education: </span>
                 <span className="user-eduq">VNTU IEEAS</span>
-              </div>
+              </div> */}
 
               <div className="wedsite">
-                <span className="web">Web Site: </span>
-                <a href="/website" className="user-web">www.ewgenius.com</a>
+                <span className="web">Contacts: </span>
+
+                <div className={classes.contactsList}>
+                  {Object.entries(user.contacts)
+                      .map((el, i) => {
+                        return(
+                          <a href={el[1] ? el[1] : '#'}
+                              key={i}
+                              className={el[1] ? classes.linkstyle : classes.disabled}>
+                            {el[0]}
+                          </a>
+                        )
+                      })}
+                </div>
               </div>
             </div>
           </div>

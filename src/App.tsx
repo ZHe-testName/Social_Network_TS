@@ -82,8 +82,12 @@ function App() {
           <Route path="/settimgs" component={Settings}/>
           {/* userId мы используем этот параметр для того чтобы система реакта
           сама прочитала его в адресной строке и withRouter закинул в пропсы компоненты
-          нужный нам id */}
-          <Route path="/profile/:userId" render={() => <ProfileContainer />}/>
+          нужный нам id 
+          знак вопроса означаеть что параметр не обязателен
+          чтобы мы могли отображать профайл с пустым id
+          если там пусто то в объекте withRouter -a наш параметр будет underfined
+          к этому нужно быть готовым*/}
+          <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
           <Route path="/music" component={Music}/>
           <Route path="/users" render={() => <UsersContainer />}/>
         </div>

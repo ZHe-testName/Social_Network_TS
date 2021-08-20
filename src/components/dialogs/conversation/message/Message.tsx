@@ -8,7 +8,7 @@ export type MessageDescriptionType = {
     isUser: boolean,
     id: string,
   };
-//@ts-ignore
+
 function Message(props: MessageDescriptionType) {
     const {messageTxt, avaUrl, isUser} = props;
 

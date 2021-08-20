@@ -24,7 +24,13 @@ type OwnProfilePropsType = MapStateToProps & MapDispatchToProps;
 
 class ProfileRequestContainer extends React.Component<ProfilePropsType, ProfileDataType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userId}`)
+        let userId = this.props.match.params.userId;
+
+        if (!userId) {
+            userId = '19175';
+        };
+
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
                     .then(responce => {
                         this.props.setUserProfile(responce.data);
                     });

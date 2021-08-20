@@ -46,3 +46,34 @@
     margin-bottom: 25px;
     margin-top: 10px;
   }
+
+  .extraInfo {
+    padding: 5px;
+  }
+
+  .extraInfo > div {
+    margin-bottom: 10px;
+  }
+
+  .contactsList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 35px;
+    margin-top: 5px;
+  }
+
+  a.linkstyle {
+    color: var(--letters_dark_blue);
+    text-decoration: none;
+  }
+
+  a.linkstyle:hover {
+    transform: scale(1.1);
+  }
+
+  a.disabled {
+    pointer-events: none;
+    text-decoration: none;
+    color: var(--disabled_link_color);
+  }

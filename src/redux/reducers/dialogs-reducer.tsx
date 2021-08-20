@@ -137,7 +137,7 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
 
             return {
               ...state,
-              messages: [messageObj, ...state.messages],
+              messages: [...state.messages, messageObj],
               newMessageText: '',
             };
 }
