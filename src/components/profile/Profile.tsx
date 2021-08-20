@@ -2,6 +2,7 @@ import classes from  './profile.module.css';
 import Avatar from '../avatar';
 import MyPostsContainer from './my-posts/MyPostsContainer';
 import { ProfileUserType } from '../../redux/reducers/profile-reducer';
+import Preloader from '../preloader/Preloader';
 
 export type MainUserType = {
   name: string,
@@ -23,6 +24,11 @@ export type ProfilePageType = {
 
 function Profile(props: ProfilePageType) {
     const {user} = props;
+    if (!user) {
+      return (
+        <Preloader />
+      );
+    }
 
     return (
         <main className={classes.profile}>

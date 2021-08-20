@@ -35,7 +35,7 @@ export type ProfileUserType = {
       small: string | null,
       large: string | null,
     }
-};
+} | null;
 
 export type MainUserType = {
   name: string,
@@ -57,27 +57,28 @@ export type PostType = {
 // }
 
 const initialState: ProfileDataType = {
-  user: {  
-          aboutMe: "sdfsdfsdf",
-          contacts: {
-            facebook: null,
-            website: null,
-            vk: null,
-            twitter: null,
-            instagram: null,
-            youtube: null,
-            github: null,
-            mainLink: null
-          },
-          lookingForAJob: false,
-          lookingForAJobDescription: null,
-          fullName: "AlexanderKhodaryonok",
-          userId: 3,
-          photos: {
-            small: null,
-            large: null
-          },
-    },
+  // user: {  
+  //         aboutMe: "sdfsdfsdf",
+  //         contacts: {
+  //           facebook: null,
+  //           website: null,
+  //           vk: null,
+  //           twitter: null,
+  //           instagram: null,
+  //           youtube: null,
+  //           github: null,
+  //           mainLink: null
+  //         },
+  //         lookingForAJob: false,
+  //         lookingForAJobDescription: null,
+  //         fullName: "AlexanderKhodaryonok",
+  //         userId: 3,
+  //         photos: {
+  //           small: null,
+  //           large: null
+  //         },
+  //   },
+  user: null,
   posts: [
     {text: 'Blablabla my post yo!', likes: 21, dislikes: 10, id: v1()},
     {text: 'Another post, yeh!', likes: 51, dislikes: 69, id: v1()},

@@ -80,7 +80,10 @@ function App() {
           <Route path="/dialogs" render={() => <DialogsContainer/>}/>
           <Route path="/news" component={News}/>
           <Route path="/settimgs" component={Settings}/>
-          <Route path="/profile" render={() => <ProfileContainer />}/>
+          {/* userId мы используем этот параметр для того чтобы система реакта
+          сама прочитала его в адресной строке и withRouter закинул в пропсы компоненты
+          нужный нам id */}
+          <Route path="/profile/:userId" render={() => <ProfileContainer />}/>
           <Route path="/music" component={Music}/>
           <Route path="/users" render={() => <UsersContainer />}/>
         </div>
