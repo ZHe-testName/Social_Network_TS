@@ -2,7 +2,6 @@ import './App.css';
 import {Route} from 'react-router-dom';
 
 import DialogsContainer from './components/dialogs/DialogsContainer';
-import Header from './components/header';
 import Music from './components/musik';
 import Navbar from './components/navbar';
 // import Profile from './components/profile';
@@ -19,6 +18,7 @@ import UsersContainer from './components/users/UsersContainer';
 import { UserType } from './redux/reducers/uders-reducer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import { ProfileUserType } from './redux/reducers/profile-reducer';
+import { HeaderContainer } from './components/header/HeaderComponent';
 // import { AppStateType } from './redux/redux-store';
   
 export type DispatchActionPropsType = {
@@ -73,7 +73,7 @@ function App() {
 
   return (
       <div id='app' className='app-wrapper'>
-        <Header/>
+        <HeaderContainer/>
         <Navbar {...navBar}/>
 
         <div className="main-content">
