@@ -9,7 +9,8 @@ import { changePage,
         toggleLoader,
         StateUserType, 
         UserType, 
-        setUsers} from "../../redux/reducers/uders-reducer";
+        setUsers,
+        isFollowingTriger} from "../../redux/reducers/uders-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";
@@ -20,7 +21,8 @@ type MapStateToProps = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean | undefined,
+    isFetching: boolean,
+    isFollowing: boolean,
 };
 
 type MapDispatchPropsType = {
@@ -29,6 +31,7 @@ type MapDispatchPropsType = {
     changePage: (currentPage: number) => void,
     setTotalUsersCount: (totalUsersCount: number) => void;  
     toggleLoader: (isFetching: boolean) => void;
+    isFollowingTriger: (isFollowing: boolean) => void;
 };
 
 export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
@@ -68,9 +71,11 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
                     pageSize={this.props.pageSize}
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
+                    isFollowing={this.props.isFollowing}
                     changePageHandler={this.changePageHandler}
+                    isFollowingTriger={this.props.isFollowingTriger}
                     followSwitch={this.props.followSwitch}
-                    toggleLoader={this.props.toggleLoader}/>
+                    setUsers={this.props.setUsers}/>
             </>
     }
 };
@@ -82,6 +87,7 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        isFollowing: state.usersPage.isFollowing,
     };
 };
 
@@ -100,6 +106,7 @@ const UsersContainer = connect(mapStateToProps, {
                                                     changePage,
                                                     setTotalUsersCount,
                                                     toggleLoader,
+                                                    isFollowingTriger,
                                                 })(UsersRequestContainer);
 
 export default UsersContainer;

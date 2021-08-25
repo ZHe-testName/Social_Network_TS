@@ -35,6 +35,7 @@ export type DispatchUsersActionType = {
   currenPage?: number,
   totalUsersCount?: number,
   isFetching?: boolean,
+  isFollowing?: boolean,
 };
 
 export type DispatchProfileUserActionType = {

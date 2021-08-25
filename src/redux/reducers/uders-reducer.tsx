@@ -4,7 +4,8 @@ const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
     SET_USERS = 'SET_USERS',
     CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE',
     SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT',
-    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
+    TOOGLE_FOLLOWING_PROGRES = 'TOOGLE_FOLLOWING_PROGRES';
 
 export type UserType = {
     followed: boolean,
@@ -20,7 +21,8 @@ export type StateUserType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean | undefined,
+    isFetching: boolean,
+    isFollowing: boolean,
 };
 
 const initialState: StateUserType = {
@@ -29,6 +31,7 @@ const initialState: StateUserType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
+    isFollowing: false,
 };
 
 export const usersReducer = (state: StateUserType = initialState, action: DispatchUsersActionType): StateUserType => {
@@ -64,12 +67,30 @@ export const usersReducer = (state: StateUserType = initialState, action: Dispat
             };
             
         case TOGGLE_IS_FETCHING:
-            if (action.isFetching === true || action.isFetching === false) {
+            if (!action.isFetching) {
                 return {
                     ...state,
-                    isFetching: action.isFetching,
+                    isFetching: false,
                 }; 
             };
+
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }; 
+
+        case TOOGLE_FOLLOWING_PROGRES:
+            if (!action.isFollowing) {
+                return {
+                    ...state,
+                    isFollowing: false,
+                }; 
+            }
+
+            return {
+                ...state,
+                isFollowing: action.isFollowing,
+            }; 
     }
     return state;
 };
@@ -79,3 +100,4 @@ export const setUsers = (users: StateUserType) => ({type: SET_USERS, users});
 export const changePage = (currenPage: number) => ({type: CHANGE_CURRENT_PAGE, currenPage});
 export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 export const toggleLoader = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const isFollowingTriger = (isFollowing: boolean) => ({type: TOOGLE_FOLLOWING_PROGRES, isFollowing});
