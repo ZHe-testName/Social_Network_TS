@@ -37,7 +37,9 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
         if (this.props.users.length === 0){
             this.props.toggleLoader(true);
             
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+                withCredentials: true,
+            })
                 .then(responce => {
                     this.props.toggleLoader(false);
                     this.props.setUsers(responce.data.items);
@@ -51,7 +53,9 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
 
         this.props.changePage(pageNumber);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then(responce => {
                 this.props.toggleLoader(false);
                 this.props.setUsers(responce.data.items);
@@ -68,7 +72,8 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
                     changePageHandler={this.changePageHandler}
-                    followSwitch={this.props.followSwitch}/>
+                    followSwitch={this.props.followSwitch}
+                    toggleLoader={this.props.toggleLoader}/>
             </>
     }
 };
@@ -85,6 +90,23 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 
 //можно для диспача екшнкриэйторов использовать функцию mapDispatchToProps
 //которая возвращает объект диспачей 
+
+//а можно "попросить" conect самому задиспатчить экшнкрэйторы и передать в них значения
+//если передавать туда объект с криэйторами в качестве значений
+//это гораздо уменшает наш код
+
+//еще меньше кода можно писать если использовать одиноковые имена свойств и значений
+
+const UsersContainer = connect(mapStateToProps, {
+                                                    followSwitch,
+                                                    setUsers,
+                                                    changePage,
+                                                    setTotalUsersCount,
+                                                    toggleLoader,
+                                                })(UsersRequestContainer);
+
+export default UsersContainer;
+
 
 // const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 //     return {
@@ -109,19 +131,3 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 //         },
 //     };
 // };
-
-//а можно "попросить" conect самому задиспатчить экшнкрэйторы и передать в них значения
-//если передавать туда объект с криэйторами в качестве значений
-//это гораздо уменшает наш код
-
-//еще меньше кода можно писать если использовать одиноковые имена свойств и значений
-
-const UsersContainer = connect(mapStateToProps, {
-                                                    followSwitch,
-                                                    setUsers,
-                                                    changePage,
-                                                    setTotalUsersCount,
-                                                    toggleLoader,
-                                                })(UsersRequestContainer);
-
-export default UsersContainer;
