@@ -3,6 +3,7 @@ import userPhoto from '../../imgs/images.png';
 import { UserType } from '../../redux/reducers/uders-reducer';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { usersAPI } from '../../api/dal';
 
 type UsersType = {
     users: Array<UserType>,
@@ -17,6 +18,18 @@ type UsersType = {
 function Users (props: UsersType) {
     //Сделать карусель с пагинацией, потому что не влезает
     // const pagesAmount = Math.ceil(props.totalUsersCount / props.pageSize);
+    
+    const subscribeSwithClick = (followed: boolean, id: number) => {
+        props.toggleLoader(true);
+
+        usersAPI.userSubscribeSwitch(followed, id)
+            .then((resultCode: number) => {
+                if (resultCode === 0){
+                    props.toggleLoader(false);
+                    props.followSwitch(id);
+                };
+            });  
+    };
 
     const pages = [];
 
@@ -52,40 +65,7 @@ function Users (props: UsersType) {
                             
                             <button 
                                 className={(!user.followed) ? classes.followBtnStyle : classes.unfollowBtnStyle}
-                                onClick={() => {
-                                    props.toggleLoader(true);
-
-                                    if (user.followed){
-                                        axios.delete(`https://social-network.samuraijs.com/api/1.0//follow/${user.id}`,{
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "797677fc-71e8-47d3-89ee-972f9e368c32",
-                                            },
-                                        })
-                                        .then(responce => {
-                                            if (responce.data.resultCode === 0){
-                                                props.toggleLoader(false);
-                                                props.followSwitch(user.id);
-                                            };
-                                        });
-
-                                        return;
-                                    };
-
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0//follow/${user.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "797677fc-71e8-47d3-89ee-972f9e368c32",
-                                        },
-                                    })
-                                    .then(responce => {
-                                        if (responce.data.resultCode === 0){
-                                            props.toggleLoader(false);
-                                            props.followSwitch(user.id);
-                                        };
-                                    });
-                                    
-                                }}>
+                                onClick={() => subscribeSwithClick(user.followed, user.id)}>
                                 {(!user.followed) ? 'follow' : 'unfollow'}
                             </button>
                         </div>

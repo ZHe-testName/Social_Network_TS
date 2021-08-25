@@ -13,6 +13,7 @@ import { changePage,
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";
+import { GetUsersRequestType, usersAPI } from "../../api/dal";
 
 type MapStateToProps = {
     users: Array<UserType>,
@@ -37,13 +38,11 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
         if (this.props.users.length === 0){
             this.props.toggleLoader(true);
             
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-                withCredentials: true,
-            })
-                .then(responce => {
+            usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+                .then((data: GetUsersRequestType) => {
                     this.props.toggleLoader(false);
-                    this.props.setUsers(responce.data.items);
-                    this.props.setTotalUsersCount(responce.data.totalCount);
+                    this.props.setUsers(data.items);
+                    this.props.setTotalUsersCount(data.totalCount);
                 })
         };
     }
@@ -53,12 +52,10 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
 
         this.props.changePage(pageNumber);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        })
-            .then(responce => {
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
+            .then((data: GetUsersRequestType) => {
                 this.props.toggleLoader(false);
-                this.props.setUsers(responce.data.items);
+                this.props.setUsers(data.items);
             });
     };
 
