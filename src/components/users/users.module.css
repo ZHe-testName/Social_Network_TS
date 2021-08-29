@@ -92,6 +92,10 @@
             font-size: 16px;
         }
 
+        .userWrap button:disabled {
+            filter: opacity(0.5) grayscale(1);
+        }
+
         .followBtnStyle{
             position: relative;
             color: var(--green_text);

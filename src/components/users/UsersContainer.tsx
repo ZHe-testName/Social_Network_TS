@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 // import { Dispatch } from "redux";
 
@@ -22,7 +21,7 @@ type MapStateToProps = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    isFollowing: boolean,
+    followingIdArr: Array<number | undefined>,
 };
 
 type MapDispatchPropsType = {
@@ -31,7 +30,7 @@ type MapDispatchPropsType = {
     changePage: (currentPage: number) => void,
     setTotalUsersCount: (totalUsersCount: number) => void;  
     toggleLoader: (isFetching: boolean) => void;
-    isFollowingTriger: (isFollowing: boolean) => void;
+    isFollowingTriger: (isFetching: boolean, userId: number) => void;
 };
 
 export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
@@ -71,7 +70,7 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
                     pageSize={this.props.pageSize}
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
-                    isFollowing={this.props.isFollowing}
+                    followingIdArr={this.props.followingIdArr}
                     changePageHandler={this.changePageHandler}
                     isFollowingTriger={this.props.isFollowingTriger}
                     followSwitch={this.props.followSwitch}
@@ -87,7 +86,7 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        isFollowing: state.usersPage.isFollowing,
+        followingIdArr: state.usersPage.followingIdArr,
     };
 };
 

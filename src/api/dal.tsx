@@ -28,7 +28,7 @@ export type GetUsersRequestType = {
 export const usersAPI = {
     getUsers (currentPage: number = 1, pageSize: number = 10){
         return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
-            //этот then нужен чтобы даавть презентационной компоненте тольку нужые ей данные
+            //этот then нужен чтобы даавть презентационной компоненте толькo нужые ей данные
             .then(responce => responce.data);
     },
 

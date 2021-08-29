@@ -9,25 +9,24 @@ type UsersType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFollowing: boolean,
+    followingIdArr: Array<number | undefined>,
     changePageHandler: (pageNumber: number) => void,
     setUsers: (userId: number) => void,
     followSwitch: (userId: number) => void;
-    isFollowingTriger: (isFolliwing: boolean) => void, 
+    isFollowingTriger: (isFetching: boolean, userId: number) => void;
 };
 
 function Users (props: UsersType) {
     //Сделать карусель с пагинацией, потому что не влезает
     // const pagesAmount = Math.ceil(props.totalUsersCount / props.pageSize);
     const subscribeSwithClick = (followed: boolean, id: number) => {
-        props.isFollowingTriger(true);
-        console.log(props.isFollowing);
+        props.isFollowingTriger(true, id);
 
         usersAPI.userSubscribeSwitch(followed, id)
             .then((resultCode: number) => {
                 if (resultCode === 0){
-                    console.log(props.isFollowing);
                     props.followSwitch(id);
+                    props.isFollowingTriger(false, id);
                 };
             });  
     };
@@ -44,7 +43,8 @@ function Users (props: UsersType) {
                     {
                         pages.map(page => <span  
                                             key={page}   
-                                            className={`${classes.puginationNumStyle} ${props.currentPage === page && classes.currentPage}`}
+                                            className={`${classes.puginationNumStyle} ${props.currentPage === page 
+                                            && classes.currentPage}`}
                                             onClick={() => props.changePageHandler(page)}>{page}</span>)
                     }
                 </div>
@@ -65,7 +65,7 @@ function Users (props: UsersType) {
 
                             
                             <button 
-                                disabled={props.isFollowing}
+                                disabled={props.followingIdArr.some(id => id === user.id)}
                                 className={(!user.followed) ? classes.followBtnStyle : classes.unfollowBtnStyle}
                                 onClick={() => subscribeSwithClick(user.followed, user.id)}>
                                 {(!user.followed) ? 'follow' : 'unfollow'}

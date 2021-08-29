@@ -13,10 +13,10 @@ type MapDispatchPropsType = {
     setUserAuthDataActionCreator: (data: AuthStateType) => void,
 };
 
-type HeaderPropsType = {
-    isAuth: boolean,
-    login: string | null,
-};
+// type HeaderPropsType = {
+//     isAuth: boolean,
+//     login: string | null,
+// };
 
 type AuthPropsType = MapStateToProps & MapDispatchPropsType;
 
