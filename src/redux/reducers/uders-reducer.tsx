@@ -1,3 +1,4 @@
+import { GetUsersRequestType, usersAPI } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
 
 const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
@@ -22,6 +23,8 @@ export type StateUserType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
+    //этот массив нужен чтобы можно было знать кнопку какого
+    //юзера нужно дизейблить в момент запроса на сервак
     followingIdArr: Array<number | undefined>,
 };
 
@@ -91,8 +94,36 @@ export const usersReducer = (state: StateUserType = initialState, action: Dispat
 };
 
 export const followSwitch = (userId: number) => ({type: CHANGE_FOLLOW_STATUS, userId});
-export const setUsers = (users: StateUserType) => ({type: SET_USERS, users});
+export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users});
 export const changePage = (currenPage: number) => ({type: CHANGE_CURRENT_PAGE, currenPage});
 export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 export const toggleLoader = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const isFollowingTriger = (isFetching: boolean, userId: number) => ({type: TOOGLE_FOLLOWING_PROGRES, isFetching, userId});
+
+//THUNK
+
+//Thunk-и это функции которые принимают от когото нужные данные
+//и возвращают функцию которая диспачит экшн-криэйторы
+
+//Санки нужны для того чтобы убрвть асинхронные вызовы из презентационной компоненты
+//так как она просто UI прослйка и не должна ничего делать кроме как 
+//получать и отображать данные
+
+//Так как это асинхронные прцесы мы не можем вклинить их в поток
+//то есть делать асинхронные вызовы в reducer-ах
+
+//по этому мы используем Санки для асинхронных оьращений и диспачей
+
+//Thunk-creator-и нужны для передачи через них данных 
+//при помощи замыканий
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleLoader(true));
+            
+        usersAPI.getUsers(currentPage, pageSize)
+            .then((data: GetUsersRequestType) => {
+                dispatch(toggleLoader(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+            })}
+};

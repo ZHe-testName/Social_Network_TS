@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { Dispatch } from "redux";
 
 import { changePage, 
         followSwitch, 
@@ -9,7 +8,8 @@ import { changePage,
         StateUserType, 
         UserType, 
         setUsers,
-        isFollowingTriger} from "../../redux/reducers/uders-reducer";
+        isFollowingTriger,
+        getUsersThunkCreator} from "../../redux/reducers/uders-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";
@@ -31,6 +31,7 @@ type MapDispatchPropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void;  
     toggleLoader: (isFetching: boolean) => void;
     isFollowingTriger: (isFetching: boolean, userId: number) => void;
+    getUsersThunkCreator: (currentPage: number, pageSize: number) =>  void;
 };
 
 export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
@@ -38,14 +39,7 @@ export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
 class UsersRequestContainer extends React.Component<UsersPropsType, StateUserType>{
     componentDidMount() {
         if (this.props.users.length === 0){
-            this.props.toggleLoader(true);
-            
-            usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-                .then((data: GetUsersRequestType) => {
-                    this.props.toggleLoader(false);
-                    this.props.setUsers(data.items);
-                    this.props.setTotalUsersCount(data.totalCount);
-                })
+          this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
         };
     }
 
@@ -106,6 +100,7 @@ const UsersContainer = connect(mapStateToProps, {
                                                     setTotalUsersCount,
                                                     toggleLoader,
                                                     isFollowingTriger,
+                                                    getUsersThunkCreator
                                                 })(UsersRequestContainer);
 
 export default UsersContainer;
