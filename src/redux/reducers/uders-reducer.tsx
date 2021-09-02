@@ -1,6 +1,8 @@
 import { Dispatch } from "react";
+import { ThunkAction } from "redux-thunk";
 import { GetUsersRequestType, usersAPI } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
+import { AppStateType } from "../redux-store";
 
 const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
     SET_USERS = 'SET_USERS',
@@ -28,6 +30,8 @@ export type StateUserType = {
     //юзера нужно дизейблить в момент запроса на сервак
     followingIdArr: Array<number | undefined>,
 };
+
+type ThunkType = ThunkAction<void, AppStateType, unknown, DispatchUsersActionType>;
 
 const initialState: StateUserType = {
     users: [],
@@ -117,7 +121,7 @@ export const isFollowingTriger = (isFetching: boolean, userId: number) => ({type
 
 //Thunk-creator-и нужны для передачи через них данных 
 //при помощи замыканий
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkType => {
     return (dispatch: Dispatch<DispatchUsersActionType>) => {
         dispatch(toggleLoader(true));
             
@@ -129,7 +133,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
             })}
 };
 
-export const changePageThunkCreator = (pageNumber: number, pageSize: number) => {
+export const changePageThunkCreator = (pageNumber: number, pageSize: number): ThunkType => {
     return (dispatch: Dispatch<DispatchUsersActionType>) => {
         dispatch(toggleLoader(true));
 
