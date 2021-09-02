@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { GetUsersRequestType, usersAPI } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
 
@@ -117,7 +118,7 @@ export const isFollowingTriger = (isFetching: boolean, userId: number) => ({type
 //Thunk-creator-и нужны для передачи через них данных 
 //при помощи замыканий
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<DispatchUsersActionType>) => {
         dispatch(toggleLoader(true));
             
         usersAPI.getUsers(currentPage, pageSize)
@@ -126,4 +127,18 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
                 dispatch(setUsers(data.items));
                 dispatch(setTotalUsersCount(data.totalCount));
             })}
+};
+
+export const changePageThunkCreator = (pageNumber: number, pageSize: number) => {
+    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+        dispatch(toggleLoader(true));
+
+        dispatch(changePage(pageNumber));
+
+        usersAPI.getUsers(pageNumber, pageSize)
+            .then((data: GetUsersRequestType) => {
+                dispatch(toggleLoader(false));
+                dispatch(setUsers(data.items));
+            });
+    }
 };

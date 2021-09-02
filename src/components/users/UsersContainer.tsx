@@ -9,11 +9,11 @@ import { changePage,
         UserType, 
         setUsers,
         isFollowingTriger,
-        getUsersThunkCreator} from "../../redux/reducers/uders-reducer";
+        getUsersThunkCreator,
+        changePageThunkCreator} from "../../redux/reducers/uders-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";
-import { GetUsersRequestType, usersAPI } from "../../api/dal";
 
 type MapStateToProps = {
     users: Array<UserType>,
@@ -32,6 +32,7 @@ type MapDispatchPropsType = {
     toggleLoader: (isFetching: boolean) => void;
     isFollowingTriger: (isFetching: boolean, userId: number) => void;
     getUsersThunkCreator: (currentPage: number, pageSize: number) =>  void;
+    changePageThunkCreator: (pageNumber: number, pageSize: number) => void;
 };
 
 export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
@@ -44,15 +45,7 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
     }
 
     changePageHandler = (pageNumber: number) => {
-        this.props.toggleLoader(true);
-
-        this.props.changePage(pageNumber);
-
-        usersAPI.getUsers(pageNumber, this.props.pageSize)
-            .then((data: GetUsersRequestType) => {
-                this.props.toggleLoader(false);
-                this.props.setUsers(data.items);
-            });
+        this.props.changePageThunkCreator(pageNumber, this.props.pageSize);
     };
 
     render () {
@@ -100,7 +93,8 @@ const UsersContainer = connect(mapStateToProps, {
                                                     setTotalUsersCount,
                                                     toggleLoader,
                                                     isFollowingTriger,
-                                                    getUsersThunkCreator
+                                                    getUsersThunkCreator,
+                                                    changePageThunkCreator
                                                 })(UsersRequestContainer);
 
 export default UsersContainer;
