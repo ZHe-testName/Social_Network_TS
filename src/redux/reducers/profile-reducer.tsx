@@ -1,5 +1,7 @@
+import { Dispatch } from 'react';
 import {v1} from 'uuid';
-import { DispatchProfileUserActionType } from '../../App';
+import { usersAPI } from '../../api/dal';
+import { DispatchProfileUserActionType, DispatchUsersActionType } from '../../App';
 import { PostsType } from '../../components/profile/Profile';
 
 const ADD_POST = 'ADD-POST',
@@ -130,3 +132,12 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
 export const addPostCreator = (message: string) => ({type: ADD_POST, message});
 export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});
 export const setUserProfile = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
+
+export const getProfileThunkCreator = (userId: string) => {
+  return (dispatch: Dispatch<DispatchUsersActionType>) => {
+    usersAPI.getProfile(userId)
+                    .then(data => {
+                        dispatch(setUserProfile(data));
+                    });
+  };
+};

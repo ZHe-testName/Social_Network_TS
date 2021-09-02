@@ -24,6 +24,7 @@ export type ProfilePageType = {
 
 
 function Profile(props: ProfilePageType) {
+  //сделать увеличение избрпжения баннера рофиля
     const {user} = props;
 
     if (!user) {

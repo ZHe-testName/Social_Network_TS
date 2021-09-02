@@ -1,3 +1,7 @@
+import { Dispatch } from "react";
+import { usersAPI } from "../../api/dal";
+import { DispatchUsersActionType } from "../../App";
+
 const SET_USER_DATA = 'SET_USER_DATA'; 
 
 export type AuthStateType = {
@@ -38,3 +42,14 @@ export const authReducer = (state: AuthStateType = initialState, action: ActionT
 };
 
 export const setUserAuthDataActionCreator = (data: AuthStateType) => ({type: SET_USER_DATA, data});
+
+export const getUserAuthDataThunkCreator = () => {
+    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+        usersAPI.getAuthData()
+            .then(data => {
+                if (data.resultCode === 0){
+                    dispatch(setUserAuthDataActionCreator(data.data));
+                }
+            })
+    };
+};
