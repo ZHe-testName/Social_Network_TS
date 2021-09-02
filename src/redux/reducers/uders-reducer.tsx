@@ -146,3 +146,17 @@ export const changePageThunkCreator = (pageNumber: number, pageSize: number): Th
             });
     }
 };
+
+export const followSwitchingThunkCreator = (followed: boolean, userId: number) => {
+    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+        dispatch(isFollowingTriger(true, userId));
+
+        usersAPI.userSubscribeSwitch(followed, userId)
+            .then((resultCode: number) => {
+                if (resultCode === 0){
+                    dispatch(followSwitch(userId));
+                    dispatch(isFollowingTriger(false, userId));
+                };
+            });  
+    };
+};

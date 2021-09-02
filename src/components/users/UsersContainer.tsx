@@ -2,15 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { changePage, 
-        followSwitch, 
         setTotalUsersCount, 
         toggleLoader,
         StateUserType, 
         UserType, 
-        setUsers,
-        isFollowingTriger,
         getUsersThunkCreator,
-        changePageThunkCreator} from "../../redux/reducers/uders-reducer";
+        changePageThunkCreator,
+        followSwitchingThunkCreator} from "../../redux/reducers/uders-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";
@@ -25,14 +23,12 @@ type MapStateToProps = {
 };
 
 type MapDispatchPropsType = {
-    followSwitch: (userId: number) => void,
-    setUsers: (users: any) => void,
     changePage: (currentPage: number) => void,
     setTotalUsersCount: (totalUsersCount: number) => void;  
     toggleLoader: (isFetching: boolean) => void;
-    isFollowingTriger: (isFetching: boolean, userId: number) => void;
     getUsersThunkCreator: (currentPage: number, pageSize: number) =>  void;
     changePageThunkCreator: (pageNumber: number, pageSize: number) => void;
+    followSwitchingThunkCreator: (followed: boolean, userId: number) => void;
 };
 
 export type UsersPropsType = MapStateToProps & MapDispatchPropsType;
@@ -59,9 +55,7 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
                     currentPage={this.props.currentPage}
                     followingIdArr={this.props.followingIdArr}
                     changePageHandler={this.changePageHandler}
-                    isFollowingTriger={this.props.isFollowingTriger}
-                    followSwitch={this.props.followSwitch}
-                    setUsers={this.props.setUsers}/>
+                    followSwitchingThunkCreator={this.props.followSwitchingThunkCreator}/>
             </>
     }
 };
@@ -87,14 +81,12 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 //еще меньше кода можно писать если использовать одиноковые имена свойств и значений
 
 const UsersContainer = connect(mapStateToProps, {
-                                                    followSwitch,
-                                                    setUsers,
                                                     changePage,
                                                     setTotalUsersCount,
                                                     toggleLoader,
-                                                    isFollowingTriger,
                                                     getUsersThunkCreator,
-                                                    changePageThunkCreator
+                                                    changePageThunkCreator,
+                                                    followSwitchingThunkCreator
                                                 })(UsersRequestContainer);
 
 export default UsersContainer;

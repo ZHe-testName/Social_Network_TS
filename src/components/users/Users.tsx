@@ -2,7 +2,6 @@ import classes from './users.module.css';
 import userPhoto from '../../imgs/images.png';
 import { UserType } from '../../redux/reducers/uders-reducer';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/dal';
 
 type UsersType = {
     users: Array<UserType>,
@@ -11,26 +10,13 @@ type UsersType = {
     currentPage: number,
     followingIdArr: Array<number | undefined>,
     changePageHandler: (pageNumber: number) => void,
-    setUsers: (userId: number) => void,
-    followSwitch: (userId: number) => void;
-    isFollowingTriger: (isFetching: boolean, userId: number) => void;
+    followSwitchingThunkCreator: (followed: boolean, userId: number) => void;
 };
 
 function Users (props: UsersType) {
     //Сделать карусель с пагинацией, потому что не влезает
     // const pagesAmount = Math.ceil(props.totalUsersCount / props.pageSize);
-    const subscribeSwithClick = (followed: boolean, id: number) => {
-        props.isFollowingTriger(true, id);
-
-        usersAPI.userSubscribeSwitch(followed, id)
-            .then((resultCode: number) => {
-                if (resultCode === 0){
-                    props.followSwitch(id);
-                    props.isFollowingTriger(false, id);
-                };
-            });  
-    };
-
+ 
     const pages = [];
 
     for ( let i = 1; i <= 10; i++ ) {
@@ -67,7 +53,7 @@ function Users (props: UsersType) {
                             <button 
                                 disabled={props.followingIdArr.some(id => id === user.id)}
                                 className={(!user.followed) ? classes.followBtnStyle : classes.unfollowBtnStyle}
-                                onClick={() => subscribeSwithClick(user.followed, user.id)}>
+                                onClick={() => props.followSwitchingThunkCreator(user.followed, user.id)}>
                                 {(!user.followed) ? 'follow' : 'unfollow'}
                             </button>
                         </div>
