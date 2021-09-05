@@ -39,19 +39,19 @@ export const usersAPI = {
 
     userSubscribeSwitch (followed: boolean, userId: number){
         return followed 
-            ? instance.delete(`https://social-network.samuraijs.com/api/1.0//follow/${userId}`)
+            ? instance.delete(`/follow/${userId}`)
                 .then(responce => responce.data.resultCode)
-            : instance.post(`https://social-network.samuraijs.com/api/1.0//follow/${userId}`)
+            : instance.post(`/follow/${userId}`)
                 .then(responce => responce.data.resultCode); 
     },
 
     getProfile (userId: string){
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        return instance.get(`/profile/${userId}`)
                         .then(responce => responce.data);
     },
 
     getAuthData (){
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+        return instance.get(`/auth/me`)
                         .then(responce => responce.data);
     },
 };

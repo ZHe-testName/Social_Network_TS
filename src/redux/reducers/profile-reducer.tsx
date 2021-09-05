@@ -131,7 +131,8 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
 
 export const addPostCreator = (message: string) => ({type: ADD_POST, message});
 export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});
-export const setUserProfile = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
+
+const setUserProfile = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
 
 export const getProfileThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchUsersActionType>) => {
