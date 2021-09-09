@@ -4,10 +4,11 @@ import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
 import { DialogsPropsType } from './DialogsContainer';
+import { Redirect } from 'react-router';
 
 
 function Dialogs(props: DialogsPropsType) {
-    const {users, messages, newMessageText, onChangeHandler, sendMessageHandler} = props;
+    const {users, messages, newMessageText, isAuth, onChangeHandler, sendMessageHandler} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
     const sendButton = React.createRef<HTMLButtonElement>();
@@ -41,6 +42,8 @@ function Dialogs(props: DialogsPropsType) {
     //         console.log('sd');
     //     }
     // };
+
+    if (!isAuth) return <Redirect to='/login'/>
     
     return (
         <div className={classes.dialogs_wrap}>

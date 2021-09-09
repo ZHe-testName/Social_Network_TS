@@ -18,6 +18,7 @@ const mapStateToProps = (state: AppStateType): InitialStateType => {
         newMessageText: state.dialogsPage.newMessageText,
         messages: state.dialogsPage.messages,
         users: state.dialogsPage.users,
+        isAuth: state.auth.isAuth,
     };
 };
 

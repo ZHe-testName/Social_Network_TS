@@ -19,6 +19,7 @@ import { UserType } from './redux/reducers/uders-reducer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import { ProfileUserType } from './redux/reducers/profile-reducer';
 import { HeaderContainer } from './components/header/HeaderComponent';
+import Login from './components/login/Login';
 // import { AppStateType } from './redux/redux-store';
   
 export type DispatchActionPropsType = {
@@ -91,6 +92,7 @@ function App() {
           <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
           <Route path="/music" component={Music}/>
           <Route path="/users" render={() => <UsersContainer />}/>
+          <Route path='/login' render={Login} />
         </div>
       </div>
   );

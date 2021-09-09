@@ -4,6 +4,7 @@ import MyPostsContainer from './my-posts/MyPostsContainer';
 import { ProfileUserType } from '../../redux/reducers/profile-reducer';
 import Preloader from '../preloader/Preloader';
 import userPhoto from '../../imgs/images.png';
+import { Redirect } from 'react-router';
 
 export type MainUserType = {
   name: string,
@@ -20,18 +21,21 @@ export type PostsType = {
 
 export type ProfilePageType = {
   user: ProfileUserType,
+  isAuth: boolean,
 };
 
 
 function Profile(props: ProfilePageType) {
   //сделать увеличение избрпжения баннера рофиля
-    const {user} = props;
+    const {user, isAuth} = props;
 
     if (!user) {
       return (
         <Preloader />
       );
     }
+
+    if (!isAuth) return <Redirect to='/login'/>
 
     return (
         <main className={classes.profile}>

@@ -11,6 +11,7 @@ type PathParamsType = {
 
 type MapStateToProps = {
     user: ProfileUserType,
+    isAuth: boolean,
 };
 
 type MapDispatchToProps = {
@@ -38,6 +39,7 @@ class ProfileRequestContainer extends React.Component<ProfilePropsType, ProfileD
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
         user: state.profilePage.user,
+        isAuth: state.auth.isAuth,
     };
 };
 

@@ -119,6 +119,7 @@ const initialState =  {
   ] as Array<DialogsMessageType>,
 
   newMessageText: '',
+  isAuth: false,
 }
 
 
