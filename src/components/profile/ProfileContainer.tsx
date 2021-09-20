@@ -5,6 +5,7 @@ import { AppStateType } from "../../redux/redux-store";
 import Profile from "./Profile";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { withAuthReadirect } from "../../hoc/withAuthedirect";
+import { compose } from "redux";
 
 type PathParamsType = {
     userId: string,
@@ -42,8 +43,23 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
     };
 };
 
-const WithRouterContainerComponent = withRouter(ProfileRequestContainer);
+//функция compose предоставленна библиотекой redux
+//она нужна для того что бы оборачивание в контейнерные обертки не привратилось 
+//container heel
+//она помагает преврвтить вызовы оберток в последовательный вызов функций контейнеров
 
-const ProfileContainer = withAuthReadirect(connect(mapStateToProps, {getProfileThunkCreator})(WithRouterContainerComponent));
+//в первый вызов она принимает обертки с самой глубокой на ружу
+
+//а вторым вызовом передается целевая компонента
+
+const ProfileContainer = compose<React.ComponentType>(
+                                    connect(mapStateToProps, {getProfileThunkCreator}),
+                                    withRouter,
+                                    withAuthReadirect,
+                                )(ProfileRequestContainer);
+
+// const WithRouterContainerComponent = withRouter(ProfileRequestContainer);
+
+// const ProfileContainer = withAuthReadirect(connect(mapStateToProps, {getProfileThunkCreator})(WithRouterContainerComponent));
 
 export default ProfileContainer;
