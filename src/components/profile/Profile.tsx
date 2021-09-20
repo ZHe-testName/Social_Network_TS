@@ -21,13 +21,12 @@ export type PostsType = {
 
 export type ProfilePageType = {
   user: ProfileUserType,
-  isAuth: boolean,
 };
 
 
 function Profile(props: ProfilePageType) {
   //сделать увеличение избрпжения баннера рофиля
-    const {user, isAuth} = props;
+    const {user} = props;
 
     if (!user) {
       return (
@@ -35,7 +34,7 @@ function Profile(props: ProfilePageType) {
       );
     }
 
-    if (!isAuth) return <Redirect to='/login'/>
+    // if (!isAuth) return <Redirect to='/login'/>;
 
     return (
         <main className={classes.profile}>
