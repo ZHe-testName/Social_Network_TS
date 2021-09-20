@@ -4,7 +4,7 @@ import MyPostsContainer from './my-posts/MyPostsContainer';
 import { ProfileUserType } from '../../redux/reducers/profile-reducer';
 import Preloader from '../preloader/Preloader';
 import userPhoto from '../../imgs/images.png';
-import { Redirect } from 'react-router';
+import ProfileStatus from './profile-status/ProfileStatus';
 
 export type MainUserType = {
   name: string,
@@ -59,7 +59,7 @@ function Profile(props: ProfilePageType) {
 
               <div className="status">
                 <span className="city">Status: </span>
-                <span className="user-city">{user.aboutMe || 'no status'}</span>
+                <ProfileStatus/>
               </div>
 
               {/* <div className="education">
