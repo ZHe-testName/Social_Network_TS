@@ -1,0 +1,7 @@
+.status > div{
+    margin-left: 30px;
+}
+
+.status span{
+    cursor: pointer;
+}
