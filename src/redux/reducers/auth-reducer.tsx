@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { authAPI, usersAPI } from "../../api/dal";
+import { authAPI } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
 
 const SET_USER_DATA = 'SET_USER_DATA'; 

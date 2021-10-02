@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classes from "./profile_status.module.css";
 
 type StatusPropsType = {
@@ -10,15 +10,27 @@ function ProfileStatus(props: StatusPropsType) {
     const {title = 'no status', updateStatus} = props;
 
     const [editMode, setEditMode] = useState(false);
+    const [status, changeStatus] = useState(title);
 
     function onEditMode() {
         setEditMode(true);
     };
 
-    function offEditMode(e: any) {
-        updateStatus(e.target.value);
+    function offEditMode() {
+        updateStatus(status);
         setEditMode(false);
     };
+
+    function offEditModeWithEnter(e: any) {
+        if (e.code === 'Enter') {
+            updateStatus(status);
+            setEditMode(false);
+        };
+    };
+
+    function imputChangeHandler(e: any) {
+        changeStatus(e.target.value);
+    }
 
     return (
         <div className={classes.status}>
@@ -27,9 +39,11 @@ function ProfileStatus(props: StatusPropsType) {
 
                 ?<div>
                     <input 
-                        defaultValue={title}
+                        defaultValue={status}
                         autoFocus
-                        onBlur={e => offEditMode(e)}>
+                        onBlur={offEditMode}
+                        onKeyPress={e => offEditModeWithEnter(e)}
+                        onChange={e => imputChangeHandler(e)}>
                     </input>
                 </div>
 

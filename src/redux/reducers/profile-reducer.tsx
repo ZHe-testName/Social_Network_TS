@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 import {v1} from 'uuid';
-import { profileAPI, usersAPI } from '../../api/dal';
+import { profileAPI } from '../../api/dal';
 import { DispatchProfileUserActionType, DispatchUsersActionType } from '../../App';
 import { PostsType } from '../../components/profile/Profile';
 
