@@ -44,12 +44,26 @@ export const usersAPI = {
             : instance.post(`/follow/${userId}`)
                 .then(responce => responce.data.resultCode); 
     },
+};
 
+export const profileAPI = {
     getProfile (userId: string){
         return instance.get(`/profile/${userId}`)
                         .then(responce => responce.data);
     },
 
+    getProfileStatus (userId: string){
+        return instance.get(`/profile/status/${userId}`)
+                        .then(responce => responce.data);
+    },
+
+    setProfileStatus (newStatus: string){
+        return instance.put(`/profile/status`, {status: newStatus})
+                        .then(responce => responce.data.resultCode);
+    },
+};
+
+export const authAPI = {
     getAuthData (){
         return instance.get(`/auth/me`)
                         .then(responce => responce.data);

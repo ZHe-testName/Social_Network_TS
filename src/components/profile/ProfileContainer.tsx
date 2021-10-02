@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getProfileThunkCreator, ProfileDataType, ProfileUserType } from "../../redux/reducers/profile-reducer";
+import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator, ProfileDataType, ProfileUserType } from "../../redux/reducers/profile-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Profile from "./Profile";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -17,6 +17,8 @@ type MapStateToProps = {
 
 type MapDispatchToProps = {
     getProfileThunkCreator: (userId: string) => void,
+    updateStatusThunkCreator: (status: string) => void,
+    getStatusThunkCreator: (userId: string) => void,
 };
 
 type ProfilePropsType = RouteComponentProps<PathParamsType> & OwnProfilePropsType
@@ -31,9 +33,14 @@ class ProfileRequestContainer extends React.Component<ProfilePropsType, ProfileD
         };
 
         this.props.getProfileThunkCreator(userId);
+        this.props.getStatusThunkCreator(userId);
     }
+    
     render() {
-        return <Profile {...this.props} user={this.props.user}/>
+        return <Profile 
+                    {...this.props} 
+                    user={this.props.user} 
+                    updateStatus={this.props.updateStatusThunkCreator}/>
     }
 };
 
@@ -53,7 +60,9 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 //а вторым вызовом передается целевая компонента
 
 const ProfileContainer = compose<React.ComponentType>(
-                                    connect(mapStateToProps, {getProfileThunkCreator}),
+                                    connect(mapStateToProps, {  getProfileThunkCreator, 
+                                                                getStatusThunkCreator,
+                                                                updateStatusThunkCreator }),
                                     withRouter,
                                     withAuthReadirect,
                                 )(ProfileRequestContainer);

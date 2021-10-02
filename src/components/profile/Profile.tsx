@@ -21,6 +21,7 @@ export type PostsType = {
 
 export type ProfilePageType = {
   user: ProfileUserType,
+  updateStatus: (status: string) => void,
 };
 
 
@@ -59,7 +60,9 @@ function Profile(props: ProfilePageType) {
 
               <div className="status">
                 <span className="city">Status: </span>
-                <ProfileStatus/>
+                <ProfileStatus 
+                            title={user.status} 
+                            updateStatus={props.updateStatus}/>
               </div>
 
               {/* <div className="education">

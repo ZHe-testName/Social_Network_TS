@@ -1,12 +1,13 @@
 import { Dispatch } from 'react';
 import {v1} from 'uuid';
-import { usersAPI } from '../../api/dal';
+import { profileAPI, usersAPI } from '../../api/dal';
 import { DispatchProfileUserActionType, DispatchUsersActionType } from '../../App';
 import { PostsType } from '../../components/profile/Profile';
 
 const ADD_POST = 'ADD-POST',
   UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT',
-  SET_USER_PROFILE = 'SET_USER_PROFILE';
+  SET_USER_PROFILE = 'SET_USER_PROFILE',
+  SET_STATUS = 'SET_STATUS';
 
 
 // type InitialState = typeof initialState;
@@ -29,6 +30,7 @@ export type ProfileUserType = {
       github: string | null,
       mainLink: string | null,
     },
+    status: string,
     lookingForAJob: boolean,
     lookingForAJobDescription: string | null,
     fullName: string,
@@ -124,6 +126,17 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
         user: action.userProfile,
       };
 
+    case SET_STATUS :
+      if (!state.user) return state;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          status: action.status,
+        },
+      };
+
     default:
       return state;
   };
@@ -133,10 +146,31 @@ export const addPostCreator = (message: string) => ({type: ADD_POST, message});
 export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});
 
 const setUserProfile = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
+const setStatusAC = (status: string) => ({type: SET_STATUS, status});
+
+export const getStatusThunkCreator = (userId: string) => {
+  return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
+    profileAPI.getProfileStatus(userId)
+          .then(status => {
+            dispatch(setStatusAC(status))
+          });
+  };
+};
+
+export const updateStatusThunkCreator = (status: string) => {
+  return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
+    profileAPI.setProfileStatus(status)
+          .then(resCode => {
+            if (!resCode) {
+              dispatch(setStatusAC(status))
+            };
+          });
+  };
+};
 
 export const getProfileThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchUsersActionType>) => {
-    usersAPI.getProfile(userId)
+    profileAPI.getProfile(userId)
                     .then(data => {
                         dispatch(setUserProfile(data));
                     });

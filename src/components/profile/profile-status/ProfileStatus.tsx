@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./profile_status.module.css";
 
 type StatusPropsType = {
-    title?: string,
+    title: string,
+    updateStatus: (status: string) => void,
 };
 
 function ProfileStatus(props: StatusPropsType) {
-    const {title = 'no status'} = props;
+    const {title = 'no status', updateStatus} = props;
 
     const [editMode, setEditMode] = useState(false);
 
     function onEditMode() {
         setEditMode(true);
-    }
+    };
 
-    function offEditMode() {
+    function offEditMode(e: any) {
+        updateStatus(e.target.value);
         setEditMode(false);
-    }
-
+    };
 
     return (
         <div className={classes.status}>
@@ -26,9 +27,9 @@ function ProfileStatus(props: StatusPropsType) {
 
                 ?<div>
                     <input 
-                        value={title}
+                        defaultValue={title}
                         autoFocus
-                        onBlur={offEditMode}>
+                        onBlur={e => offEditMode(e)}>
                     </input>
                 </div>
 

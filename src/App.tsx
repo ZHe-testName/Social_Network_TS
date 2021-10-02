@@ -43,6 +43,7 @@ export type DispatchProfileUserActionType = {
   type: string,
   message?: string,
   userProfile?: ProfileUserType,
+  status: string,
 };
 
 
