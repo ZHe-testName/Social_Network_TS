@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./profile_status.module.css";
 
 type StatusPropsType = {
-    title: string,
+    titleStatus: string,
     updateStatus: (status: string) => void,
 };
 
 function ProfileStatus(props: StatusPropsType) {
-    const {title = 'no status', updateStatus} = props;
+    const {titleStatus = 'no status', updateStatus} = props;
 
     const [editMode, setEditMode] = useState(false);
-    const [status, changeStatus] = useState(title);
-
+    const [status, changeStatus] = useState(titleStatus);
+    console.log(titleStatus, status);
     function onEditMode() {
         setEditMode(true);
     };
@@ -30,7 +30,12 @@ function ProfileStatus(props: StatusPropsType) {
 
     function imputChangeHandler(e: any) {
         changeStatus(e.target.value);
-    }
+    };
+
+    useEffect(() => {
+        console.log('am useefect : '+ status);
+        changeStatus(status);
+    }, [status]);
 
     return (
         <div className={classes.status}>
@@ -50,7 +55,7 @@ function ProfileStatus(props: StatusPropsType) {
                 :<div>
                     <span
                         onDoubleClick={onEditMode}>
-                        {title}
+                        {status}
                     </span>
                 </div>
             }

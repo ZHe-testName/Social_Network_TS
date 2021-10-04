@@ -61,7 +61,7 @@ function Profile(props: ProfilePageType) {
               <div className="status">
                 <span className="city">Status: </span>
                 <ProfileStatus 
-                            title={user.status} 
+                            titleStatus={user.status} 
                             updateStatus={props.updateStatus}/>
               </div>
 

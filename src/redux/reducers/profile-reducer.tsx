@@ -145,13 +145,14 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
 export const addPostCreator = (message: string) => ({type: ADD_POST, message});
 export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});
 
-const setUserProfile = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
+const setUserProfileAC = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
 const setStatusAC = (status: string) => ({type: SET_STATUS, status});
 
 export const getStatusThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
     profileAPI.getProfileStatus(userId)
           .then(status => {
+            console.log(status);
             dispatch(setStatusAC(status))
           });
   };
@@ -162,6 +163,7 @@ export const updateStatusThunkCreator = (status: string) => {
     profileAPI.setProfileStatus(status)
           .then(resCode => {
             if (!resCode) {
+              console.log(resCode);
               dispatch(setStatusAC(status))
             };
           });
@@ -172,7 +174,8 @@ export const getProfileThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchUsersActionType>) => {
     profileAPI.getProfile(userId)
                     .then(data => {
-                        dispatch(setUserProfile(data));
+                      console.log(data);
+                        dispatch(setUserProfileAC(data));
                     });
   };
 };
