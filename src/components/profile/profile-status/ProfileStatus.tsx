@@ -1,3 +1,4 @@
+import { render } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import classes from "./profile_status.module.css";
 
@@ -6,61 +7,80 @@ type StatusPropsType = {
     updateStatus: (status: string) => void,
 };
 
-function ProfileStatus(props: StatusPropsType) {
-    const {titleStatus = 'no status', updateStatus} = props;
+type LocalStateType = {
+        editMode: boolean,
+        status: string,
+        updateStatus: (status: string) => void,
+};
 
-    const [editMode, setEditMode] = useState(false);
-    const [status, changeStatus] = useState(titleStatus);
-    console.log(titleStatus, status);
-    function onEditMode() {
-        setEditMode(true);
-    };
+class ProfileStatus extends React.Component<StatusPropsType> {
+    state = {
+        editMode: false,
+        status: this.props.titleStatus,
+        updateStatus: this.props.updateStatus,
+    }
 
-    function offEditMode() {
-        updateStatus(status);
-        setEditMode(false);
-    };
+    onEditMode = () => {
+        this.setState({
+            editMode: true,
+        });
+    }
 
-    function offEditModeWithEnter(e: any) {
+    offEditMode = () => {
+        this.state.updateStatus(this.state.status);
+
+        this.setState({
+            editMode: false,
+        });
+    }
+
+    offEditModeWithEnter = (e: any) => {
         if (e.code === 'Enter') {
-            updateStatus(status);
-            setEditMode(false);
+            this.offEditMode();
         };
-    };
+    }
 
-    function imputChangeHandler(e: any) {
-        changeStatus(e.target.value);
-    };
+    imputChangeHandler = (e: any) => {
+        this.setState({
+            status: e.target.value,
+        });
+    }
 
-    useEffect(() => {
-        console.log('am useefect : '+ status);
-        changeStatus(status);
-    }, [status]);
+    componentDidUpdate(prevProps: StatusPropsType, prevState: LocalStateType) {
+        if (prevProps.titleStatus !== this.props.titleStatus) {
+            this.setState({
+                status: this.props.titleStatus,
+            });
+        };
+    }
 
+   render() {
+       console.log('render' ,this.state.status , this.props.titleStatus);
     return (
         <div className={classes.status}>
             {
-                editMode 
+                this.state.editMode 
 
                 ?<div>
                     <input 
-                        defaultValue={status}
+                        defaultValue={this.state.status}
                         autoFocus
-                        onBlur={offEditMode}
-                        onKeyPress={e => offEditModeWithEnter(e)}
-                        onChange={e => imputChangeHandler(e)}>
+                        onBlur={this.offEditMode}
+                        onKeyPress={e => this.offEditModeWithEnter(e)}
+                        onChange={e => this.imputChangeHandler(e)}>
                     </input>
                 </div>
 
                 :<div>
                     <span
-                        onDoubleClick={onEditMode}>
-                        {status}
+                        onDoubleClick={this.onEditMode}>
+                        {this.state.status || 'no status'}
                     </span>
                 </div>
             }
         </div>
-    );
+    )
+   } 
 };
 
 export default ProfileStatus;

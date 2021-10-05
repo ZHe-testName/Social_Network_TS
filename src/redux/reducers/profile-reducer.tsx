@@ -152,7 +152,6 @@ export const getStatusThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
     profileAPI.getProfileStatus(userId)
           .then(status => {
-            console.log(status);
             dispatch(setStatusAC(status))
           });
   };
@@ -163,7 +162,6 @@ export const updateStatusThunkCreator = (status: string) => {
     profileAPI.setProfileStatus(status)
           .then(resCode => {
             if (!resCode) {
-              console.log(resCode);
               dispatch(setStatusAC(status))
             };
           });
@@ -174,7 +172,6 @@ export const getProfileThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchUsersActionType>) => {
     profileAPI.getProfile(userId)
                     .then(data => {
-                      console.log(data);
                         dispatch(setUserProfileAC(data));
                     });
   };
