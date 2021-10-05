@@ -1,0 +1,27 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    max-width: 280px;
+    height: 125px;
+    justify-content: space-between;
+}
+
+.form > input:last-of-type{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.form > div{
+    display: flex;
+    align-items: center;
+}
+
+    .form > div input{
+        margin-left: 10px;
+    }
+
+.form > button{
+    margin: 0px auto;
+    margin-top: 10px;
+    width: 90px;
+}
