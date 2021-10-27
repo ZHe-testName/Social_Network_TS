@@ -5,6 +5,7 @@ import { PostsType } from '../Profile';
 import NewPost from './new-post';
 import { MyPostsPropsType } from './MyPostsContainer';
 import { PostType } from '../../../redux/reducers/profile-reducer';
+import NewPostReduxForm from './new-post/NewPost';
   
   export type PostsPropsType = {
     posts: Array<PostsType>,

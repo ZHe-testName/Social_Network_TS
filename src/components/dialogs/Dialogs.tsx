@@ -4,36 +4,14 @@ import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
 import { DialogsPropsType } from './DialogsContainer';
+import { Field, reduxForm } from 'redux-form';
 
 
 function Dialogs(props: DialogsPropsType) {
     const {users, messages, newMessageText, onChangeHandler, sendMessageHandler} = props;
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
-    const sendButton = React.createRef<HTMLButtonElement>();
 
-    const onSendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
-        if (newMessageElement.current?.value){
-            const messageTxt = newMessageElement.current.value;
-
-            sendMessageHandler(messageTxt);
-
-            e.currentTarget.classList.add(classes.send_message_button_on_click);
-        }
-
-    };
-
-    const onBlurHandler = (e: FocusEvent<HTMLButtonElement>) => {
-        e.currentTarget.classList.remove(classes.send_message_button_on_click);
-    };
-
-    const onChangeTextHandler = () => {
-        if (newMessageElement.current?.value){
-            const messageTxt = newMessageElement.current.value;
-
-            onChangeHandler(messageTxt);
-        };
-    };
 
     // const onEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     //     console.log(e);
@@ -58,32 +36,54 @@ function Dialogs(props: DialogsPropsType) {
                     <Conversation messages={messages} />
                 </div>
 
-                <div className={classes.new_message_panel}>
-                    <textarea   
-                            value={newMessageText}
-                            ref={newMessageElement}
-                            rows={1}
-                            placeholder="Typing here..."
-                            onChange={onChangeTextHandler}>
-
-                    </textarea>
-
-                    <div className={classes.send_button_gag}></div>
-
-                    <button 
-                            className={classes.send_message_button}
-                            ref={sendButton}
-                            onClick={onSendMessageHandler}
-                            onBlur={onBlurHandler}> Send </button>
-
-                    {/* <div className={classes.send_button_wrap}>
-                        
-                    </div> */}
-
-                </div>
+                <SendMessageReduxForm />
             </div>
         </div>
     );
 };
+
+const SendMessageForm = (prpos: any) => {
+    const sendButton = React.createRef<HTMLButtonElement>();
+
+    const onSendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
+            e.currentTarget.classList.add(classes.send_message_button_on_click);
+    };
+
+    const onBlurHandler = (e: FocusEvent<HTMLButtonElement>) => {
+        e.currentTarget.classList.remove(classes.send_message_button_on_click);
+    };
+
+
+    return (
+        <form 
+            className={classes.new_message_panel}
+            onSubmit={prpos.handleSubmit}>
+            {/* <textarea   
+                    value={newMessageText}
+                    ref={newMessageElement}
+                    rows={1}
+                    placeholder="Typing here..."
+                    onChange={onChangeTextHandler}>
+
+            </textarea> */}
+            <Field component="textarea" rows="1" name="sendMessageField" placeholder="Typing here..."/>
+
+            <div className={classes.send_button_gag}></div>
+
+            <button 
+                    className={classes.send_message_button}
+                    ref={sendButton}
+                    onClick={onSendMessageHandler}
+                    onBlur={onBlurHandler}> Send </button>
+
+            {/* <div className={classes.send_button_wrap}>
+                
+            </div> */}
+
+    </form>
+    );
+};
+
+const SendMessageReduxForm = reduxForm({form: 'sendMessageField'})(SendMessageForm);
 
 export default Dialogs;

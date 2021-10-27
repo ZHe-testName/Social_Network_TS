@@ -7,7 +7,7 @@ function LoginForm(props: any) {
         <form 
             onSubmit={props.handleSubmit}
             className={classes.form}>
-                <Field component="input" name="login" placeholder='Login'/>
+                <Field component="input" name="email" placeholder='Email'/>
                 <Field component="input" name="password" placeholder='Password'/>
 
                 <div>                        

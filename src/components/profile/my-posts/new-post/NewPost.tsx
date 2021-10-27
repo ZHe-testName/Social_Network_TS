@@ -1,13 +1,16 @@
 import React from 'react';
+import { compose } from 'redux';
+import { Field, reduxForm } from 'redux-form';
 import classes from './newpost.module.css';
 
 type NewPostPropsType = {
     newPostText: string,
-    addNewPostHandler: (text: string) => void;
-    onChangeHandler: (text: string) => void;
-};
+    addNewPostHandler: (text: string) => void,
+    onChangeHandler: (text: string) => void,
+    handleSubmit: () => void,
+ };
 
-function NewPost(props: NewPostPropsType) {
+function NewPost(props: any) {
     const {newPostText, addNewPostHandler, onChangeHandler} = props;
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -29,21 +32,26 @@ function NewPost(props: NewPostPropsType) {
     };
 
     return (
-        <div className={classes.new_post}>
-            <textarea  
+        <form 
+            className={classes.new_post}
+            onSubmit={props.handleSubmit}>
+            <Field  
+                    component="textarea"
+                    name="textarea"
                     value={newPostText}
-                    ref={newPostElement}
+                    // ref={newPostElement}
                     cols={90} 
                     rows={5} 
                     placeholder="Typing your post here..."
-                    onChange={onChangeTextHandler}>
-                
-            </textarea>
+                    onChange={onChangeTextHandler} />
             
             <button className="send"
-                    onClick={onAddNewPostHandler}>Add post</button>
-        </div>
+                    // onClick={onAddNewPostHandler}
+                    >Add post</button>
+        </form>
     );
 };
+
+// const NewPostReduxForm = compose<React.ComponentType>(reduxForm({form: 'newPost'}))(NewPost);
 
 export default NewPost;
