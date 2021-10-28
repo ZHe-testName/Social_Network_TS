@@ -19,7 +19,6 @@ export type DialogsMessageType = {
 export type InitialStateType = typeof initialState;
 
 const SEND_MESSAGE = 'SEND_MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 const initialState =  {
   users: [
@@ -117,8 +116,6 @@ const initialState =  {
       avaUrl: 'https://slovnet.ru/wp-content/uploads/2019/01/1-17.jpg',
     },
   ] as Array<DialogsMessageType>,
-
-  newMessageText: '',
 }
 
 
@@ -138,17 +135,10 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
             return {
               ...state,
               messages: [...state.messages, messageObj],
-              newMessageText: '',
             };
-}
-          case UPDATE_NEW_MESSAGE_TEXT:{
-            if (!action.message) return state;
+          
+          }
 
-            return {
-              ...state,
-              newMessageText: action.message,
-            };
-}
           default:
             return state;
         };
@@ -156,5 +146,3 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
 };
 
 export const addSendMessageCreator = (message: string) => ({type: SEND_MESSAGE, message});
-
-export const onChangeMessageCreator = (message: string)  => ({type: UPDATE_NEW_MESSAGE_TEXT, message});

@@ -4,14 +4,15 @@ import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
 import { DialogsPropsType } from './DialogsContainer';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+
+type MessageFormType = {
+    sendMessageField: string,
+};
 
 
 function Dialogs(props: DialogsPropsType) {
-    const {users, messages, newMessageText, onChangeHandler, sendMessageHandler} = props;
-
-    const newMessageElement = React.createRef<HTMLTextAreaElement>();
-
+    const {users, messages, sendMessageHandler} = props;
 
     // const onEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     //     console.log(e);
@@ -20,7 +21,10 @@ function Dialogs(props: DialogsPropsType) {
     //     }
     // };
 
-    // if (!isAuth) return <Redirect to='/login'/>
+    // if (!isAuth) return <Redirect to='/login'/> props , newMessageText, onChangeHandler, sendMessageHandler
+    const addMessage = (formData: MessageFormType) => {
+        sendMessageHandler(formData.sendMessageField);
+    };
     
     return (
         <div className={classes.dialogs_wrap}>
@@ -36,15 +40,13 @@ function Dialogs(props: DialogsPropsType) {
                     <Conversation messages={messages} />
                 </div>
 
-                <SendMessageReduxForm />
+                <SendMessageReduxForm onSubmit={addMessage}/>
             </div>
         </div>
     );
 };
 
-const SendMessageForm = (prpos: any) => {
-    const sendButton = React.createRef<HTMLButtonElement>();
-
+const SendMessageForm: React.FC<InjectedFormProps<MessageFormType>> = (props) => {
     const onSendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
             e.currentTarget.classList.add(classes.send_message_button_on_click);
     };
@@ -57,22 +59,14 @@ const SendMessageForm = (prpos: any) => {
     return (
         <form 
             className={classes.new_message_panel}
-            onSubmit={prpos.handleSubmit}>
-            {/* <textarea   
-                    value={newMessageText}
-                    ref={newMessageElement}
-                    rows={1}
-                    placeholder="Typing here..."
-                    onChange={onChangeTextHandler}>
+            onSubmit={props.handleSubmit}>
 
-            </textarea> */}
             <Field component="textarea" rows="1" name="sendMessageField" placeholder="Typing here..."/>
 
             <div className={classes.send_button_gag}></div>
 
             <button 
                     className={classes.send_message_button}
-                    ref={sendButton}
                     onClick={onSendMessageHandler}
                     onBlur={onBlurHandler}> Send </button>
 
@@ -84,6 +78,6 @@ const SendMessageForm = (prpos: any) => {
     );
 };
 
-const SendMessageReduxForm = reduxForm({form: 'sendMessageField'})(SendMessageForm);
+const SendMessageReduxForm = reduxForm<MessageFormType>({form: 'sendMessageField'})(SendMessageForm);
 
 export default Dialogs;
