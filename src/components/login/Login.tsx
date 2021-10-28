@@ -1,8 +1,8 @@
 import React from "react";
-import LoginReduxForm from "./login-form/LoginForm";
+import LoginReduxForm, { LoginFormFieldsType } from "./login-form/LoginForm";
 
-function Login(props: any) {
-    const onSubmit = (formData: any) => {
+function Login() {
+    const onSubmit = (formData: LoginFormFieldsType) => {
         console.log(formData);
     };
 

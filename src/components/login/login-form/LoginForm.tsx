@@ -1,13 +1,20 @@
 import React from "react";
 import classes from "./login_form.module.css";
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 
-function LoginForm(props: any) {
+export type LoginFormFieldsType = {
+    email: string,
+    password: string,
+    rememberMe: string,
+};
+
+const LoginForm: React.FC<InjectedFormProps<LoginFormFieldsType>> = (props) => {
     return (
         <form 
             onSubmit={props.handleSubmit}
             className={classes.form}>
                 <Field component="input" name="email" placeholder='Email'/>
+
                 <Field component="input" name="password" placeholder='Password'/>
 
                 <div>                        
@@ -35,6 +42,6 @@ function LoginForm(props: any) {
 //в контейнерную компоненту нужно передать функцию onSubmit 
 //для того чтобы реагировать насобитие из вне
 //он первым аргументом пронимает объект с данными формы
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+const LoginReduxForm = reduxForm<LoginFormFieldsType>({form: 'login'})(LoginForm);
 
 export default LoginReduxForm;

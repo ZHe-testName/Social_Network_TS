@@ -1,14 +1,13 @@
 import React from 'react';
-import { compose } from 'redux';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import classes from './newpost.module.css';
 
-type NewPostPropsType = {
-    // newPostText: string,
-    // addNewPostHandler: (text: string) => void,
-    // onChangeHandler: (text: string) => void,
-    // handleSubmit: () => void,
- };
+// type NewPostPropsType = {
+//     // newPostText: string,
+//     // addNewPostHandler: (text: string) => void,
+//     // onChangeHandler: (text: string) => void,
+//     // handleSubmit: () => void,
+//  };
 
 export type AddPostFormDataType = {
     addPostField: string,
