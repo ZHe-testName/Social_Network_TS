@@ -15,7 +15,7 @@ const ADD_POST = 'ADD-POST',
 export type ProfileDataType = {
   user: ProfileUserType,
   posts: Array<PostsType>,
-  newPostText: string,
+  // newPostText: string,
 };
 
 export type ProfileUserType = {
@@ -90,7 +90,6 @@ const initialState: ProfileDataType = {
     {text: 'Stupid post', likes: 21, dislikes: 1110, id: v1()},
     {text: 'Best ever post', likes: 2121, dislikes: 110, id: v1()},
   ],
-  newPostText: '',
 };
 
 export const profileReducer = (state: ProfileDataType = initialState, action: DispatchProfileUserActionType): ProfileDataType => {
@@ -107,15 +106,6 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
       return {
         ...state,
         posts: [newPost, ...state.posts],
-        newPostText: '',
-      };
-        
-    case UPDATE_NEW_POST_TEXT:
-      if (!action.message) return state;
-
-      return {
-        ...state,
-        newPostText: action.message,
       };
 
     case SET_USER_PROFILE :
@@ -143,7 +133,6 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
 };
 
 export const addPostCreator = (message: string) => ({type: ADD_POST, message});
-export const onChangePostCreator = (message: string)  => ({type: UPDATE_NEW_POST_TEXT, message});
 
 const setUserProfileAC = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
 const setStatusAC = (status: string) => ({type: SET_STATUS, status});
