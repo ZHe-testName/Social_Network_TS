@@ -1,35 +1,42 @@
 import React from 'react';
 import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import classes from './newpost.module.css';
 
 type NewPostPropsType = {
     newPostText: string,
     addNewPostHandler: (text: string) => void,
-    onChangeHandler: (text: string) => void,
-    handleSubmit: () => void,
+    // onChangeHandler: (text: string) => void,
+    // handleSubmit: () => void,
  };
 
-function NewPost(props: any) {
-    const {newPostText, addNewPostHandler, onChangeHandler} = props;
+type AddPostFormDataType = {
+    addPostField: string,
+};
 
-    const newPostElement = React.createRef<HTMLTextAreaElement>();
+const NewPost: React.FC<InjectedFormProps<AddPostFormDataType>> = (props) => {
+    // const {newPostText, addNewPostHandler} = props;
 
-    const onAddNewPostHandler = () => {
-        if (newPostElement.current?.value){
-            const textAreaValue = newPostElement.current.value;
+    // const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-            addNewPostHandler(textAreaValue);
-        };
+    const onAddNewPostHandler = (formData: AddPostFormDataType) => {
+        console.log(formData);
+        // if (newPostElement.current?.value){
+        //     const textAreaValue = newPostElement.current.value;
+
+        //     addNewPostHandler(textAreaValue);
+        // };
+
+        // addNewPostHandler(textAreaValue);
     };
 
-    const onChangeTextHandler = () => {
-        if (newPostElement.current?.value){
-            const textAreaValue = newPostElement.current.value;
+    // const onChangeTextHandler = () => {
+    //     if (newPostElement.current?.value){
+    //         const textAreaValue = newPostElement.current.value;
 
-            onChangeHandler(textAreaValue);
-        };
-    };
+    //         onChangeHandler(textAreaValue);
+    //     };
+    // };
 
     return (
         <form 
@@ -37,13 +44,12 @@ function NewPost(props: any) {
             onSubmit={props.handleSubmit}>
             <Field  
                     component="textarea"
-                    name="textarea"
-                    value={newPostText}
+                    name="addPostField"
+                    // value={newPostText}
                     // ref={newPostElement}
                     cols={90} 
                     rows={5} 
-                    placeholder="Typing your post here..."
-                    onChange={onChangeTextHandler} />
+                    placeholder="Typing your post here..."/>
             
             <button className="send"
                     // onClick={onAddNewPostHandler}
@@ -52,6 +58,6 @@ function NewPost(props: any) {
     );
 };
 
-// const NewPostReduxForm = compose<React.ComponentType>(reduxForm({form: 'newPost'}))(NewPost);
+const NewPostReduxForm = reduxForm<AddPostFormDataType>({form: 'newPost'})(NewPost);
 
-export default NewPost;
+// export default NewPost;

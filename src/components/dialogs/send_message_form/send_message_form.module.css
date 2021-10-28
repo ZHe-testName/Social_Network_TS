@@ -1,0 +1,61 @@
+@keyframes send_arrow_animation {
+    0%{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(0px);
+    }
+    30%{
+        clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(0px) scale(1.2);
+    }
+    70%{
+        clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(-40px)  scale(0);
+    }
+    100%{
+        clip-path: polygon(50% 0, 50% 0, 100% 100%, 100% 100%, 70% 100%, 30% 100%, 0 100%, 0 100%);
+        transform: translateY(0px);
+    }
+}
+
+.new_message_panel{
+    display: flex;
+    position: relative;
+    position: sticky;
+    bottom: 0px;
+}
+
+    .new_message_panel > textarea{
+        flex-grow: 1;
+        margin-top: 5px;
+        padding: 5px;
+        resize: none;
+        outline: none;
+        overflow: hidden;
+        border-radius: 5px;
+        border: 1px solid rgb(112, 112, 112);
+        background-color: rgba(228, 228, 228, 0.87);
+    }
+
+    .new_message_panel > textarea:focus{
+        background-color: rgb(228, 228, 228);
+    }
+
+    .send_message_button{
+        position: absolute;
+        right: -1px;
+        top: 6px;
+        width: 60px;
+        height: 25px;
+        border: none;
+        background-color: var(--blue);
+    }
+
+    .send_message_button_on_click{
+        animation-name: send_arrow_animation;
+        animation-duration: 0.4s;
+    }
+    
+    .send_button_gag{
+        width: 60px;
+        height: 25px;
+    }

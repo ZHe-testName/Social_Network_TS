@@ -1,15 +1,9 @@
 import React, {FocusEvent, MouseEvent} from 'react';
-
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';
 import { DialogsPropsType } from './DialogsContainer';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-
-type MessageFormType = {
-    sendMessageField: string,
-};
-
+import SendMessageReduxForm, { MessageFormType } from './send_message_form/SendMessageReduxForm';
 
 function Dialogs(props: DialogsPropsType) {
     const {users, messages, sendMessageHandler} = props;
@@ -21,7 +15,7 @@ function Dialogs(props: DialogsPropsType) {
     //     }
     // };
 
-    // if (!isAuth) return <Redirect to='/login'/> props , newMessageText, onChangeHandler, sendMessageHandler
+    // if (!isAuth) return <Redirect to='/login'/> 
     const addMessage = (formData: MessageFormType) => {
         sendMessageHandler(formData.sendMessageField);
     };
@@ -45,39 +39,5 @@ function Dialogs(props: DialogsPropsType) {
         </div>
     );
 };
-
-const SendMessageForm: React.FC<InjectedFormProps<MessageFormType>> = (props) => {
-    const onSendMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
-            e.currentTarget.classList.add(classes.send_message_button_on_click);
-    };
-
-    const onBlurHandler = (e: FocusEvent<HTMLButtonElement>) => {
-        e.currentTarget.classList.remove(classes.send_message_button_on_click);
-    };
-
-
-    return (
-        <form 
-            className={classes.new_message_panel}
-            onSubmit={props.handleSubmit}>
-
-            <Field component="textarea" rows="1" name="sendMessageField" placeholder="Typing here..."/>
-
-            <div className={classes.send_button_gag}></div>
-
-            <button 
-                    className={classes.send_message_button}
-                    onClick={onSendMessageHandler}
-                    onBlur={onBlurHandler}> Send </button>
-
-            {/* <div className={classes.send_button_wrap}>
-                
-            </div> */}
-
-    </form>
-    );
-};
-
-const SendMessageReduxForm = reduxForm<MessageFormType>({form: 'sendMessageField'})(SendMessageForm);
 
 export default Dialogs;
