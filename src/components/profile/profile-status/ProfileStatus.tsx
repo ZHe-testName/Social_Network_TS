@@ -7,9 +7,9 @@ type StatusPropsType = {
 };
 
 type LocalStateType = {
-        editMode: boolean,
-        status: string,
-        updateStatus: (status: string) => void,
+    editMode: boolean,
+    status: string,
+    updateStatus: (status: string) => void,
 };
 
 class ProfileStatus extends React.Component<StatusPropsType> {

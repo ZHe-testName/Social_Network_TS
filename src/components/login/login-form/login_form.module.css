@@ -1,4 +1,4 @@
-.form{
+.formWrap{
     display: flex;
     flex-direction: column;
     max-width: 280px;
@@ -6,21 +6,21 @@
     justify-content: space-between;
 }
 
-.form > input:last-of-type{
+.formWrap > input:last-of-type{
     margin-top: 15px;
     margin-bottom: 30px;
 }
 
-.form > div{
+.formWrap > div{
     display: flex;
     align-items: center;
 }
 
-    .form > div input{
+    .formWrap > div input{
         margin-left: 10px;
     }
 
-.form > button{
+.formWrap > button{
     margin: 0px auto;
     margin-top: 10px;
     width: 90px;

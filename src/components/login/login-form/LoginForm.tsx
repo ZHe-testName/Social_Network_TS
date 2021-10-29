@@ -12,7 +12,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormFieldsType>> = (props) => {
     return (
         <form 
             onSubmit={props.handleSubmit}
-            className={classes.form}>
+            className={classes.formWrap}>
                 <Field component="input" name="email" placeholder='Email'/>
 
                 <Field component="input" name="password" placeholder='Password'/>

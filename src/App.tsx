@@ -88,7 +88,7 @@ function App() {
           нужный нам id 
           знак вопроса означаеть что параметр не обязателен
           чтобы мы могли отображать профайл с пустым id
-          если там пусто то в объекте withRouter -a наш параметр будет underfined
+          если там пусто то в объекте withRouter-a наш параметр будет underfined
           к этому нужно быть готовым*/}
           <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
           <Route path="/music" component={Music}/>
