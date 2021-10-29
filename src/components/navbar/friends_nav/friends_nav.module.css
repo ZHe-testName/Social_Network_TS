@@ -23,9 +23,12 @@
     padding: 10px;
     perspective: 250px;
     perspective-origin: center center;
-    background: rgb(2,0,36);
     background: radial-gradient(circle, rgb(98 172 190)0%, rgb(121 207 228) 30%, var(--lightblue) 68%, var(--lightblue) 100%);
 }
+
+    .friends_block > li{
+        transform: rotate3d(-3, 0, 0, 28deg);
+    }
 
     .friend_avatar_box{
         position: relative;
@@ -38,12 +41,11 @@
         padding-top: 0px;
         border: 1px solid var(--blue);
         background-color: var(--blue_deep);
-        transform: rotate3d(-3, 0, 0, 28deg);
         text-decoration: none;
         color: black;
     }
 
-    .friend_avatar_box:hover{
+    .friends_block > li:hover{
         animation-name: hover_animation;
         animation-duration: 0.2s;
         animation-direction: normal;

@@ -1,4 +1,4 @@
-import React, {FocusEvent, MouseEvent} from 'react';
+import React from 'react';
 import classes from './dialogs.module.css';
 import Conversation from './conversation';
 import DialogsNav from './dalogs_nav';

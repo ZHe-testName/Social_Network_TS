@@ -8,13 +8,9 @@ const ADD_POST = 'ADD-POST',
   SET_USER_PROFILE = 'SET_USER_PROFILE',
   SET_STATUS = 'SET_STATUS';
 
-
-// type InitialState = typeof initialState;
-
 export type ProfileDataType = {
   user: ProfileUserType,
   posts: Array<PostsType>,
-  // newPostText: string,
 };
 
 export type ProfileUserType = {
