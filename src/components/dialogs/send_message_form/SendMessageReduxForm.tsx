@@ -32,7 +32,7 @@ const SendMessageForm: React.FC<InjectedFormProps<MessageFormType>> = (props) =>
                 //а свой, кстомный компонент react
                 //нужно передать эго как значение в Filel в атрибут component
                 component={Textarea} 
-                rows="1" 
+                rows={1} 
                 name="sendMessageField" 
                 placeholder="Typing here..."
                 //В поле validate мы передаем массив нужных валидаторов
