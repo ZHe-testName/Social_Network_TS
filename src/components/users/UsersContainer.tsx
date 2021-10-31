@@ -8,7 +8,7 @@ import { changePage,
         UserType, 
         getUsersThunkCreator,
         changePageThunkCreator,
-        followSwitchingThunkCreator} from "../../redux/reducers/uders-reducer";
+        followSwitchingThunkCreator} from "../../redux/reducers/users-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";

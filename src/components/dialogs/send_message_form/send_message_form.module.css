@@ -24,8 +24,13 @@
     bottom: 0px;
 }
 
-    .new_message_panel > textarea{
+    .messageFieald{
         flex-grow: 1;
+        padding-left: 5px;
+    }
+
+    .new_message_panel textarea{
+        width: 95%;
         margin-top: 5px;
         padding: 5px;
         resize: none;
@@ -36,13 +41,13 @@
         background-color: rgba(228, 228, 228, 0.87);
     }
 
-    .new_message_panel > textarea:focus{
+    .new_message_panel textarea:focus{
         background-color: rgb(228, 228, 228);
     }
 
     .send_message_button{
         position: absolute;
-        right: -1px;
+        right: 5px;
         top: 6px;
         width: 60px;
         height: 25px;

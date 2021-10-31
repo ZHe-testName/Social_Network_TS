@@ -1,6 +1,6 @@
 import classes from './users.module.css';
 import userPhoto from '../../imgs/images.png';
-import { UserType } from '../../redux/reducers/uders-reducer';
+import { UserType } from '../../redux/reducers/users-reducer';
 import { NavLink } from 'react-router-dom';
 
 type UsersType = {

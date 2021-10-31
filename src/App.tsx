@@ -15,7 +15,7 @@ import News from './components/news';
 import store from './redux/bll';
 // import { UserObjType } from './redux/reducers/uders-reducer';
 import UsersContainer from './components/users/UsersContainer';
-import { UserType } from './redux/reducers/uders-reducer';
+import { UserType } from './redux/reducers/users-reducer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import { ProfileUserType } from './redux/reducers/profile-reducer';
 import { HeaderContainer } from './components/header/HeaderComponent';

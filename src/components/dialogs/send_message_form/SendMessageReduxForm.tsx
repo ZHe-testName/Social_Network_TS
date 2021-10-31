@@ -1,10 +1,14 @@
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import React, {FocusEvent, MouseEvent} from 'react';
 import classes from './send_message_form.module.css';
+import { maxLengthCreator, required } from '../../../utils/validator';
+import Textarea from '../../../custom_form_controls/textarea/Textarea';
 
 export type MessageFormType = {
     sendMessageField: string,
 };
+
+const maxLengthValidator = maxLengthCreator(10);
 
 
 const SendMessageForm: React.FC<InjectedFormProps<MessageFormType>> = (props) => {
@@ -22,7 +26,17 @@ const SendMessageForm: React.FC<InjectedFormProps<MessageFormType>> = (props) =>
             className={classes.new_message_panel}
             onSubmit={props.handleSubmit}>
 
-            <Field component="textarea" rows="1" name="sendMessageField" placeholder="Typing here..."/>
+            <Field 
+                wrapClassName={classes.messageFieald}
+                //чтобы отрендерить не стандартный html элемент 
+                //а свой, кстомный компонент react
+                //нужно передать эго как значение в Filel в атрибут component
+                component={Textarea} 
+                rows="1" 
+                name="sendMessageField" 
+                placeholder="Typing here..."
+                //В поле validate мы передаем массив нужных валидаторов
+                validate={[required, maxLengthValidator]}/>
 
             <div className={classes.send_button_gag}></div>
 

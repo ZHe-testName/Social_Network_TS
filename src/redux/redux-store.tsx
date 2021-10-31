@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { profileReducer } from './reducers/profile-reducer';
 import { dialogsReducer } from './reducers/dialogs-reducer';
 import { navbarReducer } from './reducers/navbar-reducer';
-import { usersReducer } from './reducers/uders-reducer';
+import { usersReducer } from './reducers/users-reducer';
 import { authReducer } from './reducers/auth-reducer';
 //подключаем formReducer из спец библиотеки redux для работы с формами
 import { reducer as formReducer } from 'redux-form';
