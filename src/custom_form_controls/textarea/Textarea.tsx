@@ -1,21 +1,24 @@
 import React from 'react';
-import { InjectedFormProps } from 'redux-form';
+import { WrappedFieldProps } from 'redux-form';
 
 import classes from './textarea.module.css';
 
 type CustomProps = {
-    rows: number,
-    wrapClassName: string,
-    placeholder: string,
+    rows?: number,
+    cols?: number,
+    wrapclassname?: string,
+    placeholder?: string,
 };
 
-const Textarea = (props:CustomProps & InjectedFormProps) => {
-    console.log(props);
+const Textarea: React.FC<WrappedFieldProps & CustomProps> = ({meta, input, ...restProps}) => {
+    const hasError = meta.touched && meta.error;
+
     return (
-        <div 
-            className={props.wrapClassName}>
+        <div className={`${classes.textareaWrap} ${restProps.wrapclassname}`}>
             <textarea 
-                    rows={props.rows}></textarea>
+                    {...input}
+                    {...restProps}
+                    className={`${hasError ? classes.error : ''}`}></textarea>
         </div>
     );
 };

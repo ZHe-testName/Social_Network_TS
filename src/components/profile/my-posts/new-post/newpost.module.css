@@ -16,7 +16,7 @@
     padding: 10px;
 }
 
-    .new_post > textarea{
+    .new_post textarea{
         display: block;
         box-sizing: border-box;
         width: 100%;

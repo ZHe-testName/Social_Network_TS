@@ -1,3 +1,7 @@
 .textareaWrap{
     margin: 0px;
 }
+
+.textareaWrap > textarea.error{
+    border: 2px solid tomato;
+}

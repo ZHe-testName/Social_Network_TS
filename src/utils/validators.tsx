@@ -3,6 +3,7 @@
 //для валидации форм
 
 //они передаются в нужные поля как атрибут validate
+//возвращают либо текст ошибки либо андефайнед
 export const required = (value: string) => {
     if (value) return undefined;
 
