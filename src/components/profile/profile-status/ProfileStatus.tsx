@@ -45,13 +45,14 @@ class ProfileStatus extends React.Component<StatusPropsType> {
         });
     }
 
-    componentDidUpdate(prevProps: StatusPropsType, prevState: LocalStateType) {
-        if (prevProps.titleStatus !== this.props.titleStatus) {
-            this.setState({
-                status: this.props.titleStatus,
-            });
-        };
-    }
+    // componentDidUpdate(prevProps: StatusPropsType, prevState: LocalStateType) {
+    //     console.log('yo');
+    //     if (prevProps.titleStatus !== this.props.titleStatus) {
+    //         this.setState({
+    //             status: this.props.titleStatus,
+    //         });
+    //     };
+    // }
 
    render() {
        console.log('render' ,this.state.status , this.props.titleStatus);
