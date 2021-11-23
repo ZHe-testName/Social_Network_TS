@@ -5,3 +5,7 @@
 .textareaWrap > textarea.error{
     border: 2px solid tomato;
 }
+
+.textareaWrap > div{
+    color: tomato;
+}

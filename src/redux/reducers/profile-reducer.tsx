@@ -91,6 +91,7 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
   switch (action.type){
     case ADD_POST:
       if (!action.message) return state;
+      
       const newPost = {
         text: action.message.trim(),
         likes: 0,
