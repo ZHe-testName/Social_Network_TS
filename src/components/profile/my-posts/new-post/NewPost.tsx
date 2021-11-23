@@ -32,6 +32,7 @@ const NewPost: React.FC<InjectedFormProps<AddPostFormDataType>> = (props) => {
                 validate={[required, maxLength10]}/>
             
             <button 
+                type='submit'
                 className="send">Add post</button>
         </form>
     );

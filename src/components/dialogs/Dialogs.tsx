@@ -17,6 +17,7 @@ function Dialogs(props: DialogsPropsType) {
 
     // if (!isAuth) return <Redirect to='/login'/> 
     const addMessage = (formData: MessageFormType) => {
+        console.log(formData);
         sendMessageHandler(formData.sendMessageField);
     };
     

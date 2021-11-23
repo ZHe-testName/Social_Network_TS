@@ -12,18 +12,17 @@ type CustomProps = {
 };
 
 const Textarea: React.FC<WrappedFieldProps & CustomProps> = ({meta, input, ...restProps}) => {
-    // const hasError = meta.touched && meta.error;
+    const hasError = meta.touched && meta.error;
 
     return (
         <div className={`${classes.textareaWrap} ${restProps.wrapclassname}`}>
             <textarea 
-                    name={restProps.nameOfField}
-                    // {...input}
-                    // {...restProps}
-                    // className={`${hasError ? classes.error : ''}`}
+                    {...input}
+                    {...restProps}
+                    className={`${hasError ? classes.error : ''}`}
                     ></textarea>
             
-            {/* {hasError && <div>{meta.error}</div>} */}
+            {hasError && <div>{meta.error}</div>}
         </div>
     );
 };

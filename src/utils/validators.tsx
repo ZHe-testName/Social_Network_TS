@@ -7,7 +7,7 @@
 export const required = (value: string) => {
     if (value) return undefined;
 
-    return 'Field id required';
+    return 'Field is required';
 };
 
 //для возможности передачи каких либо входных данных
