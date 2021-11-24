@@ -1,4 +1,5 @@
 import axios from "axios";
+import { type } from "os";
 
 //axios.create - воспомагательная функция котроая возвращает екземпляр обьъкта 
 //в котором можно задать базовые параметры запроса
@@ -29,6 +30,12 @@ export type GetUsersRequestType = {
     error: string | null,
     items: Array<RequestItemsType>,
     totalCount: number,
+};
+
+export type LoginRequestObj = {
+    email: string,
+    password: string,
+    rememberMe: boolean,
 };
 
 export const usersAPI = {
@@ -68,5 +75,14 @@ export const authAPI = {
     getAuthData (){
         return instance.get(`/auth/me`)
                         .then(responce => responce.data);
+    },
+
+    login (loginData: LoginRequestObj){
+        return instance.post(`/auth/login`, {...loginData});
+    },
+
+    logout (){
+        return instance.delete(`/auth/login`)
+                        .then(responce => responce.data.resultCode);
     },
 };

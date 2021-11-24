@@ -5,7 +5,7 @@ import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 export type LoginFormFieldsType = {
     email: string,
     password: string,
-    rememberMe: string,
+    rememberMe: boolean,
 };
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormFieldsType>> = (props) => {

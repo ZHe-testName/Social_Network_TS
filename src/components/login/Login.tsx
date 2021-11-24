@@ -1,9 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import { loginThunkCreator } from "../../redux/reducers/auth-reducer";
 import LoginReduxForm, { LoginFormFieldsType } from "./login-form/LoginForm";
+
+type MapDispatchToPropsType = {
+    loginThunkCreator: (formData: LoginFormFieldsType) => void;
+};
 
 function Login() {
     const onSubmit = (formData: LoginFormFieldsType) => {
-        console.log(formData);
+        loginThunkCreator(formData);
     };
 
     return (
@@ -16,5 +22,7 @@ function Login() {
         </>
     );
 };
+
+// const Login = connect(null, {loginThunkCreator})(LoginComponent);
 
 export default Login;

@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { authAPI } from "../../api/dal";
+import { authAPI, LoginRequestObj } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
 
 const SET_USER_DATA = 'SET_USER_DATA'; 
@@ -17,7 +17,7 @@ export type DataObjectType = {
 
 export type ActionType = {
     type: string,
-    data?: AuthStateType,
+    payload?: AuthStateType,
 };
 
 const initialState = {
@@ -32,7 +32,7 @@ export const authReducer = (state: AuthStateType = initialState, action: ActionT
         case SET_USER_DATA:
             return {
                     ...state,
-                    ...action.data,
+                    ...action.payload,
                     isAuth: true,
                 };
 
@@ -49,6 +49,36 @@ export const getUserAuthDataThunkCreator = () => {
             .then(data => {
                 if (data.resultCode === 0){
                     dispatch(setUserAuthDataActionCreator(data.data));
+                }
+            })
+    };
+};
+
+export const loginThunkCreator = (userData: LoginRequestObj) => {
+    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+        authAPI.login({...userData})
+            .then(data => {
+                console.log(data);
+                if (data.data.resultCode === 0){
+                    console.log(data);
+                    // dispatch(getUserAuthDataThunkCreator(data));
+                }
+            })
+    };
+};
+
+export const logoutThunkCreator = () => {
+    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+        authAPI.logout()
+            .then(resultCode => {
+                if (resultCode === 0){
+                    console.log(resultCode);
+                    dispatch(setUserAuthDataActionCreator({
+                                                            email: null, 
+                                                            id: null, 
+                                                            login: null, 
+                                                            isAuth: false,
+                                                        }));
                 }
             })
     };
