@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import { stopSubmit } from "redux-form";
 import { authAPI, LoginRequestObj } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
 
@@ -59,10 +60,24 @@ export const getUserAuthDataThunkCreator = () => {
 
 export const loginThunkCreator = (userData: LoginRequestObj) => {
     return (dispatch: Dispatch<any>) => {
+        //свойство _error вызывает общую ошыбку фомы
+        //это нужно для того чтобы вызвать аварийную ошыбку
+        //при не правильном вводе пароля или мыла
+
+        //стандартная валидация форм не срабатывает
+        //из-за тго что ответ приходит асинхронно
+
+        //по этому мы вызываем метод stopSubmit при отличном от 0
+        //резаст коде
+        //это метод библиотеки редакс чтобы остановить сабмит
         authAPI.login({...userData})
             .then(data => {
                 if (data.data.resultCode === 0){
                     dispatch(getUserAuthDataThunkCreator());
+                }else{
+                    const message = data.data.messages.length > 0 && data.data.messages[0];
+
+                    dispatch(stopSubmit('login', { _error: message}));
                 }
             })
     };

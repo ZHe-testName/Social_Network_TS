@@ -20,9 +20,9 @@ function Header(props: PropsType) {
                 props.isAuth 
                 ? 
                 <div>
-                    {props.login}
+                    <button onClick={props.logout} style={{marginRight: "20px"}}>Logout</button>
 
-                    <button onClick={props.logout}>Logout</button>
+                    {props.login}
                 </div>
                 : 
                 <NavLink to={'/login'}>
