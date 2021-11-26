@@ -55,7 +55,6 @@ class ProfileStatus extends React.Component<StatusPropsType> {
     // }
 
    render() {
-       console.log('render' ,this.state.status , this.props.titleStatus);
     return (
         <div className={classes.status}>
             {

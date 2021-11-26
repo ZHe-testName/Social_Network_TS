@@ -93,7 +93,7 @@ function App() {
           <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
           <Route path="/music" component={Music}/>
           <Route path="/users" render={() => <UsersContainer />}/>
-          <Route path='/login' render={Login} />
+          <Route path='/login' component={Login} />
         </div>
       </div>
   );

@@ -11,13 +11,17 @@ export type AuthStateType = {
     isAuth: boolean,
 };
 
+type TestDispatchType = {
+    dispatch: (dispatch: Dispatch<DispatchUsersActionType>) => void
+};
+
 export type DataObjectType = {
     data: AuthStateType,
 };
 
 export type ActionType = {
     type: string,
-    payload?: AuthStateType,
+    data?: AuthStateType,
 };
 
 const initialState = {
@@ -32,7 +36,7 @@ export const authReducer = (state: AuthStateType = initialState, action: ActionT
         case SET_USER_DATA:
             return {
                     ...state,
-                    ...action.payload,
+                    ...action.data,
                     isAuth: true,
                 };
 
@@ -55,13 +59,11 @@ export const getUserAuthDataThunkCreator = () => {
 };
 
 export const loginThunkCreator = (userData: LoginRequestObj) => {
-    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+    return (dispatch: Dispatch<any>) => {
         authAPI.login({...userData})
             .then(data => {
-                console.log(data);
                 if (data.data.resultCode === 0){
-                    console.log(data);
-                    // dispatch(getUserAuthDataThunkCreator(data));
+                    dispatch(getUserAuthDataThunkCreator());
                 }
             })
     };
