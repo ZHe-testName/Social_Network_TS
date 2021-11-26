@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 import { loginThunkCreator } from "../../redux/reducers/auth-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import LoginReduxForm, { LoginFormFieldsType } from "./login-form/LoginForm";
@@ -12,10 +13,16 @@ type MapStateToPropsType = {
     isAuth: boolean,
 };
 
-function LoginComponent(props: MapDispatchToPropsType) {
+type PropsType = MapDispatchToPropsType & MapStateToPropsType;
+
+function LoginComponent(props: PropsType) {
     const onSubmit = (formData: LoginFormFieldsType) => {
         props.loginThunkCreator(formData);
     };
+
+    if (props.isAuth){
+        return <Redirect to='/profile'/>
+    }
 
     return (
         <>

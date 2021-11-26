@@ -34,10 +34,10 @@ const initialState = {
 export const authReducer = (state: AuthStateType = initialState, action: ActionType): AuthStateType => {
     switch (action.type){
         case SET_USER_DATA:
+            console.log(action.data);
             return {
                     ...state,
                     ...action.data,
-                    isAuth: true,
                 };
 
         default:
@@ -74,7 +74,6 @@ export const logoutThunkCreator = () => {
         authAPI.logout()
             .then(resultCode => {
                 if (resultCode === 0){
-                    console.log(resultCode);
                     dispatch(setUserAuthDataActionCreator({
                                                             email: null, 
                                                             id: null, 
