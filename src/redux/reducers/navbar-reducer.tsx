@@ -13,7 +13,8 @@ export type NavBarType = {
 
 const initialState =  {
   links: [
-    {href: '/dialogs', description: 'Messages'},
+    {href: '/users', description: 'Users'},
+    {href: '/dialogs', description: 'Dialogs'},
     {href: '/news', description: 'News'},
     {href: '/settimgs', description: 'Settings'},
     {href: '/profile', description: 'Profile'},

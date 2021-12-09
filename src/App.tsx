@@ -21,9 +21,12 @@ import { ProfileUserType } from './redux/reducers/profile-reducer';
 import { HeaderContainer } from './components/header/HeaderComponent';
 import Login from './components/login/Login';
 import React, { ComponentType } from 'react';
+import { AppReducerStateType, initializeAppTC } from './redux/reducers/app-reducer';
 import { getUserAuthDataThunkCreator } from './redux/reducers/auth-reducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { AppStateType } from './redux/redux-store';
+import Preloader from './components/preloader/Preloader';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -74,42 +77,49 @@ export type DispatchProfileUserActionType = {
 
 // {...dialogsPage}
 // dispatch={dispatch}
-type MapDispatchPropsType = {
-  getUserAuthDataThunkCreator: () => void,
+export type MapDispatchPropsType = {
+  initializeAppTC: () => void,
 };
 
-class App extends React.Component<MapDispatchPropsType> {
+class App extends React.Component<MapDispatchPropsType & AppReducerStateType> {
   componentDidMount() {
-    this.props.getUserAuthDataThunkCreator();
+    this.props.initializeAppTC();
   }
 
   render (){
-    return (
-        <div id='app' className='app-wrapper'>
-          <HeaderContainer/>
-          <Navbar />
+    if (this.props.initialized){
+        return (
+          <div id='app' className='app-wrapper'>
+            <HeaderContainer/>
+            <Navbar />
 
-          <div className="main-content">
-            <Route path="/dialogs" render={() => <DialogsContainer/>}/>
-            <Route path="/news" component={News}/>
-            <Route path="/settimgs" component={Settings}/>
-            {/* userId мы используем этот параметр для того чтобы система реакта
-            сама прочитала его в адресной строке и withRouter закинул в пропсы компоненты
-            нужный нам id 
-            знак вопроса означаеть что параметр не обязателен
-            чтобы мы могли отображать профайл с пустым id
-            если там пусто то в объекте withRouter-a наш параметр будет underfined
-            к этому нужно быть готовым*/}
-            <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
-            <Route path="/music" component={Music}/>
-            <Route path="/users" render={() => <UsersContainer />}/>
-            <Route path='/login' component={Login} />
+            <div className="main-content">
+              <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+              <Route path="/news" component={News}/>
+              <Route path="/settimgs" component={Settings}/>
+              {/* userId мы используем этот параметр для того чтобы система реакта
+              сама прочитала его в адресной строке и withRouter закинул в пропсы компоненты
+              нужный нам id 
+              знак вопроса означаеть что параметр не обязателен
+              чтобы мы могли отображать профайл с пустым id
+              если там пусто то в объекте withRouter-a наш параметр будет underfined
+              к этому нужно быть готовым*/}
+              <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
+              <Route path="/music" component={Music}/>
+              <Route path="/users" render={() => <UsersContainer />}/>
+              <Route path='/login' component={Login} />
+          </div>
         </div>
-      </div>
-    );
+      );
+    };
+
+    return <Preloader />;
   }
 };
 
+const mapStateToProps = (state: AppStateType): AppReducerStateType => ({
+  initialized: state.app.initialized,
+});  
 //для нормальной работы роутов в нутри App
 //результат connecta нужно обернуть в withRouter
 //это какойто странный баг или особенность
@@ -118,7 +128,7 @@ class App extends React.Component<MapDispatchPropsType> {
 //иначе будет падать дурацкая ошибка
 export default compose<ComponentType>(
   withRouter,
-  connect(null, {getUserAuthDataThunkCreator})
+  connect(mapStateToProps, {initializeAppTC})
 )(App);
 
 

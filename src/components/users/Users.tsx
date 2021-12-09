@@ -9,6 +9,7 @@ type UsersType = {
     totalUsersCount: number,
     currentPage: number,
     followingIdArr: Array<number | undefined>,
+    auth: boolean,
     changePageHandler: (pageNumber: number) => void,
     followSwitchingThunkCreator: (followed: boolean, userId: number) => void;
 };
@@ -49,13 +50,16 @@ function Users (props: UsersType) {
                                     alt="User avatar is here" />
                             </NavLink>
 
-                            
-                            <button 
-                                disabled={props.followingIdArr.some(id => id === user.id)}
-                                className={(!user.followed) ? classes.followBtnStyle : classes.unfollowBtnStyle}
-                                onClick={() => props.followSwitchingThunkCreator(user.followed, user.id)}>
-                                {(!user.followed) ? 'follow' : 'unfollow'}
-                            </button>
+                            {
+                                props.auth 
+                                    &&
+                                    <button 
+                                        disabled={props.followingIdArr.some(id => id === user.id)}
+                                        className={(!user.followed) ? classes.followBtnStyle : classes.unfollowBtnStyle}
+                                        onClick={() => props.followSwitchingThunkCreator(user.followed, user.id)}>
+                                        {(!user.followed) ? 'follow' : 'unfollow'}
+                                    </button>
+                            }
                         </div>
                         
                         <div>

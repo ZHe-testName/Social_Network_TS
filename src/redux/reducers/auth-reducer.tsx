@@ -49,12 +49,12 @@ export const setUserAuthDataActionCreator = (data: AuthStateType) => ({type: SET
 
 export const getUserAuthDataThunkCreator = () => {
     return (dispatch: Dispatch<DispatchUsersActionType>) => {
-        authAPI.getAuthData()
-            .then(data => {
-                if (data.resultCode === 0){
-                    dispatch(setUserAuthDataActionCreator({...data.data, isAuth: true}));
-                }
-            })
+        return authAPI.getAuthData()
+                        .then(data => {
+                            if (data.resultCode === 0){
+                                dispatch(setUserAuthDataActionCreator({...data.data, isAuth: true}));
+                            }
+                        })
     };
 };
 

@@ -20,6 +20,7 @@ type MapStateToProps = {
     currentPage: number,
     isFetching: boolean,
     followingIdArr: Array<number | undefined>,
+    auth: boolean,
 };
 
 type MapDispatchPropsType = {
@@ -50,6 +51,7 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
 
                 <Users   
                     users={this.props.users}
+                    auth={this.props.auth}
                     pageSize={this.props.pageSize}
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
@@ -68,6 +70,7 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingIdArr: state.usersPage.followingIdArr,
+        auth: state.auth.isAuth,
     };
 };
 

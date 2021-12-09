@@ -7,6 +7,7 @@ import { authReducer } from './reducers/auth-reducer';
 //подключаем formReducer из спец библиотеки redux для работы с формами
 import { reducer as formReducer } from 'redux-form';
 import  thunk from 'redux-thunk';
+import { appReducer } from './reducers/app-reducer';
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     navBar: navbarReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app: appReducer,
     // поле для спец редюсера для форм
     //должно быть именно form
     form: formReducer,
