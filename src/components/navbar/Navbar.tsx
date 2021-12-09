@@ -2,6 +2,8 @@ import classes from  './navbar.module.css';
 
 import CustomNavLink from '../custom-nav-link';
 import FriendsNav from "./friends_nav";
+import { useSelector } from 'react-redux';
+import { AppStateType } from '../../redux/redux-store';
 
 export type FriendsCardsType = {
   avatar: string,
@@ -20,8 +22,8 @@ export type NavType = {
   friendsArr: Array<FriendsCardsType>,
 };
 
-function Navbar(props: NavType) {
-    const {links, friendsArr} = props;
+function Navbar() {
+    const {links, friendsArr} = useSelector<AppStateType, NavType>(state => state.navBar);
 
     const linksArr = links.map((linkSettings: LinkType) => {
       return <li key={linkSettings.href} ><CustomNavLink {...linkSettings} /></li>
