@@ -12,6 +12,7 @@ import { changePage,
 import { AppStateType } from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../preloader/Preloader";
+import { usersSelectors } from "../../redux/selectors/usersSelectors";
 
 type MapStateToProps = {
     users: Array<UserType>,
@@ -64,13 +65,13 @@ class UsersRequestContainer extends React.Component<UsersPropsType, StateUserTyp
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingIdArr: state.usersPage.followingIdArr,
-        auth: state.auth.isAuth,
+        users: usersSelectors.getUsersSelector(state),
+        pageSize: usersSelectors.getPageSizeSelector(state),
+        totalUsersCount: usersSelectors.getTotalCountUsersSelector(state),
+        currentPage: usersSelectors.getGetCurrentPageSelector(state),
+        isFetching: usersSelectors.getIsFetchingSelector(state),
+        followingIdArr: usersSelectors.getFollowingIdSelector(state),
+        auth: usersSelectors.getIsAuthSelector(state),
     };
 };
 
