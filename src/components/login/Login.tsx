@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { loginThunkCreator } from "../../redux/reducers/auth-reducer";
 import { AppStateType } from "../../redux/redux-store";
+import Preloader from "../preloader/Preloader";
 import LoginReduxForm, { LoginFormFieldsType } from "./login-form/LoginForm";
 
 type MapDispatchToPropsType = {
@@ -11,6 +12,7 @@ type MapDispatchToPropsType = {
 
 type MapStateToPropsType = {
     isAuth: boolean,
+    isLoading: boolean,
 };
 
 type PropsType = MapDispatchToPropsType & MapStateToPropsType;
@@ -23,6 +25,11 @@ function LoginComponent(props: PropsType) {
     if (props.isAuth){
         return <Redirect to='/profile'/>
     }
+
+    if (props.isLoading){
+        return <Preloader />
+    }
+
 
     return (
         <>
@@ -38,6 +45,7 @@ function LoginComponent(props: PropsType) {
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
+        isLoading: state.auth.isLoading,
     };
 };
 

@@ -3,13 +3,15 @@ import { stopSubmit } from "redux-form";
 import { authAPI, LoginRequestObj } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
 
-const SET_USER_DATA = 'SET_USER_DATA'; 
+const SET_USER_DATA = 'SET_USER_DATA',
+    SWITCH_IS_LOADING = 'SWITCH_IS_LOADING'; 
 
 export type AuthStateType = {
     id: string | null,
     email: string | null,
     login: string | null,
     isAuth: boolean,
+    isLoading: boolean,
 };
 
 type TestDispatchType = {
@@ -23,6 +25,9 @@ export type DataObjectType = {
 export type ActionType = {
     type: string,
     data?: AuthStateType,
+} & {
+    type: string,
+    isLoading: boolean,
 };
 
 const initialState = {
@@ -30,6 +35,7 @@ const initialState = {
     email: null,
     login: null,
     isAuth: false,
+    isLoading: false,
 };
 
 export const authReducer = (state: AuthStateType = initialState, action: ActionType): AuthStateType => {
@@ -40,12 +46,19 @@ export const authReducer = (state: AuthStateType = initialState, action: ActionT
                     ...action.data,
                 };
 
+        case SWITCH_IS_LOADING:
+            return {
+                    ...state,
+                    isLoading: action.isLoading,
+                };
+
         default:
             return state;
     };
 };
 
 export const setUserAuthDataActionCreator = (data: AuthStateType) => ({type: SET_USER_DATA, data});
+export const switchIsLoadingActionCreator = (isLoading: boolean) => ({type: SWITCH_IS_LOADING, isLoading});
 
 export const getUserAuthDataThunkCreator = () => {
     return (dispatch: Dispatch<DispatchUsersActionType>) => {
@@ -60,6 +73,7 @@ export const getUserAuthDataThunkCreator = () => {
 
 export const loginThunkCreator = (userData: LoginRequestObj) => {
     return (dispatch: Dispatch<any>) => {
+        dispatch(switchIsLoadingActionCreator(true));
         //свойство _error вызывает общую ошыбку фомы
         //это нужно для того чтобы вызвать аварийную ошыбку
         //при не правильном вводе пароля или мыла
@@ -72,6 +86,8 @@ export const loginThunkCreator = (userData: LoginRequestObj) => {
         //это метод библиотеки редакс чтобы остановить сабмит
         authAPI.login({...userData})
             .then(data => {
+                dispatch(switchIsLoadingActionCreator(false));
+
                 if (data.data.resultCode === 0){
                     dispatch(getUserAuthDataThunkCreator());
                 }else{
@@ -93,6 +109,7 @@ export const logoutThunkCreator = () => {
                                                             id: null, 
                                                             login: null, 
                                                             isAuth: false,
+                                                            isLoading: false,
                                                         }));
                 }
             })

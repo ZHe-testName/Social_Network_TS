@@ -13,9 +13,9 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormFieldsType>> = (props) => {
         <form 
             onSubmit={props.handleSubmit}
             className={classes.formWrap}>
-                <Field component="input" name="email" placeholder='Email'/>
+                <Field component="input" name="email" placeholder='Email' autoComplete='on'/>
 
-                <Field component="input" name="password" placeholder='Password'/>
+                <Field component="input" name="password" placeholder='Password' autoComplete='on'/>
 
                 <div>                        
                     <label htmlFor="remember">Remember me</label>
