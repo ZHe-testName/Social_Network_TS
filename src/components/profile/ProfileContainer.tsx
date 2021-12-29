@@ -35,8 +35,9 @@ export class ProfileRequestContainer extends React.Component<ProfilePropsType, P
         this.props.getProfileThunkCreator(userId);
         this.props.getStatusThunkCreator(userId);
     }
-    
+
     render() {
+        console.log('cont');
         return <Profile 
                     {...this.props} 
                     user={this.props.user} 
@@ -45,6 +46,7 @@ export class ProfileRequestContainer extends React.Component<ProfilePropsType, P
 };
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
+    console.log(state.profilePage.user);
     return {
         user: state.profilePage.user,
     };

@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useState }  from "react";
+import React, { KeyboardEvent, useEffect, useRef, useState }  from "react";
 import classes from "./profile_status.module.css";
 
 type StatusPropsType = {
@@ -15,12 +15,17 @@ type LocalStateType = {
 const ProfileStatusFunctional: React.FC<StatusPropsType> = ({titleStatus, updateStatus}) => {
     const [isEditMode, setEditMode] = useState(false);
     const [status, changeStatus] = useState(titleStatus);
-
+    // console.log(status, titleStatus);
     // onEditMode = () => {
     //     this.setState({
     //         editMode: true,
     //     });
     // }
+
+    // useEffect(() => {
+    //     console.log('use', status);
+    //     changeStatus(status);
+    // }, [titleStatus]);
 
     const offEditMode = () => {
         updateStatus(status);
@@ -44,13 +49,14 @@ const ProfileStatusFunctional: React.FC<StatusPropsType> = ({titleStatus, update
     // }
 
     return (
-        <div className={classes.status}>
+        <div >
             {
                 isEditMode 
 
                 ?
                 <div>
                     <input 
+                        value={status}
                         defaultValue={status}
                         autoFocus
                         onBlur={offEditMode}

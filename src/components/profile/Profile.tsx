@@ -5,6 +5,7 @@ import { ProfileUserType } from '../../redux/reducers/profile-reducer';
 import Preloader from '../preloader/Preloader';
 import userPhoto from '../../imgs/images.png';
 import ProfileStatus from './profile-status/ProfileStatus';
+import ProfileStatusFunctional from './profile-status/ProfileStatusFunctional';
 
 export type MainUserType = {
   name: string,
@@ -34,7 +35,7 @@ function Profile(props: ProfilePageType) {
         <Preloader />
       );
     }
-
+    
     // if (!isAuth) return <Redirect to='/login'/>;
 
     return (
@@ -63,6 +64,9 @@ function Profile(props: ProfilePageType) {
                 <ProfileStatus 
                             titleStatus={user.status} 
                             updateStatus={props.updateStatus}/>
+                <ProfileStatusFunctional 
+                                      titleStatus={user.status} 
+                                      updateStatus={props.updateStatus}/>
               </div>
 
               {/* <div className="education">

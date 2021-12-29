@@ -114,7 +114,7 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
 
     case SET_STATUS :
       if (!state.user) return state;
-
+console.log(action.status);
       return {
         ...state,
         user: {
@@ -137,6 +137,7 @@ export const getStatusThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
     profileAPI.getProfileStatus(userId)
           .then(status => {
+            console.log('req');
             dispatch(setStatusAC(status))
           });
   };
