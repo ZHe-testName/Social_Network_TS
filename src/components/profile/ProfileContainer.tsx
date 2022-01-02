@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator, ProfileDataType, ProfileUserType } from "../../redux/reducers/profile-reducer";
+import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator, putProfilePhotoThunkCreator, ProfileDataType, ProfileUserType } from "../../redux/reducers/profile-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Profile from "./Profile";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -19,6 +19,7 @@ type MapDispatchToProps = {
     getProfileThunkCreator: (userId: string) => void,
     updateStatusThunkCreator: (status: string) => void,
     getStatusThunkCreator: (userId: string) => void,
+    putProfilePhotoThunkCreator: (ava: string) => void;
 };
 
 type ProfilePropsType = RouteComponentProps<PathParamsType> & OwnProfilePropsType
@@ -26,6 +27,7 @@ type OwnProfilePropsType = MapStateToProps & MapDispatchToProps;
 
 export class ProfileRequestContainer extends React.Component<ProfilePropsType, ProfileDataType> {
     componentDidMount() {
+        console.log('did mount');
         let userId = this.props.match.params.userId;
 
         if (!userId) {
@@ -40,7 +42,8 @@ export class ProfileRequestContainer extends React.Component<ProfilePropsType, P
         return <Profile 
                     {...this.props} 
                     user={this.props.user} 
-                    updateStatus={this.props.updateStatusThunkCreator}/>
+                    updateStatus={this.props.updateStatusThunkCreator}
+                    putPhoto={this.props.putProfilePhotoThunkCreator}/>
     }
 };
 
@@ -62,7 +65,8 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 const ProfileContainer = compose<React.ComponentType>(
                                     connect(mapStateToProps, {  getProfileThunkCreator, 
                                                                 getStatusThunkCreator,
-                                                                updateStatusThunkCreator }),
+                                                                updateStatusThunkCreator,
+                                                                putProfilePhotoThunkCreator }),
                                     withRouter,
                                     withAuthReadirect,
                                 )(ProfileRequestContainer);

@@ -69,6 +69,11 @@ export const profileAPI = {
         return instance.put(`/profile/status`, {status: newStatus})
                         .then(responce => responce.data.resultCode);
     },
+
+    putProfilePhoto (photoURL: string){
+        return instance.put(`/profile/photo`, {image: photoURL})
+                        .then(responce => responce.data);
+    },
 };
 
 export const authAPI = {

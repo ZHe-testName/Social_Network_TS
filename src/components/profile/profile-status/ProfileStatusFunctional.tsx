@@ -23,7 +23,6 @@ const ProfileStatusFunctional: React.FC<StatusPropsType> = ({titleStatus, update
     // }
 
     useEffect(() => {
-        debugger
         changeStatus(titleStatus);
     }, [titleStatus]);
 

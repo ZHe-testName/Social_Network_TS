@@ -4,7 +4,6 @@ import MyPostsContainer from './my-posts/MyPostsContainer';
 import { ProfileUserType } from '../../redux/reducers/profile-reducer';
 import Preloader from '../preloader/Preloader';
 import userPhoto from '../../imgs/images.png';
-import ProfileStatus from './profile-status/ProfileStatus';
 import ProfileStatusFunctional from './profile-status/ProfileStatusFunctional';
 
 export type MainUserType = {
@@ -23,6 +22,7 @@ export type PostsType = {
 export type ProfilePageType = {
   user: ProfileUserType,
   updateStatus: (status: string) => void,
+  putPhoto: (ava: string) => void,
 };
 
 
@@ -37,10 +37,19 @@ function Profile(props: ProfilePageType) {
     }
     
     // if (!isAuth) return <Redirect to='/login'/>;
+    const sendPhoto = () => {
+      const ava = 'https://etocsdetka.ru/wp-content/uploads/photo-gallery/Gaydii/Steam/krutie/krutaia-ava-etocsdetka_(1).jpg';
+
+      props.putPhoto(ava);
+    };
 
     return (
         <main className={classes.profile}>
         <div className={classes.banner}></div>
+
+        <button onClick={sendPhoto}>
+          Send photo
+        </button>
 
         <div className={classes.account}>
           <Avatar settings={{className: classes.avatar, imgUrl: user.photos.small ? 
@@ -61,9 +70,9 @@ function Profile(props: ProfilePageType) {
 
               <div className="status">
                 <span className="city">Status: </span>
-                <ProfileStatus 
+                {/* <ProfileStatus 
                             titleStatus={user.status} 
-                            updateStatus={props.updateStatus}/>
+                            updateStatus={props.updateStatus}/> */}
                 <ProfileStatusFunctional 
                                       titleStatus={user.status} 
                                       updateStatus={props.updateStatus}/>

@@ -161,3 +161,13 @@ export const getProfileThunkCreator = (userId: string) => {
                     });
   };
 };
+
+export const putProfilePhotoThunkCreator = (photoURL: string) => {
+  return (dispatch: Dispatch<DispatchUsersActionType>) => {
+    profileAPI.putProfilePhoto(photoURL)
+                    .then(data => {
+                        // dispatch(setUserProfileAC(data));
+                        console.log(data);
+                    });
+  };
+};
