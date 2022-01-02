@@ -22,10 +22,10 @@ const ProfileStatusFunctional: React.FC<StatusPropsType> = ({titleStatus, update
     //     });
     // }
 
-    // useEffect(() => {
-    //     console.log('use', status);
-    //     changeStatus(status);
-    // }, [titleStatus]);
+    useEffect(() => {
+        debugger
+        changeStatus(titleStatus);
+    }, [titleStatus]);
 
     const offEditMode = () => {
         updateStatus(status);
