@@ -18,8 +18,7 @@ type MapStateToProps = {
 type MapDispatchToProps = {
     getProfileThunkCreator: (userId: string) => void,
     updateStatusThunkCreator: (status: string) => void,
-    // getStatusThunkCreator: (userId: string) => void,
-    putProfilePhotoThunkCreator: (ava: string) => void;
+    putProfilePhotoThunkCreator: (ava: any) => void;
 };
 
 type ProfilePropsType = RouteComponentProps<PathParamsType> & OwnProfilePropsType
@@ -27,7 +26,6 @@ type OwnProfilePropsType = MapStateToProps & MapDispatchToProps;
 
 export class ProfileRequestContainer extends React.Component<ProfilePropsType, ProfileDataType> {
     componentDidMount() {
-        console.log('did mount');
         let userId = this.props.match.params.userId;
 
         if (!userId) {
@@ -35,7 +33,6 @@ export class ProfileRequestContainer extends React.Component<ProfilePropsType, P
         };
 
         this.props.getProfileThunkCreator(userId);
-        // this.props.getStatusThunkCreator(userId);
     }
 
     render() {
@@ -64,7 +61,6 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 
 const ProfileContainer = compose<React.ComponentType>(
                                     connect(mapStateToProps, {  getProfileThunkCreator, 
-                                                                // getStatusThunkCreator,
                                                                 updateStatusThunkCreator,
                                                                 putProfilePhotoThunkCreator }),
                                     withRouter,

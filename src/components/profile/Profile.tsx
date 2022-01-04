@@ -5,6 +5,8 @@ import { ProfileUserType } from '../../redux/reducers/profile-reducer';
 import Preloader from '../preloader/Preloader';
 import userPhoto from '../../imgs/images.png';
 import ProfileStatusFunctional from './profile-status/ProfileStatusFunctional';
+import avatar from '../../imgs/my_avatar.jpg';
+import { useRef } from 'react';
 
 export type MainUserType = {
   name: string,
@@ -22,11 +24,12 @@ export type PostsType = {
 export type ProfilePageType = {
   user: ProfileUserType,
   updateStatus: (status: string) => void,
-  putPhoto: (ava: string) => void,
+  putPhoto: (ava: any) => void,
 };
 
 
 function Profile(props: ProfilePageType) {
+  const img = useRef(null);
   //сделать увеличение избрпжения баннера рофиля
     const {user} = props;
 
@@ -43,18 +46,27 @@ function Profile(props: ProfilePageType) {
       props.putPhoto(ava);
     };
 
+    const onChangeHandler = (e: any) => {
+      console.dir(img.current);
+    };
+
     return (
         <main className={classes.profile}>
         <div className={classes.banner}></div>
+          <input type="file" ref={img} onChange={e => onChangeHandler(e)}/>
 
-        <button onClick={sendPhoto}>
+          <button>Download</button>
+      
+
+        {/* <button onClick={sendPhoto}>
           Send photo
-        </button>
+        </button> */}
 
         <div className={classes.account}>
-          <Avatar settings={{className: classes.avatar, imgUrl: user.photos.small ? 
-                                                          user.photos.small : 
-                                                          userPhoto}}/>
+          <Avatar settings={{className: classes.avatar, 
+                              imgUrl: user.photos.small || 
+                                      user.photos.large ||
+                                      userPhoto}}/>
 
           <div className={classes.description}>
 

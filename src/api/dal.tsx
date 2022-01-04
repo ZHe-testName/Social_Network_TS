@@ -70,7 +70,8 @@ export const profileAPI = {
                         .then(responce => responce.data);
     },
 
-    putProfilePhoto (photoURL: string){
+    putProfilePhoto (photoURL: any){
+        console.log(photoURL);
         return instance.put(`/profile/photo`, {image: photoURL})
                         .then(responce => responce.data);
     },
