@@ -39,7 +39,7 @@ const SendMessageForm: React.FC<InjectedFormProps<MessageFormType>> = (props) =>
                         name='messageText'
                         component={Textarea} 
                         rows={1} 
-                        nameOfField="sendMessageField" 
+                        nameoffield="sendMessageField" 
                         placeholder="Typing here..."
                         //В поле validate мы передаем массив нужных валидаторов
                         validate={[required, maxLength10]}/>

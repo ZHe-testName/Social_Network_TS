@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator, putProfilePhotoThunkCreator, ProfileDataType, ProfileUserType } from "../../redux/reducers/profile-reducer";
+import { getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator, putProfilePhotoThunkCreator, ProfileDataType, ProfileUserType } from "../../redux/reducers/profile-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Profile from "./Profile";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -18,7 +18,7 @@ type MapStateToProps = {
 type MapDispatchToProps = {
     getProfileThunkCreator: (userId: string) => void,
     updateStatusThunkCreator: (status: string) => void,
-    getStatusThunkCreator: (userId: string) => void,
+    // getStatusThunkCreator: (userId: string) => void,
     putProfilePhotoThunkCreator: (ava: string) => void;
 };
 
@@ -35,7 +35,7 @@ export class ProfileRequestContainer extends React.Component<ProfilePropsType, P
         };
 
         this.props.getProfileThunkCreator(userId);
-        this.props.getStatusThunkCreator(userId);
+        // this.props.getStatusThunkCreator(userId);
     }
 
     render() {
@@ -64,7 +64,7 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 
 const ProfileContainer = compose<React.ComponentType>(
                                     connect(mapStateToProps, {  getProfileThunkCreator, 
-                                                                getStatusThunkCreator,
+                                                                // getStatusThunkCreator,
                                                                 updateStatusThunkCreator,
                                                                 putProfilePhotoThunkCreator }),
                                     withRouter,

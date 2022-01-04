@@ -67,7 +67,7 @@ export const profileAPI = {
 
     setProfileStatus (newStatus: string){
         return instance.put(`/profile/status`, {status: newStatus})
-                        .then(responce => responce.data.resultCode);
+                        .then(responce => responce.data);
     },
 
     putProfilePhoto (photoURL: string){
