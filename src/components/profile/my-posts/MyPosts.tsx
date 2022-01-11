@@ -1,6 +1,6 @@
 import Post from './post';
 import classes from './myposts.module.css';
-import { DispatchProfileUserActionType } from '../../../App';
+import { DispatchProfileUserActionType } from '../../../redux/reducers/profile-reducer';
 import { PostsType } from '../Profile';
 import { MyPostsPropsType } from './MyPostsContainer';
 import { PostType } from '../../../redux/reducers/profile-reducer';

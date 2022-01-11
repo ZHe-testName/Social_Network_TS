@@ -45,15 +45,6 @@ export type DispatchUsersActionType = {
   isFollowing?: boolean,
 };
 
-export type DispatchProfileUserActionType = {
-  type: string,
-  message?: string,
-  userProfile?: ProfileUserType,
-  status: string,
-};
-
-
-
 // export type DialoglsDataType = {
 //   messages: Array<MessageType>,
 //   newMessageText: string,

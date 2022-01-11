@@ -1,12 +1,23 @@
 import { Dispatch } from 'react';
 import {v1} from 'uuid';
 import { profileAPI } from '../../api/dal';
-import { DispatchProfileUserActionType, DispatchUsersActionType } from '../../App';
+import { DispatchUsersActionType } from '../../App';
 import { PostsType } from '../../components/profile/Profile';
 
 const ADD_POST = 'ADD-POST',
   SET_USER_PROFILE = 'SET_USER_PROFILE',
-  SET_STATUS = 'SET_STATUS';
+  SET_STATUS = 'SET_STATUS',
+  INCPEMENT_POST_LIKE = 'INCPEMENT_POST_LIKE',
+  INCPEMENT_POST_DISLIKE = 'INCPEMENT_POST_DISLIKE';
+
+export type DispatchProfileUserActionType = {
+    type: string,
+    message?: string,
+    userProfile?: ProfileUserType,
+    status?: string,
+    userId?: number,
+    postId?: string,
+  };
 
 export type ProfileDataType = {
   user: ProfileUserType,
@@ -119,9 +130,29 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
         ...state,
         user: {
           ...state.user,
-          status: action.status,
+          status: action.status ? action.status : '',
         },
       };
+
+      case INCPEMENT_POST_LIKE :
+        if (!state.user) return state;
+  
+        return {
+          ...state,
+          posts: state.posts.map(post => post.id === action.postId 
+                                            ? {...post, likes: post.likes + 1}
+                                            : post)
+        };
+
+      case INCPEMENT_POST_DISLIKE :
+        if (!state.user) return state;
+  
+        return {
+          ...state,
+          posts: state.posts.map(post => post.id === action.postId 
+                                            ? {...post, dislikes: post.dislikes + 1}
+                                            : post)
+        };
 
     default:
       return state;
@@ -129,9 +160,10 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
 };
 
 export const addPostCreator = (message: string) => ({type: ADD_POST, message});
-
-const setUserProfileAC = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
-const setStatusAC = (status: string) => ({type: SET_STATUS, status});
+export const setUserProfileAC = (userProfile: ProfileUserType) => ({type: SET_USER_PROFILE, userProfile});
+export const setStatusAC = (status: string) => ({type: SET_STATUS, status});
+export const incrementPostLikeAC = (userId: number, postId: string) => ({type: INCPEMENT_POST_LIKE, userId, postId});
+export const incrementPostDislikeAC = (userId: number, postId: string) => ({type: INCPEMENT_POST_DISLIKE, userId, postId});
 
 export const getStatusThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
