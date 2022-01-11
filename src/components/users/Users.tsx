@@ -1,3 +1,4 @@
+import React from 'react';
 import classes from './users.module.css';
 import userPhoto from '../../imgs/images.png';
 import { UserType } from '../../redux/reducers/users-reducer';
@@ -14,7 +15,7 @@ type UsersType = {
     followSwitchingThunkCreator: (followed: boolean, userId: number) => void;
 };
 
-function Users (props: UsersType) {
+function UsersComponent (props: UsersType) {
     //Сделать карусель с пагинацией, потому что не влезает
     // const pagesAmount = Math.ceil(props.totalUsersCount / props.pageSize);
  
@@ -83,5 +84,7 @@ function Users (props: UsersType) {
         </div>
     );
 };
+
+const Users = React.memo(UsersComponent);
 
 export default Users;
