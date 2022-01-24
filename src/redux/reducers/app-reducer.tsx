@@ -3,7 +3,7 @@ import { DispatchUsersActionType, MapDispatchPropsType } from "../../App";
 import { getUserAuthDataThunkCreator } from "./auth-reducer";
 
 enum ActionsType {
-    SET_INITIALIZED = 'SET_INITIALIZED',
+    SET_INITIALIZED = 'app/SET_INITIALIZED',
 };
 
 export type AppReducerStateType = {
@@ -36,7 +36,7 @@ export const initializeAppTC = () => (dispatch: Dispatch<InitType | AppActionCre
     //но иногда это нужно
     //dispatch возвращает то что возвращает функция переданая в него
     //этим можно воспользываться
-    const promise: any = dispatch(getUserAuthDataThunkCreator());
+    const promise: void = dispatch(getUserAuthDataThunkCreator());
 
     Promise.all([promise])
             .then(() => dispatch(initializeAppAC(true)));

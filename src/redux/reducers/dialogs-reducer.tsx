@@ -18,7 +18,7 @@ export type DialogsMessageType = {
 
 export type InitialStateType = typeof initialState;
 
-const SEND_MESSAGE = 'SEND_MESSAGE';
+const SEND_MESSAGE = 'dialogs/SEND_MESSAGE';
 
 const initialState =  {
   users: [

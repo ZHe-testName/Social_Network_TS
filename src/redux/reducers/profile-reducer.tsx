@@ -4,11 +4,11 @@ import { profileAPI } from '../../api/dal';
 import { DispatchUsersActionType } from '../../App';
 import { PostsType } from '../../components/profile/Profile';
 
-const ADD_POST = 'ADD-POST',
-  SET_USER_PROFILE = 'SET_USER_PROFILE',
-  SET_STATUS = 'SET_STATUS',
-  INCPEMENT_POST_LIKE = 'INCPEMENT_POST_LIKE',
-  INCPEMENT_POST_DISLIKE = 'INCPEMENT_POST_DISLIKE';
+const ADD_POST = 'profile/ADD-POST',
+  SET_USER_PROFILE = 'profile/SET_USER_PROFILE',
+  SET_STATUS = 'profile/SET_STATUS',
+  INCPEMENT_POST_LIKE = 'profile/INCPEMENT_POST_LIKE',
+  INCPEMENT_POST_DISLIKE = 'profile/INCPEMENT_POST_DISLIKE';
 
 export type DispatchProfileUserActionType = {
     type: string,

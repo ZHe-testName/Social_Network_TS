@@ -4,12 +4,12 @@ import { GetUsersRequestType, usersAPI } from "../../api/dal";
 import { DispatchUsersActionType } from "../../App";
 import { AppStateType } from "../redux-store";
 
-const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS',
-    SET_USERS = 'SET_USERS',
-    CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE',
-    SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT',
-    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
-    TOOGLE_FOLLOWING_PROGRES = 'TOOGLE_FOLLOWING_PROGRES';
+const CHANGE_FOLLOW_STATUS = 'user/CHANGE_FOLLOW_STATUS',
+    SET_USERS = 'user/SET_USERS',
+    CHANGE_CURRENT_PAGE = 'user/CHANGE_CURRENT_PAGE',
+    SET_TOTAL_USERS_COUNT = 'user/SET_TOTAL_USERS_COUNT',
+    TOGGLE_IS_FETCHING = 'user/TOGGLE_IS_FETCHING',
+    TOOGLE_FOLLOWING_PROGRES = 'user/TOOGLE_FOLLOWING_PROGRES';
 
 export type UserType = {
     followed: boolean,
