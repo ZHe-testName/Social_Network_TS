@@ -6,21 +6,9 @@ type StatusPropsType = {
     updateStatus: (status: string) => void,
 };
 
-type LocalStateType = {
-    editMode: boolean,
-    status: string,
-    updateStatus: (status: string) => void,
-};
-
 const ProfileStatusFunctional: React.FC<StatusPropsType> = ({titleStatus, updateStatus}) => {
     const [isEditMode, setEditMode] = useState(false);
     const [status, changeStatus] = useState(titleStatus);
-    // console.log(status, titleStatus);
-    // onEditMode = () => {
-    //     this.setState({
-    //         editMode: true,
-    //     });
-    // }
 
     useEffect(() => {
         changeStatus(titleStatus);
@@ -36,16 +24,7 @@ const ProfileStatusFunctional: React.FC<StatusPropsType> = ({titleStatus, update
         if (e.code === 'Enter') {
             setEditMode(false);
         };
-    }
-
-    // componentDidUpdate(prevProps: StatusPropsType, prevState: LocalStateType) {
-    //     console.log('yo');
-    //     if (prevProps.titleStatus !== this.props.titleStatus) {
-    //         this.setState({
-    //             status: this.props.titleStatus,
-    //         });
-    //     };
-    // }
+    };
 
     return (
         <div >
