@@ -122,41 +122,39 @@ export const isFollowingTriger = (isFetching: boolean, userId: number) => ({type
 //Thunk-creator-и нужны для передачи через них данных 
 //при помощи замыканий
 export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkType => {
-    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+    return async (dispatch: Dispatch<DispatchUsersActionType>) => {
         dispatch(toggleLoader(true));
             
-        usersAPI.getUsers(currentPage, pageSize)
-            .then((data: GetUsersRequestType) => {
-                dispatch(toggleLoader(false));
-                dispatch(setUsers(data.items));
-                dispatch(setTotalUsersCount(data.totalCount));
-            })}
+        const responce: GetUsersRequestType = await usersAPI.getUsers(currentPage, pageSize);
+
+        dispatch(toggleLoader(false));
+        dispatch(setUsers(responce.items));
+        dispatch(setTotalUsersCount(responce.totalCount));
+    };
 };
 
 export const changePageThunkCreator = (pageNumber: number, pageSize: number): ThunkType => {
-    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+    return async (dispatch: Dispatch<DispatchUsersActionType>) => {
         dispatch(toggleLoader(true));
 
         dispatch(changePage(pageNumber));
 
-        usersAPI.getUsers(pageNumber, pageSize)
-            .then((data: GetUsersRequestType) => {
-                dispatch(toggleLoader(false));
-                dispatch(setUsers(data.items));
-            });
+        const responce: GetUsersRequestType = await usersAPI.getUsers(pageNumber, pageSize);
+
+        dispatch(toggleLoader(false));
+        dispatch(setUsers(responce.items));
     }
 };
 
 export const followSwitchingThunkCreator = (followed: boolean, userId: number) => {
-    return (dispatch: Dispatch<DispatchUsersActionType>) => {
+    return async (dispatch: Dispatch<DispatchUsersActionType>) => {
         dispatch(isFollowingTriger(true, userId));
 
-        usersAPI.userSubscribeSwitch(followed, userId)
-            .then((resultCode: number) => {
-                if (resultCode === 0){
-                    dispatch(followSwitch(userId));
-                    dispatch(isFollowingTriger(false, userId));
-                };
-            });  
-    };
+        const resultCode: number = await usersAPI.userSubscribeSwitch(followed, userId);
+
+        if (resultCode === 0){
+            dispatch(followSwitch(userId));
+            dispatch(isFollowingTriger(false, userId));
+        };
+    };  
 };

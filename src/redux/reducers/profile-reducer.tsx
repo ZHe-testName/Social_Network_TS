@@ -166,22 +166,20 @@ export const incrementPostLikeAC = (userId: number, postId: string) => ({type: I
 export const incrementPostDislikeAC = (userId: number, postId: string) => ({type: INCPEMENT_POST_DISLIKE, userId, postId});
 
 export const getStatusThunkCreator = (userId: string) => {
-  return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
-    profileAPI.getProfileStatus(userId)
-          .then(status => {
-            dispatch(setStatusAC(status))
-          });
+  return async (dispatch: Dispatch<DispatchProfileUserActionType>) => {
+    const status: string = await profileAPI.getProfileStatus(userId);
+
+    dispatch(setStatusAC(status));
   };
 };
 
 export const updateStatusThunkCreator = (status: string) => {
-  return (dispatch: Dispatch<DispatchProfileUserActionType>) => {
-    profileAPI.setProfileStatus(status)
-          .then(resCode => {
-            if (!resCode) {
-              dispatch(setStatusAC(status))
-            };
-          });
+  return async (dispatch: Dispatch<DispatchProfileUserActionType>) => {
+    const resCode: number = await profileAPI.setProfileStatus(status);
+
+    if (!resCode) {
+      dispatch(setStatusAC(status));
+    };
   };
 };
 
@@ -190,22 +188,20 @@ type GetStatusThunkCreatorType = {
 };
 
 export const getProfileThunkCreator = (userId: string) => {
-  return (dispatch: Dispatch<DispatchUsersActionType | GetStatusThunkCreatorType>) => {
-    profileAPI.getProfile(userId)
-                    .then(data => {
-                        dispatch(setUserProfileAC(data));
+  return async (dispatch: Dispatch<DispatchUsersActionType | GetStatusThunkCreatorType>) => {
+    const responce: ProfileUserType = await profileAPI.getProfile(userId);
 
-                        dispatch(getStatusThunkCreator(userId))
-                    });
+    dispatch(setUserProfileAC(responce));
+
+    dispatch(getStatusThunkCreator(userId));
   };
 };
 
 export const putProfilePhotoThunkCreator = (photoURL: any) => {
-  return (dispatch: Dispatch<DispatchUsersActionType>) => {
-    profileAPI.putProfilePhoto(photoURL)
-                    .then(data => {
-                        // dispatch(setUserProfileAC(data));
-                        console.log(data);
-                    });
+  return async (dispatch: Dispatch<DispatchUsersActionType>) => {
+    const responce: string = await profileAPI.putProfilePhoto(photoURL);
+
+    // dispatch(setUserProfileAC(data));
+    console.log(responce);
   };
 };
