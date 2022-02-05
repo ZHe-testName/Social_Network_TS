@@ -1,5 +1,5 @@
 import './App.css';
-import {Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 
 import DialogsContainer from './components/dialogs/DialogsContainer';
 import Music from './components/musik';
@@ -24,9 +24,10 @@ import React, { ComponentType } from 'react';
 import { AppReducerStateType, initializeAppTC } from './redux/reducers/app-reducer';
 import { getUserAuthDataThunkCreator } from './redux/reducers/auth-reducer';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { AppStateType } from './redux/redux-store';
 import Preloader from './components/preloader/Preloader';
+import store from './redux/redux-store';
   
 export type DispatchActionPropsType = {
   type: string,
@@ -117,9 +118,22 @@ const mapStateToProps = (state: AppStateType): AppReducerStateType => ({
 
 //при работе с TypeScript в дженерик нужно пихать ComponentType из реакта
 //иначе будет падать дурацкая ошибка
-export default compose<ComponentType>(
+// export default
+const AppContainer = compose<ComponentType>(
   withRouter,
   connect(mapStateToProps, {initializeAppTC})
 )(App);
+
+const AppWithRouter = (props: any) => {
+  return <>
+      <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider> 
+      </BrowserRouter>
+  </>
+};
+
+export default AppWithRouter;
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {create, ReactTestInstance} from 'react-test-renderer';
+import TestRenderer, {create, ReactTestInstance} from 'react-test-renderer';
 import ProfileStatus from "./ProfileStatus";
 
 type LocalStateType = {
@@ -10,10 +10,11 @@ type LocalStateType = {
 
 describe('Profile Status Component', () => {
     test('Status from props should be in the state.', () => {
-        const component = create(<ProfileStatus titleStatus='New Status' updateStatus={() => {}}/>);
+        const component = TestRenderer.create(<ProfileStatus titleStatus='New Status' updateStatus={() => {}}/>);
         const instance: any = component.root;
 
-        expect(instance.findAllByType(ProfileStatus).state.status).toBe('New Status')
+        console.log(instance.find(component));
+        expect(instance.state.status).toBe('New Status')
     })
 });
 

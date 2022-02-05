@@ -9,6 +9,7 @@ import './index.css';
 // import { DialogsPageType } from './redux/types';
 // import { NavType } from './components/navbar/Navbar';
 import { Provider } from 'react-redux';
+import AppWithRouter from './App';
 
 // export type EntireTreePropsType = {
 //   state: {
@@ -21,11 +22,12 @@ import { Provider } from 'react-redux';
 // state={store.getState()} getState={store.getState} dispatch={store.dispatch.bind(store)}
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Provider store={store}>
           <App />
         </Provider> 
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <AppWithRouter />
   </React.StrictMode>,
   document.getElementById('root')
 );
